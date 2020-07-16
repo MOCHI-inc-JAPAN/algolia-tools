@@ -1,0 +1,50 @@
+{
+  "name": "algolia-firebase-tools",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
+  "author": "tkow <t.kusama0613@outlook.jp>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest",
+    "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
+    "lint": "yarn lint:code",
+    "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:commit": "commitlint",
+    "release": "standard-version",
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@types/algoliasearch": "^3.34.10",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "commander": "^5.1.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.2",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.3.0",
+    "firebase-admin": "^9.0.0",
+    "moment": "^2.27.0"
+  },
+  "peerDependencies": {
+    "algoliasearch": "^4.3.0",
+    "firebase-admin": "^9.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint",
+      "pre-push": "npm test"
+    }
+  }
+}
