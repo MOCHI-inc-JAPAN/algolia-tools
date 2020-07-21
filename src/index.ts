@@ -1,4 +1,4 @@
-import type { IndexManager, IndexManagerConstructor } from './types'
+import type { IndexInterface, IndexConstructor } from './types'
 import {
   AlgoliaIndexManager,
   AlgoliaIndexManagerInternal,
@@ -9,16 +9,16 @@ export interface AlgoliaFirebaseManager {
   algoliaManager: AlgoliaIndexManager
   firebaseManager: FirebaseManager
   indices: {
-    [collectionName: string]: IndexManager
+    [collectionName: string]: IndexInterface
   }
 }
 
-export { IndexManager, IndexManagerConstructor }
+export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
 
 export default (
   args: AlgoliaIndexManagerInternal & Omit<FirebaseInvoke, 'algoliaManager'>,
   indices: {
-    [collectionName: string]: IndexManagerConstructor
+    [collectionName: string]: IndexConstructor
   }
 ): AlgoliaFirebaseManager => {
   const algoliaManager = new AlgoliaIndexManager(args)
@@ -32,7 +32,7 @@ export default (
       return {
         ...result,
         [index]: new indices[index]({
-          algoliaManager,
+          algoliaManager: algoliaManager,
         }),
       }
     }, {}),

@@ -6,16 +6,22 @@
       "dom.iterable",
       "esnext"
     ],
-    "outDir": "dist",
+    "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
   },
+  "include": [
+    "./index.ts",
+    "./account.ts",
+    "../src/util",
+    "../src/index.ts",
+    "../src/types"
+  ],
   "exclude": [
     "node_modules"
   ],

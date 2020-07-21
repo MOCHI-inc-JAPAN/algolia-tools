@@ -18,8 +18,8 @@ FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account
 
 package.json
 ```package.json
-  'aftools' : {
-    modulePath: 'algoliaIndexManager'
+  "aftools" : {
+    "modulePath": "algoliaIndexManager"
   }
 ```
 
@@ -33,53 +33,44 @@ firebaseServiceAccountPath (Optional):  relative firebase-service json path from
 
 
 ```algoliaIndexManager/userExample.ts
-import admin from 'firebase-admin';
-import moment from 'moment';
-import {
-  AlgoliaFirebaseManager,
-} from '../util';
+import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
 
-
-export default class UserIndexManager implements IndexManager {
-  private algoliaManager: AlgoliaFirebaseManager;
-  public constructor(args: { algoliaManager: AlgoliaFirebaseManager }) {
-    this.algoliaManager = args.algoliaManager;
+type UserSchema = {
+  id: string
+  name: string
+}
+export default class UserIndexManager implements IndexInterface {
+  private algoliaManager: AlgoliaIndexManager
+  public constructor(args: { algoliaManager: AlgoliaIndexManager }) {
+    this.algoliaManager = args.algoliaManager
   }
 
   public sendIndex = async (userId: string, user: UserSchema) => {
-    const result = await this.algoliaManager.sendIndex(
-      'users',
-      user
-    );
+    const result = await this.algoliaManager.sendIndex('users', user)
     if (result) {
-      console.log(`users index has been updated: [userId:${user.id}]`);
-      return true;
+      console.log(`users index has been updated: [userId:${user.id}]`)
+      return true
     } else {
-      console.error('users index update has been failed');
-      return false;
+      console.error('users index update has been failed')
+      return false
     }
-  };
+  }
 
   public batchSendToIndex = async () => {
-    const result = await this.algoliaManager.batchSendDataToIndex(
-      {
-        index: 'users',
-        collection: anyYourCollectionsWantedToSendIndex
-      }
-    );
-    return result;
-  };
+    const result = await this.algoliaManager.sendIndex('users', [])
+    return result
+  }
 
   public deleteIndexData = async (userIds: string[]) => {
-    const result = await this.algoliaManager.deleteIndexData('users', userIds);
+    const result = await this.algoliaManager.deleteIndexData('users', userIds)
     if (result) {
-      console.log(`user index has been deleted: [userIds:${userIds}]`);
-      return true;
+      console.log(`user index has been deleted: [userIds:${userIds}]`)
+      return true
     } else {
-      console.error('user index delete has been failed');
-      return false;
+      console.error('user index delete has been failed')
+      return false
     }
-  };
+  }
 }
 ```
 
@@ -109,6 +100,32 @@ aftools <scriptId>
 ### builtin script
 
 (WIP) see aftools help directory.
+
+
+### Usage as Modules
+
+Your module can be used backend. We probide algoliaFirebaseManager default exported. So you can use same logic introduced in cli.
+
+For example.
+
+```example.ts
+import algoliaFirebaseManager form 'algolia-firebase-tools'
+
+const manager = algoliaFirebaseManager(
+  {
+    admin,
+    client,
+    indexNamespace,
+  },
+  algoliaProjectModule
+)
+
+
+manager.indices.users.batchSendIndex()
+
+```
+so on.
+
 
 ## Feature Plan
 

@@ -1,4 +1,4 @@
-import firebaseAdmin from 'firebase-admin'
+import * as firebaseAdmin from 'firebase-admin'
 import { AlgoliaIndexManager } from '../util/AlgoliaIndexManager'
 
 export type FirebaseInvoke = {

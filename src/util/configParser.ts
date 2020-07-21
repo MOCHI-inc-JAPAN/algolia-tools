@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 import { existsSync } from 'fs'
 
 const FIELD = 'aftools'
@@ -8,22 +8,25 @@ export type Config = {
   firebaseServiceAccountPath?: string
   modulePath: string
   out?: string
+  orgModulePath: string
 }
 
-export const getConfigFromPackageJson = async (
+export const getConfigFromPackageJson = (
   dir: string
-): Promise<Required<Config> | Error> => {
+): Required<Config> | Error => {
   const packageJsonPath = path.join(dir, PACKAGE_JSON)
   if (!existsSync(packageJsonPath)) {
     return Error('package.json does not exist on root directory')
   }
-  const config = (await import(packageJsonPath))[FIELD]
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const config = require(packageJsonPath)[FIELD]
   if (!config) {
     return Error(`"${FIELD}" property does not exist on package.json`)
   }
   const modulePath = path.join(dir, config.modulePath)
-  const firebaseServiceAccountPath =
-    path.join(dir, config.firebaseServiceAccountPath) || ''
+  const firebaseServiceAccountPath = config.firebaseServiceAccountPath
+    ? path.join(dir, config.firebaseServiceAccountPath)
+    : ''
   const out = path.join(dir, config.out || 'bin')
   if (!modulePath) {
     return Error(`"${modulePath}" property does not exist on package.json`)
@@ -32,5 +35,6 @@ export const getConfigFromPackageJson = async (
     modulePath,
     firebaseServiceAccountPath,
     out,
+    orgModulePath: config.modulePath,
   }
 }

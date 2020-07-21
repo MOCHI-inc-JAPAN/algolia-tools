@@ -6,10 +6,15 @@
     "aftools": "dist/bin/aftools.js",
     "aftools-build": "dist/bin/aftools-build.js"
   },
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
-  "files": ["template", "dist", "src"],
+  "files": [
+    "template",
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npx tsc",
     "test": "echo 'not implemented yet'",
@@ -33,13 +38,13 @@
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
-    "standard-version": "^8.0.2",
-    "typescript": "^3.9.6"
+    "standard-version": "^8.0.2"
   },
   "dependencies": {
     "algoliasearch": "^4.3.0",
     "firebase-admin": "^9.0.0",
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "typescript": "^3.9.6"
   },
   "peerDependencies": {
     "algoliasearch": "^4.3.0",

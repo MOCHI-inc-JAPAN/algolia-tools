@@ -1,0 +1,18 @@
+{
+  "name": "algolia-firebase-tools-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "aftools": {
+    "modulePath": "indexManagers",
+    "out": "dist"
+  },
+  "dependencies": {
+    "algolia-firebase-tools": "file:../",
+    "typescript": "^3.9.7"
+  }
+}

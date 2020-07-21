@@ -1,19 +1,15 @@
 #!/usr/bin/env node
 
-import program from 'commander'
-import path from 'path'
-import { generate } from '../lib/generate'
-import { watch } from '../lib/watch'
-import { getConfigFromPackageJson, Config } from '../util/configParser'
+import * as program from 'commander'
+import { getConfigFromPackageJson } from '../util/configParser'
+import * as path from 'path'
 
-program.option('-w, --watch', 'watch file change').parse(process.argv)
+const config = getConfigFromPackageJson(process.cwd())
+if (config instanceof Error) {
+  console.error(config.message)
+  process.exit(1)
+}
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require(path.join(config.out, 'template'))(program)
 
-getConfigFromPackageJson(process.cwd()).then(async (config) => {
-  if (config instanceof Error) {
-    console.error(config.message)
-    process.exit(1)
-  }
-  ;(await import(config.out)).default()
-
-  process.exit()
-})
+process.exit()
