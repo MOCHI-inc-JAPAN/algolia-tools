@@ -20,7 +20,7 @@
     "test": "echo 'not implemented yet'",
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
     "lint": "yarn lint:code",
-    "lint:ci": "yarn lint:code && yarn lint:commit",
+    "lint:ci": "yarn lint:code && commitlint --from=origin/develop",
     "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:commit": "commitlint",
     "release": "standard-version",
