@@ -20,7 +20,7 @@ execSync(
   `npx tsc ${path.join(
     config.modulePath,
     fs.lstatSync(config.modulePath).isDirectory() ? 'index' : ''
-  )} --esModuleInterop --module CommonJs --outDir ${path.join(
+  )} --module CommonJs --outDir ${path.join(
     config.out,
     'template',
     config.orgModulePath

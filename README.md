@@ -12,6 +12,7 @@ ALGOLIA_ID: your algolia id
 ALGOLIA_ADMIN_KEY: your algolia admin key
 ALGOLIA_SEARCH_KEY: our algolia search key
 FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account
+INDEX_NAMESPACE (Optional):
 ```
 
 ### package.json
@@ -31,6 +32,8 @@ firebaseServiceAccountPath (Optional):  relative firebase-service json path from
 
 ### Example Index ManagerModules
 
+
+Make algoliaIndexManager/userExample.ts (if you specify algoliaIndexManager as modulePath)
 
 ```algoliaIndexManager/userExample.ts
 import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
@@ -74,11 +77,12 @@ export default class UserIndexManager implements IndexInterface {
 }
 ```
 
-And you make algoliaIndexManager/index.ts (if you specify algoliaIndexManager as modulePath)
+And you make algoliaIndexManager/index.ts
 
 ```algoliaIndexManager/index.ts
-export {
-  default as users // This exported as collectionName, so you should use named import specify to collection id
+import users from './userExample'
+export default {
+  users // This exported as collectionName, so you should use named import specify to collection id
 }
 ```
 

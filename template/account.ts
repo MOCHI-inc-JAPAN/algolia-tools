@@ -41,7 +41,7 @@ if (useFirebaseAccount) {
 const algoliaProjectModule: AlgoliaProjectModule = require(path.join(
   __dirname,
   config.orgModulePath
-))
+)).default
 
 export const ALGOLIA_ID = process.env.ALGOLIA_ID || ''
 export const ALGOLIA_ADMIN_KEY = process.env.ALGOLIA_ADMIN_KEY || ''

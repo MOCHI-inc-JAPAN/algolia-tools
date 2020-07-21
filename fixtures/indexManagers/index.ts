@@ -1,1 +1,5 @@
-export { default as users } from './users'
+import users from './users'
+
+export default {
+  users,
+}

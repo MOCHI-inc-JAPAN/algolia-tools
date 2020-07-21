@@ -10,6 +10,9 @@ if (config instanceof Error) {
   process.exit(1)
 }
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require(path.join(config.out, 'template'))(program)
+require(path.join(config.out, 'template')).default(program)
 
-process.exit()
+program.parse(process.argv)
+if (!process.argv.slice(2).length) {
+  program.outputHelp()
+}
