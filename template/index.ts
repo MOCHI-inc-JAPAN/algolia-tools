@@ -24,7 +24,7 @@ export default function (commander: CommanderStatic) {
   })
 
   commander
-    .command('seeAlgoliaIndexSetting <indexes...>')
+    .command('seeAlgoliaIndexSetting <indices...>')
     .action(async (args) => {
       const results = await algoliaManager.getIndexSetting(args)
       console.log(JSON.stringify(results, null, 2))
@@ -32,7 +32,7 @@ export default function (commander: CommanderStatic) {
     })
 
   commander
-    .command('backupAlgoliaIndexSetting <indexes...>')
+    .command('backupAlgoliaIndexSetting <indices...>')
     .action(async (args) => {
       const results = await algoliaManager.getIndexSetting(args)
       if (results && Array.isArray(results)) {
@@ -43,7 +43,7 @@ export default function (commander: CommanderStatic) {
                 const _path = path.join(
                   process.cwd(),
                   'algolia',
-                  'indexes',
+                  'indices',
                   `${args[index]}.json`
                 )
                 fs.writeFile(_path, JSON.stringify(setting, null, 2), (err) => {
@@ -78,7 +78,7 @@ export default function (commander: CommanderStatic) {
               const _path = path.join(
                 process.cwd(),
                 'algolia',
-                'indexes',
+                'indices',
                 `${indexName}.json`
               )
               fs.writeFile(_path, JSON.stringify(setting, null, 2), (err) => {
@@ -109,14 +109,14 @@ export default function (commander: CommanderStatic) {
   }
 
   commander
-    .command('provisionAlgoliaIndex <indexes...>')
+    .command('provisionAlgoliaIndex <indices...>')
     .action(async (args) => {
       const settings = await Promise.all<Settings>(
         args.map((v: string, _i: number) => {
           const _path = path.join(
             process.cwd(),
             'algolia',
-            'indexes',
+            'indices',
             `${v}.json`
           )
           return new Promise((resolve, reject) => {
@@ -145,11 +145,11 @@ export default function (commander: CommanderStatic) {
 
   commander.command('provisionAlgoliaIndexAll').action(async () => {
     const fileNames = fs.readdirSync(
-      path.join(process.cwd(), 'algolia', 'indexes')
+      path.join(process.cwd(), 'algolia', 'indices')
     )
     const settings = await Promise.all(
       fileNames.map((fileName, i) => {
-        const _path = path.join(process.cwd(), 'algolia', 'indexes', fileName)
+        const _path = path.join(process.cwd(), 'algolia', 'indices', fileName)
         return new Promise((resolve, reject) => {
           fs.readFile(_path, 'utf8', (test, data) => {
             resolve(settingParse(data))
@@ -175,7 +175,7 @@ export default function (commander: CommanderStatic) {
   })
 
   commander
-    .command('updateAlgoliaIndexSetting <indexes...>')
+    .command('updateAlgoliaIndexSetting <indices...>')
     .action(async (args) => {
       const promises = await Promise.all(
         args.map(async (fileName: string, index: number) => {
@@ -183,7 +183,7 @@ export default function (commander: CommanderStatic) {
             const _path = path.join(
               process.cwd(),
               'algolia',
-              'indexes',
+              'indices',
               `${fileName}.json`
             )
             fs.readFile(_path, 'utf8', async (err, _setting) => {
@@ -229,7 +229,7 @@ export default function (commander: CommanderStatic) {
     .action(async (indexName: string[]) => {
       const results = await Promise.all(
         indexName.map((_indexName) =>
-          algoliaFirebaseManager.indexes[_indexName].batchSendToIndex()
+          algoliaFirebaseManager.indices[_indexName].batchSendToIndex()
         )
       )
       if (results.some((v) => v === false))

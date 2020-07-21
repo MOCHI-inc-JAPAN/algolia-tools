@@ -8,14 +8,14 @@ import FirebaseManager, { FirebaseInvoke } from './util/FirebaseInvoke'
 export interface AlgoliaFirebaseManager {
   algoliaManager: AlgoliaIndexManager
   firebaseManager: FirebaseManager
-  indexes: {
+  indices: {
     [collectionName: string]: IndexManager
   }
 }
 
 export default (
   args: AlgoliaIndexManagerInternal & Omit<FirebaseInvoke, 'algoliaManager'>,
-  indexes: {
+  indices: {
     [collectionName: string]: IndexManagerConstructor
   }
 ): AlgoliaFirebaseManager => {
@@ -26,10 +26,10 @@ export default (
       admin: args.admin,
       algoliaManager,
     }),
-    indexes: Object.keys(indexes).reduce((result, index) => {
+    indices: Object.keys(indices).reduce((result, index) => {
       return {
         ...result,
-        [index]: new indexes[index]({
+        [index]: new indices[index]({
           algoliaManager,
         }),
       }

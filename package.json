@@ -2,6 +2,7 @@
   "name": "algolia-firebase-tools",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "bin": "dist/bin/index.js",
   "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
@@ -38,7 +39,8 @@
   },
   "peerDependencies": {
     "algoliasearch": "^4.3.0",
-    "firebase-admin": "^9.0.0"
+    "firebase-admin": "^9.0.0",
+    "typescript": "^3.9.6"
   },
   "husky": {
     "hooks": {
