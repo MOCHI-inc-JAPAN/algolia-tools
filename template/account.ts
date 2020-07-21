@@ -17,10 +17,12 @@ const config: Required<Config> | Error = await getConfigFromPackageJson(
 if (config instanceof Error) throw config
 
 // TODO: enable user to specify path each
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const serviceAccount: admin.ServiceAccount = require(path.join(
-  cwd,
-  process.env.FIREBASE_SERVICE_ACCOUNT_PATH || config.firebaseServiceAccountPath
+const serviceAccount: admin.ServiceAccount = (await import(
+  path.join(
+    cwd,
+    process.env.FIREBASE_SERVICE_ACCOUNT_PATH ||
+      config.firebaseServiceAccountPath
+  )
 )) as admin.ServiceAccount
 
 const algoliaProjectModule: AlgoliaProjectModule = await import(

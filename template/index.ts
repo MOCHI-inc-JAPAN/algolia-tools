@@ -3,7 +3,6 @@
 import fs from 'fs'
 import path from 'path'
 import { CommanderStatic } from 'commander'
-// import { admin } from "../firebase/config";
 import { Settings } from '@algolia/client-search'
 import algoliaFirebaseManager, {
   ALGOLIA_ID,

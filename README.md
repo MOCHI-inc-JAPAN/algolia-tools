@@ -1,31 +1,44 @@
+## What is this
+
+Auto cli generator for general usage algolia from node.
+This library mainly targets typescript but may be available as js module.
+
+## Ready to use
+
+### You need reading env setting
+
 ```
+ALGOLIA_ID: your algolia id
+ALGOLIA_ADMIN_KEY: your algolia admin key
+ALGOLIA_SEARCH_KEY: our algolia search key
+FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account
+```
+
+### package.json
+
+package.json
+```package.json
+  'aftools' : {
+    modulePath: 'algoliaIndexManager'
+  }
+```
+
+module: your algolia index manager relative module path from package.json. this is object consistes of IndexManager Class Constructor. It explained later and see example cases.
+
+out (Optional): builded relative cli path from package.json. Default is `${projectRoot}/bin`.
+
+firebaseServiceAccountPath (Optional):  relative firebase-service json path from package.json. FIREBASE_SERVICE_ACCOUNT_PATH valiable is prior than this. Default is `${projectRoot}/bin`.
+
+### Example Index ManagerModules
+
+
+```algoliaIndexManager/userExample.ts
 import admin from 'firebase-admin';
 import moment from 'moment';
 import {
   AlgoliaFirebaseManager,
 } from '../util';
 
-const initialState: UserSearchRecord = {
-  },
-  belongsTo: '',
-  birthDay: admin.firestore.FieldValue.serverTimestamp(),
-  firstName: '',
-  firstNamePhonetic: '',
-  gender: 0,
-  graduations: [],
-  id: '',
-  image: '',
-  income: 0,
-  jobType: 0,
-  lastName: '',
-  lastNamePhonetic: '',
-  objectID: '',
-  motivation: 0,
-  status: '',
-  searchWords: '',
-  skillTags: [],
-  updatedAt: admin.firestore.FieldValue.serverTimestamp()
-};
 
 export default class UserIndexManager implements IndexManager {
   private algoliaManager: AlgoliaFirebaseManager;
@@ -33,47 +46,10 @@ export default class UserIndexManager implements IndexManager {
     this.algoliaManager = args.algoliaManager;
   }
 
-  private filter = (userBase: UserSchema): UserSearchRecord => {
-    const user = {
-      ...initialState,
-      ...userBase
-    };
-    return {
-      address: user.address,
-      belongsTo: user.belongsTo,
-      firstName: user.firstName,
-      firstNamePhonetic: user.firstNamePhonetic,
-      lastName: user.lastName,
-      lastNamePhonetic: user.lastNamePhonetic,
-      status: UserStatus[user.status],
-      birthDay: (user.birthDay as FirestoreTimestamp).toDate
-        ? user.birthDay
-        : user.birthDay &&
-          admin.firestore.Timestamp.fromDate(
-            moment(user.birthDay as Date, 'YYYYY年MM月DD').toDate()
-          ),
-      gender: user.gender,
-      graduations: user.graduations.map(v => v.schoolName),
-      id: user.id,
-      image: user.image,
-      income: user.income,
-      jobType: user.jobType,
-      motivation: user.motivation,
-      objectID: user.id,
-      updatedAt: user.updatedAt,
-      skillTags: extractTags(user.episodes),
-      searchWords: extractSearchWords(user.episodes)
-    };
-  };
-
   public sendIndex = async (userId: string, user: UserSchema) => {
-    const indexData = {
-      ...user,
-      objectID: userId
-    };
     const result = await this.algoliaManager.sendIndex(
       'users',
-      this.filter(indexData)
+      user
     );
     if (result) {
       console.log(`users index has been updated: [userId:${user.id}]`);
@@ -88,9 +64,8 @@ export default class UserIndexManager implements IndexManager {
     const result = await this.algoliaManager.batchSendDataToIndex(
       {
         index: 'users',
-        collection: admin.firestore().collection('users')
-      },
-      this.filter
+        collection: anyYourCollectionsWantedToSendIndex
+      }
     );
     return result;
   };
@@ -107,3 +82,34 @@ export default class UserIndexManager implements IndexManager {
   };
 }
 ```
+
+And you make algoliaIndexManager/index.ts (if you specify algoliaIndexManager as modulePath)
+
+```algoliaIndexManager/index.ts
+export {
+  default as users // This exported as collectionName, so you should use named import specify to collection id
+}
+```
+
+## Usage
+
+
+### cli init
+
+```
+aftools-build
+```
+
+### cli run
+
+```
+aftools <scriptId>
+```
+
+### builtin script
+
+(WIP) see aftools help directory.
+
+## Feature Plan
+
+* This library should be able to use not depended on firebase. This is why it was used to be used by our product, and  used firebase realtime database storage, but it doesn't need it only, so we plan to remove the dependeny to use algolia indexManager independently and provide this monorepo.

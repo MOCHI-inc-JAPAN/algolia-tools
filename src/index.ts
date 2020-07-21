@@ -1,4 +1,4 @@
-import { IndexManager, IndexManagerConstructor } from './types'
+import type { IndexManager, IndexManagerConstructor } from './types'
 import {
   AlgoliaIndexManager,
   AlgoliaIndexManagerInternal,
@@ -12,6 +12,8 @@ export interface AlgoliaFirebaseManager {
     [collectionName: string]: IndexManager
   }
 }
+
+export { IndexManager, IndexManagerConstructor }
 
 export default (
   args: AlgoliaIndexManagerInternal & Omit<FirebaseInvoke, 'algoliaManager'>,

@@ -21,9 +21,10 @@ export const getConfigFromPackageJson = async (
   if (!config) {
     return Error(`"${FIELD}" property does not exist on package.json`)
   }
-  const modulePath = config.modulePath
-  const firebaseServiceAccountPath = config.firebaseServiceAccountPath || ''
-  const out = config.out || 'bin'
+  const modulePath = path.join(dir, config.modulePath)
+  const firebaseServiceAccountPath =
+    path.join(dir, config.firebaseServiceAccountPath) || ''
+  const out = path.join(dir, config.out || 'bin')
   if (!modulePath) {
     return Error(`"${modulePath}" property does not exist on package.json`)
   }
