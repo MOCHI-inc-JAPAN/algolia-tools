@@ -8,6 +8,9 @@
   },
   "types": "dist/index.d.ts",
   "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
   "files": [
