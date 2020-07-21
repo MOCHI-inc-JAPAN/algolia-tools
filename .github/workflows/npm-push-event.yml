@@ -7,9 +7,9 @@ on:
   push:
     branches:
       - 'release'
+
 jobs:
   publish-gpr:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,8 +36,8 @@ jobs:
         run: npm run build
       - name: Github config
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "t.kusama0613@outlook.jp"
+          git config --local user.name "tkow"
       - name: Version increment
         run: npm run release
       - name: Get package-version
