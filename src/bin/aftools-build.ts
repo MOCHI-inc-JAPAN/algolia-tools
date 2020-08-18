@@ -5,7 +5,12 @@ import { execSync } from 'child_process'
 import * as path from 'path'
 import * as fs from 'fs'
 
-const PACKAGE_NAME = 'algolia-firebase-tools'
+let packageName = 'algolia-firebase-tools'
+if (!fs.statSync(path.join(process.cwd(), 'node_modules', packageName))) {
+  packageName = '@mochi-inc-japan/algolia-firebase-tools'
+  if (!fs.statSync(path.join(process.cwd(), 'node_modules', packageName)))
+    throw Error('package path wrong')
+}
 
 const config = getConfigFromPackageJson(process.cwd())
 
@@ -14,7 +19,7 @@ if (config instanceof Error) {
   process.exit(1)
 }
 execSync(
-  `npx tsc -p ./node_modules/${PACKAGE_NAME}/template --outDir ${config.out}`
+  `npx tsc -p ./node_modules/${packageName}/template --outDir ${config.out}`
 )
 execSync(
   `npx tsc ${path.join(
