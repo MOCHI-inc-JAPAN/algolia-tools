@@ -5,6 +5,7 @@ const FIELD = 'aftools'
 const PACKAGE_JSON = 'package.json'
 
 export type Config = {
+  packageName: string
   firebaseServiceAccountPath?: string
   modulePath: string
   out?: string
@@ -32,6 +33,7 @@ export const getConfigFromPackageJson = (
     return Error(`"${modulePath}" property does not exist on package.json`)
   }
   return {
+    packageName: config.name,
     modulePath,
     firebaseServiceAccountPath,
     out,
