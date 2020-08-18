@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.1...v1.5.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* bug of build node_modules path ([a7de0b6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a7de0b659e7927c8607750f37976a2c94e0cdaf2))
+
 ### [1.3.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.0...v1.3.1) (2020-08-18)
 
 
