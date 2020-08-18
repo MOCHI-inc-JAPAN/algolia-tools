@@ -15,7 +15,10 @@ export default function (commander: CommanderStatic) {
     .command('batchSendDataToIndex <indexName...> ')
     .action(async (indexName) => {
       try {
-        firebaseManager.batchSendDataToIndex(indexName)
+        await firebaseManager.batchSendDataToIndex({
+          index: indexName,
+          collection: admin.firestore().collection(indexName),
+        })
       } catch (e) {
         process.exit()
       }
@@ -24,7 +27,7 @@ export default function (commander: CommanderStatic) {
     .command('resetBatchTime <indexName...> ')
     .action(async (indexName) => {
       try {
-        firebaseManager.batchSendDataToIndex(indexName)
+        await firebaseManager.resetBatchTime(indexName)
       } catch (e) {
         process.exit()
       }
@@ -33,7 +36,7 @@ export default function (commander: CommanderStatic) {
     .command('removeAllDataFromAndStorageIndex <indexName...> ')
     .action(async (indexName) => {
       try {
-        firebaseManager.removeAllDataFromIndex(indexName)
+        await firebaseManager.removeAllDataFromIndex(indexName)
       } catch (e) {
         process.exit()
       }
