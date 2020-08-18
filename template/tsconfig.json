@@ -16,8 +16,9 @@
     "resolveJsonModule": true,
   },
   "include": [
-    "./index.ts",
-    "./account.ts",
+    "./*.ts",
+    "./**/*.ts",
+    "../src/plugin",
     "../src/util",
     "../src/index.ts",
     "../src/types"

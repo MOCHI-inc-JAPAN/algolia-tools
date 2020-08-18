@@ -3,11 +3,9 @@ import {
   AlgoliaIndexManager,
   AlgoliaIndexManagerInternal,
 } from './util/AlgoliaIndexManager'
-import FirebaseManager, { FirebaseInvoke } from './util/FirebaseInvoke'
 
-export interface AlgoliaFirebaseManager {
+export interface AlgoliaToolsModule {
   algoliaManager: AlgoliaIndexManager
-  firebaseManager: FirebaseManager
   indices: {
     [collectionName: string]: IndexInterface
   }
@@ -16,18 +14,14 @@ export interface AlgoliaFirebaseManager {
 export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
 
 export default (
-  args: AlgoliaIndexManagerInternal & Omit<FirebaseInvoke, 'algoliaManager'>,
+  args: AlgoliaIndexManagerInternal,
   indices: {
     [collectionName: string]: IndexConstructor
   }
-): AlgoliaFirebaseManager => {
+): AlgoliaToolsModule => {
   const algoliaManager = new AlgoliaIndexManager(args)
   return {
     algoliaManager,
-    firebaseManager: new FirebaseManager({
-      admin: args.admin,
-      algoliaManager,
-    }),
     indices: Object.keys(indices).reduce((result, index) => {
       return {
         ...result,

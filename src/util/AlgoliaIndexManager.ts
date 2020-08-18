@@ -61,9 +61,7 @@ export class AlgoliaIndexManager {
     }
   }
 
-  public deleteIndex = async <T extends string>(
-    indexName: string | string[]
-  ) => {
+  public deleteIndex = async (indexName: string | string[]) => {
     try {
       const index = this.client.initIndex(`${this.indexNamespace}${indexName}`)
       if (Array.isArray(indexName)) {
