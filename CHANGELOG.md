@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.1...v1.5.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* fix  batch send ([9e85e72](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/9e85e7215ca596aa0d48defe9a3c10adbbe9e0e2))
+* wrong case ([865cd26](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/865cd2626de07f02f349652f73ef16fcb54f792a))
+
 ### [1.5.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.1...v1.5.1) (2020-08-18)
 
 
