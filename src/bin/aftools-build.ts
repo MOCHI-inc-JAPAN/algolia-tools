@@ -22,7 +22,7 @@ execSync(
     fs.lstatSync(config.modulePath).isDirectory() ? 'index' : ''
   )} --module CommonJs --outDir ${path.join(
     config.out,
-    'template',
+    'template/account',
     config.orgModulePath
   )}`
 )
