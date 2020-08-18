@@ -5,10 +5,11 @@ import { execSync } from 'child_process'
 import * as path from 'path'
 import * as fs from 'fs'
 
-let packageName = 'algolia-firebase-tools'
-if (!fs.statSync(path.join(process.cwd(), 'node_modules', packageName))) {
-  packageName = '@mochi-inc-japan/algolia-firebase-tools'
-  if (!fs.statSync(path.join(process.cwd(), 'node_modules', packageName)))
+let packageName = '@mochi-inc-japan/algolia-firebase-tools'
+
+if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName))) {
+  packageName = 'algolia-firebase-tools'
+  if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName)))
     throw Error('package path wrong')
 }
 
