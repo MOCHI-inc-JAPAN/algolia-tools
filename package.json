@@ -7,7 +7,7 @@
     "aftools-build": "dist/bin/aftools-build.js"
   },
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-tools.git",
+  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
