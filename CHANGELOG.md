@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.0...v1.3.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* bug of build node_modules path ([05bfb84](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/05bfb840b2a2d04518df23025ecb3a796035df11))
+
+## [1.3.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.2.0...v1.3.0) (2020-08-18)
+
+
+### Features
+
+* version up ([d3485db](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/d3485db8a8b2c90d2b7180c69e2b3afa78d3725e))
+* version up ([6a3c1ce](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/6a3c1ceac7859c4155e77d15350b84ff0244cf93))
+
+
+### Bug Fixes
+
+* bug and refactoring ([4aa812f](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/4aa812f3370a6e296e3382ff26c61cedae64bec8))
+* change module build path ([15b75da](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/15b75da5c62c8cbc04498691135441975f5579cc))
+* version ([afc863e](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/afc863e32d07afd93f5231708f621bfa2f5edf2d))
+* version up ([4c194e7](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/4c194e7875c83454f427fecacd923b40843ab063))
+
+## [1.2.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.1.1...v1.2.0) (2020-07-21)
+
+
+### Features
+
+* package ([b3d3c96](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/b3d3c966e7445fe898336764f31a5ece8400b558))
+* package ([f88210d](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/f88210d465cb3407713eaffd3e0a13580d1a02d0))
+
 ### [1.1.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.1.0...v1.1.1) (2020-07-21)
 
 ## 1.1.0 (2020-07-21)
