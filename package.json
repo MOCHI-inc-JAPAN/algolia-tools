@@ -1,5 +1,5 @@
 {
-  "name": "@mochi-inc-japan/algolia-firebase-tools",
+  "name": "@mochi-inc-japan/algolia-tools",
   "version": "1.1.1",
   "main": "dist/index.js",
   "bin": {
@@ -7,7 +7,7 @@
     "aftools-build": "dist/bin/aftools-build.js"
   },
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
+  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-tools.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -42,17 +42,16 @@
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
+    "firebase-admin": "^9.0.0",
     "standard-version": "^8.0.2"
   },
   "dependencies": {
     "algoliasearch": "^4.3.0",
-    "firebase-admin": "^9.0.0",
     "moment": "^2.27.0",
     "typescript": "^3.9.6"
   },
   "peerDependencies": {
     "algoliasearch": "^4.3.0",
-    "firebase-admin": "^9.0.0",
     "typescript": "^3.9.6"
   },
   "husky": {
