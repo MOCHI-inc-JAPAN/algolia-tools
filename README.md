@@ -12,7 +12,7 @@ ALGOLIA_ID: your algolia id
 ALGOLIA_ADMIN_KEY: your algolia admin key
 ALGOLIA_SEARCH_KEY: our algolia search key
 FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account
-INDEX_NAMESPACE (Optional):
+INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set different environments with one algolia account.
 ```
 
 ### package.json
@@ -108,16 +108,15 @@ aftools <scriptId>
 
 ### Usage as Modules
 
-Your module can be used backend. We probide algoliaFirebaseManager default exported. So you can use same logic introduced in cli.
+Your module can be used backend. We probide algoliaModule default exported. So you can use same logic introduced in cli.
 
 For example.
 
 ```example.ts
-import algoliaFirebaseManager form 'algolia-firebase-tools'
+import algoliaModule form 'algolia-firebase-tools'
 
-const manager = algoliaFirebaseManager(
+const manager = algoliaModule(
   {
-    admin,
     client,
     indexNamespace,
   },

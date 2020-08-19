@@ -1,15 +1,12 @@
-import type { IndexInterface, IndexConstructor } from './types'
+import type {
+  IndexInterface,
+  IndexConstructor,
+  AlgoliaToolsModule,
+} from './types'
 import {
   AlgoliaIndexManager,
   AlgoliaIndexManagerInternal,
 } from './util/AlgoliaIndexManager'
-
-export interface AlgoliaToolsModule {
-  algoliaManager: AlgoliaIndexManager
-  indices: {
-    [collectionName: string]: IndexInterface
-  }
-}
 
 export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
 
