@@ -11,6 +11,7 @@ export type Config = {
   out?: string
   orgModulePath: string
   dFiles?: string[] | undefined
+  envFile?: string
 }
 
 export const getConfigFromPackageJson = (
@@ -40,5 +41,6 @@ export const getConfigFromPackageJson = (
     out,
     orgModulePath: config.modulePath,
     dFiles: config.dFiles,
+    envFile: config.envFile,
   }
 }
