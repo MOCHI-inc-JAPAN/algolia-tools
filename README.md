@@ -155,4 +155,4 @@ so on.
 
 ## **WARNING**
 
-This library cli may includes your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
+This library cli may include your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
