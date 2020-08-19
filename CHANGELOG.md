@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.6...v1.6.0) (2020-08-19)
+
+
+### Features
+
+* verbose option for exec command ([29e2957](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/29e2957791609fec2f3d0ac0113980c4b803c381))
+
 ### [1.5.6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.5...v1.5.6) (2020-08-19)
 
 
