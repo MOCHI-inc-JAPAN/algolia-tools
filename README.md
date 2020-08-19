@@ -121,6 +121,12 @@ aftools-build --verbose
 aftools <scriptId>
 ```
 
+You can switch an env file from option. It's prior than config envFile.
+
+```shell
+aftools-build --envfile ${env_path} <scriptId>
+```
+
 ### builtin script
 
 see aftools help.
@@ -155,4 +161,4 @@ so on.
 
 ## **WARNING**
 
-This library cli may includes your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
+This library cli may include your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
