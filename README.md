@@ -21,7 +21,7 @@ package.json
 ```package.json
   "aftools" : {
     "modulePath": "algoliaIndexManager",
-    "out": "dist"
+    "out": "dist",
     "dFiles": ['./internalAmbientFiles', 'index.d.ts']
   }
 ```
