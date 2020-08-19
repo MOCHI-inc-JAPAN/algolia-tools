@@ -31,9 +31,8 @@ out = execSync(
     fs.lstatSync(config.modulePath).isDirectory() ? 'index' : ''
   )} --module CommonJs --outDir ${path.join(
     config.out,
-    'template/account',
-    config.orgModulePath
-  )} ${process.argv.slice(2).join(' ')}`
+    'template/account'
+  )} --rootDir ${process.cwd()} ${process.argv.slice(2).join(' ')}`
 )
 
 console.log(out.toString())
