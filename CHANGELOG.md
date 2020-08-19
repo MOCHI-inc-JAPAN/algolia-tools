@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.6.1...v1.7.0) (2020-08-19)
+
+
+### Features
+
+* add test case ([e850c49](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/e850c492979870a0b3b07272810745ac57f2d8a0))
+* read env variables ([5bb3a50](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/5bb3a50d6364f9170b8725a844959a6d91613906))
+
 ### [1.6.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.6.0...v1.6.1) (2020-08-19)
 
 
