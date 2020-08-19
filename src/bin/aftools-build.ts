@@ -19,10 +19,13 @@ if (config instanceof Error) {
   console.error(config.message)
   process.exit(1)
 }
-execSync(
+let out = execSync(
   `npx tsc -p ./node_modules/${packageName}/template --outDir ${config.out}`
 )
-execSync(
+
+console.log(out.toString())
+
+out = execSync(
   `npx tsc ${path.join(
     config.modulePath,
     fs.lstatSync(config.modulePath).isDirectory() ? 'index' : ''
@@ -32,3 +35,5 @@ execSync(
     config.orgModulePath
   )} ${process.argv.slice(2).join(' ')}`
 )
+
+console.log(out.toString())
