@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.6.0...v1.6.1) (2020-08-19)
+
+
+### Bug Fixes
+
+* exclude spec files ([a7850a8](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a7850a83bf7b3a3d19f901487564c939e3487b05))
+* run jest ci ([43182ff](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/43182ffed2159d62012c75db9cf219b9c80831d5))
+* typo ([012aaa1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/012aaa16bdf9866db90e0ba0e33601d1d21aa5a2))
+
 ## [1.6.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.6...v1.6.0) (2020-08-19)
 
 
