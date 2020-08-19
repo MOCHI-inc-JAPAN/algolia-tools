@@ -8,3 +8,10 @@ export interface IndexInterface<T extends any = any> {
 export interface IndexConstructor {
   new (args: { algoliaManager: AlgoliaIndexManager }): IndexInterface
 }
+
+export interface AlgoliaToolsModule {
+  algoliaManager: AlgoliaIndexManager
+  indices: {
+    [collectionName: string]: IndexInterface
+  }
+}

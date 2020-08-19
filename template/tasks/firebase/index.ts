@@ -1,7 +1,7 @@
 import { CommanderStatic } from 'commander'
-import algoliaModule from '../account/algoliaAccount'
-import admin from '../account/firebaseAccount'
-import FirebaseInvoke from '../../src/plugin/FirebaseInvoke'
+import algoliaModule from '../../account/algoliaAccount'
+import admin from '../../account/firebaseAccount'
+import FirebaseInvoke from '../../../src/plugin/FirebaseInvoke'
 
 const algoliaManager = algoliaModule.algoliaManager
 
