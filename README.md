@@ -89,10 +89,16 @@ export default {
 ## Usage
 
 
-### cli init
+### cli init or update indexModules
 
 ```
 aftools-build
+```
+
+This is typescript tsc wrapper so you can use tsc --option if your source code including ambient file and json Module like
+
+```shell
+aftools-build --typeRoots ${DFILE_PATH} --resolveJsonModule
 ```
 
 ### cli run
