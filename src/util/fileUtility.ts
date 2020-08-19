@@ -11,7 +11,10 @@ export async function* getFiles(
     if (dirent.isDirectory()) {
       yield* getFiles(res, match)
     } else {
-      if (match && !match.some((cond) => dirent.name.match(cond))) {
+      if (
+        match &&
+        !match.some((cond) => path.basename(dirent.name).match(cond))
+      ) {
         continue
       }
       yield res
@@ -25,8 +28,9 @@ export async function getReadFileName(
 ): Promise<string[]> {
   const result: string[] = []
   for (const dir of dirs) {
-    if (fs.statSync(dir).isFile()) {
-      if (!match || match.some((cond) => dir.match(cond)))
+    console.log(dir)
+    if (fs.statSync(path.resolve(dir)).isFile()) {
+      if (!match || match.some((cond) => path.basename(dir).match(cond)))
         result.push(path.resolve(dir))
     } else {
       for await (const fileName of getFiles(dir, match)) {
