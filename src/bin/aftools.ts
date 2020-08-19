@@ -16,13 +16,15 @@ const execRoot = process.cwd()
 
 const envFileIndex = process.argv.indexOf('--envfile')
 const envPath: string =
-  envFileIndex >= 0
-    ? path.resolve(execRoot, process.argv.splice(envFileIndex, 2)[1])
-    : config.envFile && path.resolve(execRoot, config.envFile)
+  envFileIndex >= 0 ? process.argv.splice(envFileIndex, 2)[1] : config.envFile
 
 if (envPath) {
+  const readPath = path.resolve(execRoot, envPath)
+  if (!fs.existsSync(readPath)) {
+    throw new Error('envfile is not found')
+  }
   dotenv.config({
-    path: envPath,
+    path: readPath,
   })
 } else {
   if (fs.existsSync(path.resolve(execRoot, '.env'))) {
