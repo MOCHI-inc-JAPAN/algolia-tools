@@ -28,7 +28,6 @@ export async function getReadFileName(
 ): Promise<string[]> {
   const result: string[] = []
   for (const dir of dirs) {
-    console.log(dir)
     if (fs.statSync(path.resolve(dir)).isFile()) {
       if (!match || match.some((cond) => path.basename(dir).match(cond)))
         result.push(path.resolve(dir))
