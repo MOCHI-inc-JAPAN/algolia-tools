@@ -33,7 +33,7 @@ out = execSync(
     config.out,
     'template/account',
     config.orgModulePath
-  )} ${process.argv.slice(2).join(' ')}`
+  )} --rootDir ${process.cwd()} ${process.argv.slice(2).join(' ')}`
 )
 
 console.log(out.toString())
