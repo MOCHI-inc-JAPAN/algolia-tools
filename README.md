@@ -22,7 +22,8 @@ package.json
   "aftools" : {
     "modulePath": "algoliaIndexManager",
     "out": "dist",
-    "dFiles": ["./internalAmbientFiles", "index.d.ts"]
+    "dFiles": ["./internalAmbientFiles", "index.d.ts"],
+    "envFile": ".env.some"
   }
 ```
 
@@ -34,6 +35,8 @@ types (Optional): project internal types. .
 firebaseServiceAccountPath (Optional):  relative firebase-service json path from package.json. FIREBASE_SERVICE_ACCOUNT_PATH valiable is prior than this. Default is `${projectRoot}/bin`.
 
 dFiles: string[] (Optional): For including ambient definition files through build, sometimes you need them using global type in your index modules. You can specify directory and .d.ts file path.
+
+envFile (Optional): your env file specified, default is `.env`. If not specified, machine variables is used .
 
 ### Example Index ManagerModules
 
