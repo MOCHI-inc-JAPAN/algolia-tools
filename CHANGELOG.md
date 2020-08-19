@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.2...v1.5.3) (2020-08-19)
+
+
+### Bug Fixes
+
+* accept args ([5a013c3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/5a013c36473c31a7b3f0cf01f0fba0c0d444b850))
+* accept tsc arguments ([bcd2c78](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/bcd2c78c49bc1208a3d69ab35a76de7291c3b935))
+* error handling ([0832e11](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/0832e112ae6fcc084e2c8afc38bcd007a9a6539a))
+* tsc compiler and refactoring batch process ([375394d](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/375394d12c5e32eccda8cdd5b8d9132789492ef7))
+
+### [1.5.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.5.1...v1.5.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* fix  batch send ([9e85e72](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/9e85e7215ca596aa0d48defe9a3c10adbbe9e0e2))
+* wrong case ([865cd26](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/865cd2626de07f02f349652f73ef16fcb54f792a))
+
+### [1.5.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.1...v1.5.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* bug of build node_modules path ([a7de0b6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a7de0b659e7927c8607750f37976a2c94e0cdaf2))
+
 ### [1.3.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.3.0...v1.3.1) (2020-08-18)
 
 
