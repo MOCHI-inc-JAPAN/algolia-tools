@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "test": "echo 'not implemented yet'",
+    "test": "jest",
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
     "lint": "yarn lint:code",
     "lint:ci": "yarn lint:code && commitlint --from=origin/develop",
