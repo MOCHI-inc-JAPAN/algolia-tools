@@ -121,6 +121,12 @@ aftools-build --verbose
 aftools <scriptId>
 ```
 
+You can switch an env file from option. It's prior than config envFile.
+
+```shell
+aftools-build --envfile ${env_path} <scriptId>
+```
+
 ### builtin script
 
 see aftools help.

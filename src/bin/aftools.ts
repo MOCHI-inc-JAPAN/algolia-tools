@@ -11,10 +11,16 @@ if (config instanceof Error) {
   console.error(config.message)
   process.exit(1)
 }
+
 const execRoot = process.cwd()
 
-if (config.envFile) {
-  const envPath = path.resolve(execRoot, config.envFile)
+const envFileIndex = process.argv.indexOf('--envfile')
+const envPath: string =
+  envFileIndex >= 0
+    ? path.resolve(execRoot, process.argv.splice(envFileIndex, 2)[1])
+    : config.envFile && path.resolve(execRoot, config.envFile)
+
+if (envPath) {
   dotenv.config({
     path: envPath,
   })
