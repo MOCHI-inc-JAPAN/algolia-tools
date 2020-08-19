@@ -136,6 +136,10 @@ manager.indices.users.batchSendIndex()
 so on.
 
 
+## **WARNING**
+
+This library cli may includes your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
+
 ## Feature Plan
 
 * This library should be able to use not depended on firebase. This is why it was used to be used by our product, and  used firebase realtime database storage, but it doesn't need it only, so we plan to remove the dependeny to use algolia indexManager independently and provide this monorepo.
