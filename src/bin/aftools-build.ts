@@ -30,5 +30,5 @@ execSync(
     config.out,
     'template/account',
     config.orgModulePath
-  )}`
+  )} ${process.argv.slice(2).join(' ')}`
 )
