@@ -11,7 +11,7 @@ This library mainly targets typescript but may be available as js module.
 ALGOLIA_ID: your algolia id
 ALGOLIA_ADMIN_KEY: your algolia admin key
 ALGOLIA_SEARCH_KEY: our algolia search key
-FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account
+FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account, if you don't specify it, cli surpress firebase batch.
 INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set different environments with one algolia account.
 ```
 
@@ -20,23 +20,28 @@ INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set differ
 package.json
 ```package.json
   "aftools" : {
-    "modulePath": "algoliaIndexManager"
+    "modulePath": "algoliaIndexManager",
+    "out": "dist"
+    "dFiles": ['./internalAmbientFiles', 'index.d.ts']
   }
 ```
 
-module: your algolia index manager relative module path from package.json. this is object consistes of IndexManager Class Constructor. It explained later and see example cases.
+modulePath: your algolia index manager relative module path from package.json. this is object consistes of IndexManager Class Constructor. It explained later and see example cases.
 
 out (Optional): builded relative cli path from package.json. Default is `${projectRoot}/bin`.
+types (Optional): project internal types. .
 
 firebaseServiceAccountPath (Optional):  relative firebase-service json path from package.json. FIREBASE_SERVICE_ACCOUNT_PATH valiable is prior than this. Default is `${projectRoot}/bin`.
+
+dFiles: string[] (Optional): For including ambient definition files through build, sometimes you need them using global type in your index modules. You can specify directory and .d.ts file path.
 
 ### Example Index ManagerModules
 
 
-Make algoliaIndexManager/userExample.ts (if you specify algoliaIndexManager as modulePath)
+Make algoliaIndexManager/userExample.ts (if you specify ./algoliaIndexManager as modulePath)
 
 ```algoliaIndexManager/userExample.ts
-import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
+import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-firebase-tools'
 
 type UserSchema = {
   id: string
@@ -101,6 +106,12 @@ This is typescript tsc wrapper so you can use tsc --option if your source code i
 aftools-build --typeRoots ${DFILE_PATH} --resolveJsonModule
 ```
 
+and you can exec build command
+
+```shell
+aftools-build --verbose
+```
+
 ### cli run
 
 ```
@@ -109,8 +120,11 @@ aftools <scriptId>
 
 ### builtin script
 
-(WIP) see aftools help directory.
+see aftools help.
 
+```
+npx aftools
+```
 
 ### Usage as Modules
 
@@ -139,7 +153,3 @@ so on.
 ## **WARNING**
 
 This library cli may includes your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
-
-## Feature Plan
-
-* This library should be able to use not depended on firebase. This is why it was used to be used by our product, and  used firebase realtime database storage, but it doesn't need it only, so we plan to remove the dependeny to use algolia indexManager independently and provide this monorepo.

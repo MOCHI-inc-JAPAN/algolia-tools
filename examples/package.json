@@ -9,10 +9,11 @@
   "license": "ISC",
   "aftools": {
     "modulePath": "indexManagers",
-    "out": "dist"
+    "out": "dist",
+    "dFiles": ["./@types"]
   },
   "dependencies": {
-    "algolia-firebase-tools": "file:../",
+    "algolia-firebase-tools": "file:..",
     "typescript": "^3.9.7"
   }
 }

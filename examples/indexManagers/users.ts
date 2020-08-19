@@ -1,9 +1,5 @@
 import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
 
-type UserSchema = {
-  id: string
-  name: string
-}
 export default class UserIndexManager implements IndexInterface {
   private algoliaManager: AlgoliaIndexManager
   public constructor(args: { algoliaManager: AlgoliaIndexManager }) {
