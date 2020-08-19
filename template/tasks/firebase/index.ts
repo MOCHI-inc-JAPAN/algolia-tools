@@ -20,6 +20,8 @@ export default function (commander: CommanderStatic) {
           collection: admin.firestore().collection(indexName),
         })
       } catch (e) {
+        console.error(e)
+      } finally {
         process.exit()
       }
     })
@@ -29,6 +31,8 @@ export default function (commander: CommanderStatic) {
       try {
         await firebaseManager.resetBatchTime(indexName)
       } catch (e) {
+        console.error(e)
+      } finally {
         process.exit()
       }
     })
@@ -38,6 +42,8 @@ export default function (commander: CommanderStatic) {
       try {
         await firebaseManager.removeAllDataFromIndex(indexName)
       } catch (e) {
+        console.error(e)
+      } finally {
         process.exit()
       }
     })

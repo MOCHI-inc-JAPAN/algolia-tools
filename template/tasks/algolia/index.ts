@@ -7,68 +7,118 @@ const algoliaTasks = new AlgoliaInvoke(algoliaModule)
 
 export default function (commander: CommanderStatic): void {
   commander.command('seeAlgoliaAccount').action(async () => {
-    console.log(`algolia_id: ${ALGOLIA_ID}`)
-    console.log(`algolia_admin_key: ${ALGOLIA_ADMIN_KEY}`)
-    console.log(`algolia_search_key: ${ALGOLIA_SEARCH_KEY}`)
-    process.exit()
+    try {
+      console.log(`algolia_id: ${ALGOLIA_ID}`)
+      console.log(`algolia_admin_key: ${ALGOLIA_ADMIN_KEY}`)
+      console.log(`algolia_search_key: ${ALGOLIA_SEARCH_KEY}`)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      process.exit()
+    }
   })
 
   commander
     .command('seeAlgoliaIndexSetting <indices...>')
     .action(async (args: string[]) => {
-      await algoliaTasks.seeAlgoliaIndexSetting(args)
-      process.exit()
+      try {
+        await algoliaTasks.seeAlgoliaIndexSetting(args)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander
     .command('backupAlgoliaIndexSetting <indices...>')
     .action(async (args: string[]) => {
-      await algoliaTasks.backupAlgoliaIndexSetting(args)
-      process.exit()
+      try {
+        await algoliaTasks.backupAlgoliaIndexSetting(args)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander
     .command('provisionAlgoliaIndex <indices...>')
     .action(async (args: string[]) => {
-      await algoliaTasks.provisionAlgoliaIndex(args)
-      process.exit()
+      try {
+        await algoliaTasks.provisionAlgoliaIndex(args)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander.command('provisionAlgoliaIndexAll').action(async () => {
-    await algoliaTasks.provisionAlgoliaIndexAll()
-    process.exit()
+    try {
+      await algoliaTasks.provisionAlgoliaIndexAll()
+    } catch (e) {
+      console.error(e)
+    } finally {
+      process.exit()
+    }
   })
 
   commander
     .command('updateAlgoliaIndexSetting <indices...>')
     .action(async (args: string[]) => {
-      await algoliaTasks.updateAlgoliaIndexSetting(args)
-      process.exit()
+      try {
+        await algoliaTasks.updateAlgoliaIndexSetting(args)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander
     .command('replicateIndex <indexName> <replicaNames...>')
     .action(async (indexName, replicas) => {
-      await algoliaTasks.replicateIndex(indexName, replicas)
-      process.exit()
+      try {
+        await algoliaTasks.replicateIndex(indexName, replicas)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander
     .command('deleteIndex <indexName...> ')
     .action(async (indexName: string[]) => {
-      await algoliaTasks.deleteIndex(indexName)
-      process.exit()
+      try {
+        await algoliaTasks.deleteIndex(indexName)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander
     .command('syncAlgoliaFromStorage <indexName...> ')
     .action(async (indexName: string[]) => {
-      await algoliaTasks.syncAlgoliaFromStorage(indexName)
-      process.exit()
+      try {
+        await algoliaTasks.syncAlgoliaFromStorage(indexName)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        process.exit()
+      }
     })
 
   commander.command('backupAlgoliaIndexSettingAll').action(async (_args) => {
-    await algoliaTasks.backupAlgoliaIndexSettingAll()
-    process.exit()
+    try {
+      await algoliaTasks.backupAlgoliaIndexSettingAll()
+    } catch (e) {
+      console.error(e)
+    } finally {
+      process.exit()
+    }
   })
 }
