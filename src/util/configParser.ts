@@ -10,6 +10,7 @@ export type Config = {
   modulePath: string
   out?: string
   orgModulePath: string
+  dFiles?: string[] | undefined
 }
 
 export const getConfigFromPackageJson = (
@@ -38,5 +39,6 @@ export const getConfigFromPackageJson = (
     firebaseServiceAccountPath,
     out,
     orgModulePath: config.modulePath,
+    dFiles: config.dFiles,
   }
 }
