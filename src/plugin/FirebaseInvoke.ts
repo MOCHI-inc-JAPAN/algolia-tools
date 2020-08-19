@@ -34,17 +34,17 @@ export default class FirebaseInvokeClass {
         .database()
         .ref(`${this.batchTimeKey}/${index}`)
       const _tempValue = await historyRef.once('value')
-      let profilesCollectionRef = collection.limit(500)
+      let targetCollectionRef = collection.limit(500)
       if (_tempValue.exists()) {
         const updatedAt = new Date(parseInt(_tempValue.val(), 10))
         console.log(`start updatedAt from:${updatedAt}`)
-        profilesCollectionRef = profilesCollectionRef.where(
+        targetCollectionRef = targetCollectionRef.where(
           'updatedAt',
           '>=',
           updatedAt
         )
       }
-      let currentQuerySnapshot = await profilesCollectionRef.get()
+      let currentQuerySnapshot = await targetCollectionRef.get()
       while (!currentQuerySnapshot.empty) {
         const data = currentQuerySnapshot.docs
           .map((doc) => {

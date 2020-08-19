@@ -13,12 +13,16 @@ const firebaseManager = new FirebaseInvoke({
 export default function (commander: CommanderStatic) {
   commander
     .command('batchSendDataToIndex <indexName...> ')
-    .action(async (indexName) => {
+    .action(async (indexName: string[]) => {
       try {
-        await firebaseManager.batchSendDataToIndex({
-          index: indexName,
-          collection: admin.firestore().collection(indexName),
-        })
+        await Promise.all(
+          indexName.map((_indexName) =>
+            firebaseManager.batchSendDataToIndex({
+              index: _indexName,
+              collection: admin.firestore().collection(_indexName),
+            })
+          )
+        )
       } catch (e) {
         console.error(e)
       } finally {
@@ -27,9 +31,13 @@ export default function (commander: CommanderStatic) {
     })
   commander
     .command('resetBatchTime <indexName...> ')
-    .action(async (indexName) => {
+    .action(async (indexName: string[]) => {
       try {
-        await firebaseManager.resetBatchTime(indexName)
+        await Promise.all(
+          indexName.map((_indexName) =>
+            firebaseManager.resetBatchTime(_indexName)
+          )
+        )
       } catch (e) {
         console.error(e)
       } finally {
@@ -38,7 +46,7 @@ export default function (commander: CommanderStatic) {
     })
   commander
     .command('removeAllDataFromAndStorageIndex <indexName...> ')
-    .action(async (indexName) => {
+    .action(async (indexName: string[]) => {
       try {
         await firebaseManager.removeAllDataFromIndex(indexName)
       } catch (e) {

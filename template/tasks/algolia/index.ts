@@ -78,7 +78,7 @@ export default function (commander: CommanderStatic): void {
 
   commander
     .command('replicateIndex <indexName> <replicaNames...>')
-    .action(async (indexName, replicas) => {
+    .action(async (indexName: string, replicas: string[]) => {
       try {
         await algoliaTasks.replicateIndex(indexName, replicas)
       } catch (e) {
@@ -112,7 +112,7 @@ export default function (commander: CommanderStatic): void {
       }
     })
 
-  commander.command('backupAlgoliaIndexSettingAll').action(async (_args) => {
+  commander.command('backupAlgoliaIndexSettingAll').action(async () => {
     try {
       await algoliaTasks.backupAlgoliaIndexSettingAll()
     } catch (e) {
