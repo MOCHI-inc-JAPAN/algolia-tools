@@ -10,7 +10,8 @@
   "aftools": {
     "modulePath": "indexManagers",
     "out": "dist",
-    "dFiles": ["./@types"]
+    "dFiles": ["./@types"],
+    "envFile": "./.env.test"
   },
   "dependencies": {
     "algolia-firebase-tools": "file:..",
