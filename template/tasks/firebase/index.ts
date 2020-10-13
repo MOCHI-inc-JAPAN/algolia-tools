@@ -45,7 +45,7 @@ export default function (commander: CommanderStatic) {
       }
     })
   commander
-    .command('removeAllDataFromAndStorageIndex <indexName...> ')
+    .command('removeAllDataFromIndex <indexName...> ')
     .action(async (indexName: string[]) => {
       try {
         await firebaseManager.removeAllDataFromIndex(indexName)
