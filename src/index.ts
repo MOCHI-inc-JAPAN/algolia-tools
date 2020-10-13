@@ -7,10 +7,9 @@ import {
   AlgoliaIndexManager,
   AlgoliaIndexManagerInternal,
 } from './util/AlgoliaIndexManager'
+import FirebaseInvoke from './plugin/FirebaseInvoke'
 
-export { FirebaseInvokeInternal } from './plugin/FirebaseInvoke'
-
-export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
+export { IndexInterface, IndexConstructor, AlgoliaIndexManager, FirebaseInvoke }
 
 export default (
   args: AlgoliaIndexManagerInternal,
