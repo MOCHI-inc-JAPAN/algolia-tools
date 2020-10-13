@@ -25,6 +25,10 @@ export class AlgoliaIndexManager {
     this.indexNamespace = args.indexNamespace || ''
   }
 
+  public getIndexName<T extends string>(indexName: T): string {
+    return `${this.indexNamespace}${indexName}`
+  }
+
   public sendIndex = async <T extends Record<string, unknown>>(
     indexName: string,
     data: T | T[]

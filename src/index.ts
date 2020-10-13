@@ -8,6 +8,8 @@ import {
   AlgoliaIndexManagerInternal,
 } from './util/AlgoliaIndexManager'
 
+export { FirebaseInvokeInternal } from './plugin/FirebaseInvoke'
+
 export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
 
 export default (
