@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.8.1...v1.9.0) (2020-10-13)
+
+
+### Features
+
+* getIndexName interface and export FirebaseInvoke ([fd26ceb](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/fd26cebeefbb59fb2efcee531ed51b91d8f6cb5d))
+
 ### [1.8.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.8.0...v1.8.1) (2020-08-19)
 
 
