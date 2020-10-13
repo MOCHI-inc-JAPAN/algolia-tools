@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.9.0...v1.9.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* fiirebase invoke ([57aa546](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/57aa5465944b88f7f0440888f0f5f19b9f5f9de6))
+
 ## [1.9.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.8.1...v1.9.0) (2020-10-13)
 
 
