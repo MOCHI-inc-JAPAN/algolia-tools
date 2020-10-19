@@ -35,12 +35,6 @@ export default class FirebaseInvokeClass {
         .ref(`${this.batchTimeKey}/${index}`)
       const _tempValue = await historyRef.once('value')
       let targetCollectionRef = [collection.limit(500)]
-      const getRefs = (values: string[], updatedAt: Date) => {
-        const refs = values.map((value) =>
-          targetCollectionRef[0].where(value, '>=', updatedAt)
-        )
-        return refs
-      }
       if (_tempValue.exists()) {
         const updatedAt = new Date(parseInt(_tempValue.val(), 10))
         console.log(`start updatedAt from:${updatedAt}`)
@@ -50,6 +44,12 @@ export default class FirebaseInvokeClass {
           'UpdatedAt',
           'UPDATED_AT',
         ]
+        const getRefs = (values: string[], updatedAt: Date) => {
+          const refs = values.map((value) =>
+            targetCollectionRef[0].where(value, '>=', updatedAt)
+          )
+          return refs
+        }
         targetCollectionRef = getRefs(candidates, updatedAt)
       }
       const getSnapshot = async (
