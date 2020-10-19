@@ -34,17 +34,36 @@ export default class FirebaseInvokeClass {
         .database()
         .ref(`${this.batchTimeKey}/${index}`)
       const _tempValue = await historyRef.once('value')
-      let targetCollectionRef = collection.limit(500)
+      let targetCollectionRef = [collection.limit(500)]
+      const getRefs = (values: string[], updatedAt: Date) => {
+        const refs = values.map((value) =>
+          targetCollectionRef[0].where(value, '>=', updatedAt)
+        )
+        return refs
+      }
       if (_tempValue.exists()) {
         const updatedAt = new Date(parseInt(_tempValue.val(), 10))
         console.log(`start updatedAt from:${updatedAt}`)
-        targetCollectionRef = targetCollectionRef.where(
+        const candidates = [
           'updatedAt',
-          '>=',
-          updatedAt
-        )
+          'updated_at',
+          'UpdatedAt',
+          'UPDATED_AT',
+        ]
+        targetCollectionRef = getRefs(candidates, updatedAt)
       }
-      let currentQuerySnapshot = await targetCollectionRef.get()
+      const getSnapshot = async (
+        refs: FirebaseFirestore.Query<FirebaseFirestore.DocumentData>[]
+      ) => {
+        let snapshot
+        let i = 0
+        do {
+          snapshot = await refs[i].get()
+          i++
+        } while (i < refs.length && snapshot.empty)
+        return snapshot
+      }
+      let currentQuerySnapshot = await getSnapshot(targetCollectionRef)
       while (!currentQuerySnapshot.empty) {
         const data = currentQuerySnapshot.docs
           .map((doc) => {
