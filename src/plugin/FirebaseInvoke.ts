@@ -27,10 +27,10 @@ export default class FirebaseInvokeClass {
       collection:
         | FirebaseFirestore.CollectionReference
         | FirebaseFirestore.Query
-      timestampName: string
+      timestampName?: string
     },
     filter = (data: any) => data
-  ) => {
+  ): Promise<boolean> => {
     try {
       const historyRef = this.admin
         .database()
@@ -77,7 +77,7 @@ export default class FirebaseInvokeClass {
     }
   }
 
-  public resetBatchTime = async (indexName: string) => {
+  public resetBatchTime = async (indexName: string): Promise<boolean> => {
     try {
       const historyRef = this.admin
         .database()
@@ -90,7 +90,7 @@ export default class FirebaseInvokeClass {
     }
   }
 
-  public async removeAllDataFromIndex(indexName: string[]) {
+  public async removeAllDataFromIndex(indexName: string[]): Promise<void> {
     try {
       await Promise.all(
         indexName.map((_indexName: string) =>
