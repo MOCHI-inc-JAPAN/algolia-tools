@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.0...v1.10.1) (2020-10-23)
+
+
+### Bug Fixes
+
+* make timestampName argument optional ([fa632f2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/fa632f2ccb7509dab9627bc43445fb529bc8584d))
+
 ## [1.10.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.9.2...v1.10.0) (2020-10-23)
 
 
