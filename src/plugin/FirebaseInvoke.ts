@@ -21,11 +21,13 @@ export default class FirebaseInvokeClass {
     {
       index,
       collection,
+      timestampName = 'updated_at',
     }: {
       index: string
       collection:
         | FirebaseFirestore.CollectionReference
         | FirebaseFirestore.Query
+      timestampName: string
     },
     filter = (data: any) => data
   ) => {
@@ -39,7 +41,7 @@ export default class FirebaseInvokeClass {
         const updatedAt = new Date(parseInt(_tempValue.val(), 10))
         console.log(`start updatedAt from:${updatedAt}`)
         targetCollectionRef = targetCollectionRef.where(
-          'updatedAt',
+          timestampName,
           '>=',
           updatedAt
         )
