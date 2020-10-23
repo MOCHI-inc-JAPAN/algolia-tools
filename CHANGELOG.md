@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.9.2...v1.10.0) (2020-10-23)
+
+
+### Features
+
+* add timestamp arguments ([65ea76f](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/65ea76fac277b5cf54da604e1dcd5cd30fca71f8))
+* enable multiple updated-at field name ([c06d7e5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/c06d7e550d6dc7d9c5485327f5c6ab45a614e2cd))
+
 ### [1.9.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.9.1...v1.9.2) (2020-10-13)
 
 
