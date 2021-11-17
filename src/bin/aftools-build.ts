@@ -8,6 +8,8 @@ import { getReadFileName } from '../util/fileUtility'
 
 let packageName = '@mochi-inc-japan/algolia-firebase-tools'
 
+// TODO: node_modulesを使うのはyarnでは非推奨になるのでそのうち対応する
+
 if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName))) {
   packageName = 'algolia-firebase-tools'
   if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName)))
@@ -44,7 +46,9 @@ if (isVerbose) {
 }
 
 let out = execSync(
-  `npx tsc -p ./node_modules/${packageName}/template --outDir ${config.out}`
+  `npx tsc -p ${process.cwd()}/node_modules/${packageName}/template --outDir ${
+    config.out
+  }`
 )
 
 console.log(out.toString())
