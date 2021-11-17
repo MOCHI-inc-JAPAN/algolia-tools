@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.1...v1.10.2) (2021-11-17)
+
+
+### Bug Fixes
+
+* templateのpathをprocess.cwd()に調整 ([dbc2b52](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/dbc2b52543b8edb8e77287290b6ad25fb8af8136))
+
 ### [1.10.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.0...v1.10.1) (2020-10-23)
 
 
