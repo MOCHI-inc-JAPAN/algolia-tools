@@ -54,7 +54,7 @@
     "algoliasearch": "^4.3.0",
     "dotenv": "^8.2.0",
     "moment": "^2.27.0",
-    "typescript": "^3.9.6"
+    "typescript": ">=3.9.6"
   },
   "peerDependencies": {
     "algoliasearch": "^4.3.0",
