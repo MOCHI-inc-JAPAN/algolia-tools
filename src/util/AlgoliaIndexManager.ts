@@ -42,7 +42,9 @@ export class AlgoliaIndexManager {
       }
       return true
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -60,7 +62,9 @@ export class AlgoliaIndexManager {
       }
       return true
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -77,7 +81,9 @@ export class AlgoliaIndexManager {
       }
       return true
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -101,7 +107,9 @@ export class AlgoliaIndexManager {
       }
       return true
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -119,7 +127,9 @@ export class AlgoliaIndexManager {
       })
       return result
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -141,7 +151,9 @@ export class AlgoliaIndexManager {
       }
       return true
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -169,7 +181,9 @@ export class AlgoliaIndexManager {
       }
       return result
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
@@ -179,7 +193,9 @@ export class AlgoliaIndexManager {
       const result = await this.client.listIndices()
       return result
     } catch (e) {
-      console.error(e.message)
+      if (e instanceof Error) {
+        console.error(e.message)
+      }
       return false
     }
   }
