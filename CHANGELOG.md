@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.3...v1.11.0) (2022-04-15)
+
+
+### Features
+
+* npm publish steps ([d3865d3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/d3865d37b4002757048556eb64dcb769e95e9ff4))
+
+### [1.10.3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.2...v1.10.3) (2021-11-17)
+
+
+### Bug Fixes
+
+* typescriptのversionをupdate ([df6111a](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/df6111af0cc8a21ae6740f451226b3efa0265001))
+
 ### [1.10.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.1...v1.10.2) (2021-11-17)
 
 
