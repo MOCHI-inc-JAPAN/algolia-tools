@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+          registry-url: https://registry.npmjs.org/
+          scope: '@mochi-inc-japan'
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -39,7 +41,7 @@ jobs:
       - name: Version increment
         run: npm run release
       - name: deploy npm registry
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Get package-version

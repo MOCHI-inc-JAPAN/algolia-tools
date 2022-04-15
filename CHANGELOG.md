@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.11.1...v1.12.0) (2022-04-15)
+
+
+### Features
+
+* access public ([91b4083](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/91b4083fd19bb72b8059561cac14be33144b9d31))
+* organization create ([762e5ca](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/762e5ca273ae13843c641dda791dd4fe927d04fc))
+* registry-url ([f949416](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/f94941648778971424ae7e8a83a5ee78a6dcefa4))
+* relase pipelintの順序を変更 ([9c72f98](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/9c72f98a10a2effbbb1b365d06156db71b3cef1a))
+* remove registry config ([6fd3ddd](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/6fd3ddd3b7d24e62ae05b5abb5d8ddf419af960e))
+
 ### [1.11.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.11.0...v1.11.1) (2022-04-15)
 
 ## [1.11.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.10.3...v1.11.0) (2022-04-15)
