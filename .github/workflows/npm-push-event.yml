@@ -40,7 +40,7 @@ jobs:
       - name: Version increment
         run: npm run release
       - name: deploy npm registry
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Get package-version
