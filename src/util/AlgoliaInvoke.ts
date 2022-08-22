@@ -103,6 +103,13 @@ export default class AlgoliaInvokeClass {
       console.log('provision algolia index was failed.')
   }
 
+  // NOTE: インデックスの適用順序を変更する
+  private applySortValue(value: any) {
+    if ('replicas' in value) return 2
+    if ('primary' in value) return 3
+    return 1
+  }
+
   public async provisionAlgoliaIndexAll() {
     const fileNames = fs.readdirSync(
       path.join(process.cwd(), 'algolia', 'indices')
@@ -117,8 +124,11 @@ export default class AlgoliaInvokeClass {
         })
       })
     )
+    const _settings = settings.sort((a, b) => {
+      return this.applySortValue(a) - this.applySortValue(b)
+    })
     const results = await Promise.all(
-      settings.map((setting, i) => {
+      _settings.map((setting, i) => {
         return new Promise((resolve, reject) => {
           resolve(
             this.algoliaManager.updateIndexSetting({
