@@ -18,16 +18,22 @@ export default class AlgoliaInvokeClass {
 
   private settingParse(data: string) {
     const setting = JSON.parse(data)
-    if (setting.replicas) {
-      const replicas = setting.replicas.map((replica: string) => {
-        return `${this.algoliaManager.indexNamespace}${replica}`
-      })
-      return {
-        ...setting,
-        replicas,
-      }
+
+    const replicas = setting.replicas
+      ? setting.replicas.map((replica: string) => {
+          return { replicas: `${this.algoliaManager.indexNamespace}${replica}` }
+        })
+      : undefined
+
+    const primary = setting.primary
+      ? { primary: `${this.algoliaManager.indexNamespace}${setting.primary}` }
+      : undefined
+
+    return {
+      ...setting,
+      ...replicas,
+      ...primary,
     }
-    return setting
   }
 
   public async seeAlgoliaIndexSetting(args: string[]) {
@@ -48,7 +54,12 @@ export default class AlgoliaInvokeClass {
                 'indices',
                 `${args[index]}.json`
               )
-              fs.writeFile(_path, JSON.stringify(setting, null, 2), (err) => {
+              const params = {
+                ...setting,
+                ...this.omitNamespaceFromReplicasConfig(setting),
+                ...this.omitNamespaceFromPrimaryConfig(setting),
+              }
+              fs.writeFile(_path, JSON.stringify(params, null, 2), (err) => {
                 if (err) return reject(err.message)
                 console.log(`${args[index]}: are written to ${_path}`)
                 return resolve('success')
@@ -172,6 +183,27 @@ export default class AlgoliaInvokeClass {
     if (results.some((v) => v === false)) console.log('deleteIndex was failed.')
   }
 
+  private omitNamespaceFromReplicasConfig(setting: any) {
+    if (setting.replicas)
+      return {
+        replicas: setting.replicas.map((replica: string) =>
+          replica.replace(`${this.algoliaManager.indexNamespace}`, '')
+        ),
+      }
+    return undefined
+  }
+
+  private omitNamespaceFromPrimaryConfig(setting: any) {
+    if (setting.primary)
+      return {
+        primary: setting.primary.replace(
+          `${this.algoliaManager.indexNamespace}`,
+          ''
+        ),
+      }
+    return undefined
+  }
+
   public async backupAlgoliaIndexSettingAll() {
     const indices = await this.algoliaManager.getIndexNames()
     if (!indices) throw Error('indices have not been found')
@@ -194,7 +226,13 @@ export default class AlgoliaInvokeClass {
                 'indices',
                 `${indexName}.json`
               )
-              fs.writeFile(_path, JSON.stringify(setting, null, 2), (err) => {
+              const params = {
+                ...setting,
+                ...this.omitNamespaceFromReplicasConfig(setting),
+                ...this.omitNamespaceFromPrimaryConfig(setting),
+              }
+
+              fs.writeFile(_path, JSON.stringify(params, null, 2), (err) => {
                 if (err) return reject(err.message)
                 console.log(`${indexName}: are written to ${_path}`)
                 return resolve('success')
