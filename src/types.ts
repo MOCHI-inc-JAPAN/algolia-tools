@@ -14,4 +14,10 @@ export interface AlgoliaToolsModule {
   indices: {
     [collectionName: string]: IndexInterface
   }
+  indexConfigDir?: string
+}
+
+export type AlgoliaInvokeInternal = {
+  algoliaManager: AlgoliaToolsModule['algoliaManager']
+  indices: AlgoliaToolsModule['indices']
 }
