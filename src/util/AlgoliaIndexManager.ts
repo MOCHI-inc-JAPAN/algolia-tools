@@ -1,7 +1,7 @@
 import { SearchClient } from 'algoliasearch'
-import { Settings } from '@algolia/client-search'
+import { Settings, ListIndicesResponse } from '@algolia/client-search'
 
-interface ReplicateSetting {
+export interface ReplicateSetting {
   indexName: string
   replicas: string[]
 }
@@ -11,7 +11,7 @@ export interface AlgoliaIndexManagerInternal {
   indexNamespace: string
 }
 
-interface IndexArgument {
+export interface IndexArgument {
   indexName: string
   setting: Settings
 }
@@ -29,7 +29,7 @@ export class AlgoliaIndexManager {
     return `${this.indexNamespace}${indexName}`
   }
 
-  public omitNameSpaceIndex(indexName: string) {
+  public omitNameSpaceIndex(indexName: string): string {
     return indexName.replace(this.indexNamespace, '')
   }
 
@@ -73,7 +73,9 @@ export class AlgoliaIndexManager {
     }
   }
 
-  public deleteIndex = async (indexName: string | string[]) => {
+  public deleteIndex = async (
+    indexName: string | string[]
+  ): Promise<boolean> => {
     try {
       const indices = Array.isArray(indexName)
         ? indexName.map((_name) =>
@@ -116,13 +118,15 @@ export class AlgoliaIndexManager {
     }
   }
 
-  public replicateIndex = async (replicateSetting: ReplicateSetting) => {
+  public replicateIndex = async (
+    replicateSetting: ReplicateSetting
+  ): Promise<boolean> => {
     try {
       const result = await this.updateIndexSetting({
         indexName: replicateSetting.indexName,
         setting: {
-          replicas: replicateSetting.replicas.map((indexName) =>
-            this.getIndexName(replicateSetting.indexName)
+          replicas: replicateSetting.replicas.map((indexName: string) =>
+            this.getIndexName(indexName)
           ),
         },
       })
@@ -135,7 +139,9 @@ export class AlgoliaIndexManager {
     }
   }
 
-  public removeAllDataFromIndex = async (indexName: string) => {
+  public removeAllDataFromIndex = async (
+    indexName: string
+  ): Promise<boolean> => {
     try {
       if (Array.isArray(indexName)) {
         for (const _indexName of indexName) {
@@ -179,7 +185,7 @@ export class AlgoliaIndexManager {
     }
   }
 
-  public getIndexNames = async () => {
+  public getIndexNames = async (): Promise<ListIndicesResponse | false> => {
     try {
       const result = await this.client.listIndices()
       return result

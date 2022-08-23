@@ -1,0 +1,7 @@
+{
+  "dummy": "dummy",
+  "replicas": [
+    "namespace_replica_1",
+    "namespace_replica_2"
+  ]
+}
