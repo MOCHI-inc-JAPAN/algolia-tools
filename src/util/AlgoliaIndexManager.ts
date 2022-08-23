@@ -29,11 +29,15 @@ export class AlgoliaIndexManager {
     return `${this.indexNamespace}${indexName}`
   }
 
+  public omitNameSpaceIndex(indexName: string) {
+    return indexName.replace(this.indexNamespace, '')
+  }
+
   public sendIndex = async <T extends Record<string, unknown>>(
     indexName: string,
     data: T | T[]
-  ) => {
-    const index = this.client.initIndex(`${this.indexNamespace}${indexName}`)
+  ): Promise<boolean> => {
+    const index = this.client.initIndex(this.getIndexName(indexName))
     try {
       if (Array.isArray(data)) {
         await index.saveObjects(data)
@@ -52,8 +56,8 @@ export class AlgoliaIndexManager {
   public deleteIndexData = async <T extends string>(
     indexName: string,
     ids: T | T[]
-  ) => {
-    const index = this.client.initIndex(`${this.indexNamespace}${indexName}`)
+  ): Promise<boolean> => {
+    const index = this.client.initIndex(this.getIndexName(indexName))
     try {
       if (Array.isArray(ids)) {
         await index.deleteObjects(ids)
@@ -71,14 +75,12 @@ export class AlgoliaIndexManager {
 
   public deleteIndex = async (indexName: string | string[]) => {
     try {
-      const index = this.client.initIndex(`${this.indexNamespace}${indexName}`)
-      if (Array.isArray(indexName)) {
-        const _ = await Promise.all(
-          indexName.map((_indexName) => index.delete())
-        )
-      } else {
-        const _ = await index.delete()
-      }
+      const indices = Array.isArray(indexName)
+        ? indexName.map((_name) =>
+            this.client.initIndex(this.getIndexName(_name))
+          )
+        : [this.client.initIndex(this.getIndexName(indexName))]
+      const _ = await Promise.all(indices.map((index) => index.delete()))
       return true
     } catch (e) {
       if (e instanceof Error) {
@@ -90,18 +92,18 @@ export class AlgoliaIndexManager {
 
   public updateIndexSetting = async (
     indexSetting: IndexArgument | IndexArgument[]
-  ) => {
+  ): Promise<boolean> => {
     try {
       if (Array.isArray(indexSetting)) {
         for (const _indexSetting of indexSetting) {
           const index = this.client.initIndex(
-            `${this.indexNamespace}${_indexSetting.indexName}`
+            this.getIndexName(_indexSetting.indexName)
           )
           await index.setSettings(_indexSetting.setting)
         }
       } else {
         const index = this.client.initIndex(
-          `${this.indexNamespace}${indexSetting.indexName}`
+          this.getIndexName(indexSetting.indexName)
         )
         await index.setSettings(indexSetting.setting)
       }
@@ -119,9 +121,8 @@ export class AlgoliaIndexManager {
       const result = await this.updateIndexSetting({
         indexName: replicateSetting.indexName,
         setting: {
-          replicas: replicateSetting.replicas.map(
-            (indexName) =>
-              `${this.indexNamespace}${replicateSetting.indexName}_${indexName}`
+          replicas: replicateSetting.replicas.map((indexName) =>
+            this.getIndexName(replicateSetting.indexName)
           ),
         },
       })
@@ -138,15 +139,11 @@ export class AlgoliaIndexManager {
     try {
       if (Array.isArray(indexName)) {
         for (const _indexName of indexName) {
-          const index = this.client.initIndex(
-            `${this.indexNamespace}${_indexName}`
-          )
+          const index = this.client.initIndex(this.getIndexName(_indexName))
           await index.clearObjects()
         }
       } else {
-        const index = this.client.initIndex(
-          `${this.indexNamespace}${indexName}`
-        )
+        const index = this.client.initIndex(this.getIndexName(indexName))
         await index.clearObjects()
       }
       return true
@@ -161,20 +158,14 @@ export class AlgoliaIndexManager {
   public getIndexSetting = async (
     indexNames: string | string[],
     noPrefix?: boolean
-  ) => {
+  ): Promise<false | Settings[]> => {
     try {
       const result = []
-      if (Array.isArray(indexNames)) {
-        for (const _indexName of indexNames) {
-          const index = this.client.initIndex(
-            noPrefix ? _indexName : `${this.indexNamespace}${_indexName}`
-          )
-          const _result = await index.getSettings()
-          result.push(_result)
-        }
-      } else {
+      const _indexNames = Array.isArray(indexNames) ? indexNames : [indexNames]
+
+      for (const _indexName of _indexNames) {
         const index = this.client.initIndex(
-          noPrefix ? indexNames : `${this.indexNamespace}${indexNames}`
+          noPrefix ? _indexName : this.getIndexName(_indexName)
         )
         const _result = await index.getSettings()
         result.push(_result)

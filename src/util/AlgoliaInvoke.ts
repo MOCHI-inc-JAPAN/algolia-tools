@@ -21,12 +21,12 @@ export default class AlgoliaInvokeClass {
 
     const replicas = setting.replicas
       ? setting.replicas.map((replica: string) => {
-          return { replicas: `${this.algoliaManager.indexNamespace}${replica}` }
+          return { replicas: this.algoliaManager.getIndexName(replica) }
         })
       : undefined
 
     const primary = setting.primary
-      ? { primary: `${this.algoliaManager.indexNamespace}${setting.primary}` }
+      ? { primary: this.algoliaManager.getIndexName(setting.primary) }
       : undefined
 
     return {
@@ -66,7 +66,8 @@ export default class AlgoliaInvokeClass {
               })
             })
         )
-      )
+      ).catch(console.error)
+
       console.log(promises)
     }
   }
@@ -98,8 +99,8 @@ export default class AlgoliaInvokeClass {
           )
         })
       })
-    )
-    if (results.some((v) => v === false))
+    ).catch(console.error)
+    if (!results || results.some((v) => v === false))
       console.log('provision algolia index was failed.')
   }
 
@@ -138,8 +139,8 @@ export default class AlgoliaInvokeClass {
           )
         })
       })
-    )
-    if (results.some((v) => v === false))
+    ).catch(console.error)
+    if (!results || results.some((v) => v === false))
       console.log('provision algolia index was failed.')
   }
 
@@ -197,7 +198,7 @@ export default class AlgoliaInvokeClass {
     if (setting.replicas)
       return {
         replicas: setting.replicas.map((replica: string) =>
-          replica.replace(`${this.algoliaManager.indexNamespace}`, '')
+          this.algoliaManager.omitNameSpaceIndex(replica)
         ),
       }
     return undefined
@@ -206,10 +207,7 @@ export default class AlgoliaInvokeClass {
   private omitNamespaceFromPrimaryConfig(setting: any) {
     if (setting.primary)
       return {
-        primary: setting.primary.replace(
-          `${this.algoliaManager.indexNamespace}`,
-          ''
-        ),
+        primary: this.algoliaManager.omitNameSpaceIndex(setting.primary),
       }
     return undefined
   }
@@ -226,9 +224,8 @@ export default class AlgoliaInvokeClass {
         results.map(
           async (setting, index) =>
             new Promise((resolve, reject) => {
-              const indexName = (inputs[index] as string).replace(
-                `${this.algoliaManager.indexNamespace}`,
-                ''
+              const indexName = this.algoliaManager.omitNameSpaceIndex(
+                inputs[index] as string
               )
               const _path = path.join(
                 process.cwd(),
