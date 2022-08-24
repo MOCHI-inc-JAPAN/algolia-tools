@@ -211,7 +211,9 @@ export default class AlgoliaInvokeClass {
     const indices = await this.algoliaManager.getIndexNames()
     if (!indices) throw Error('indices have not been found')
     const inputs = indices.items
-      .filter((v) => v.name.includes(`${this.algoliaManager.indexNamespace}`))
+      .filter((v) =>
+        v.name.match(new RegExp(`/${this.algoliaManager.indexNamespace}/`))
+      )
       .map((index) => index.name as string)
     const results = await this.algoliaManager.getIndexSetting(inputs, true)
     if (results && Array.isArray(results)) {
