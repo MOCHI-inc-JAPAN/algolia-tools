@@ -113,6 +113,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
