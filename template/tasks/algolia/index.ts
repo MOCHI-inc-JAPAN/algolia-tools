@@ -100,6 +100,17 @@ export default function (commander: CommanderStatic): void {
       }
     })
 
+  commander.command('deleteIndexAll').action(async () => {
+    try {
+      const indices = await algoliaTasks.listIndexNames()
+      await algoliaTasks.deleteIndex(indices)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      process.exit()
+    }
+  })
+
   commander
     .command('syncAlgoliaFromStorage <indexName...> ')
     .action(async (indexName: string[]) => {

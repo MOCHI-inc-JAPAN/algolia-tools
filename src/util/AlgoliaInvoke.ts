@@ -165,6 +165,16 @@ export default class AlgoliaInvokeClass {
     if (!result) console.log('deleteIndex was failed.')
   }
 
+  public async listIndexNames(): Promise<string[]> {
+    const indices = await this.algoliaManager.getIndexNames()
+    if (!indices) throw Error('indices have not been found')
+    return indices.items
+      .filter((v) =>
+        v.name.match(new RegExp(`^${this.algoliaManager.indexNamespace}`))
+      )
+      .map((index) => index.name as string)
+  }
+
   public async syncAlgoliaFromStorage(indexName: string[]): Promise<void> {
     const results = await Promise.all(
       indexName.map((_indexName) => this.indices[_indexName].batchSendToIndex())
@@ -195,13 +205,7 @@ export default class AlgoliaInvokeClass {
   }
 
   public async backupAlgoliaIndexSettingAll(): Promise<void> {
-    const indices = await this.algoliaManager.getIndexNames()
-    if (!indices) throw Error('indices have not been found')
-    const inputs = indices.items
-      .filter((v) =>
-        v.name.match(new RegExp(`^${this.algoliaManager.indexNamespace}`))
-      )
-      .map((index) => index.name as string)
+    const inputs = await this.listIndexNames()
     const results = await this.algoliaManager.getIndexSetting(inputs, true)
     if (results && Array.isArray(results)) {
       const promises = results.map((setting, index) => {
