@@ -123,13 +123,9 @@ export default class AlgoliaInvokeClass {
     })
     const results = await Promise.all(
       _settings.map((setting, i) => {
-        return new Promise((resolve, reject) => {
-          resolve(
-            this.algoliaManager.updateIndexSetting({
-              indexName: fileNames[i].replace('.json', ''),
-              setting: setting as Settings,
-            })
-          )
+        return this.algoliaManager.updateIndexSetting({
+          indexName: fileNames[i].replace('.json', ''),
+          setting: setting as Settings,
         })
       })
     ).catch(console.error)
@@ -140,22 +136,13 @@ export default class AlgoliaInvokeClass {
   public async updateAlgoliaIndexSetting(args: string[]): Promise<void> {
     const promises = await Promise.all(
       args.map(async (fileName: string, index: number) => {
-        return new Promise((resolve, reject) => {
-          const _path = this.indexJsonFilePath(`${fileName}.json`)
-          fs.readFile(_path, 'utf8', async (err, _setting) => {
-            if (err) return reject(err.message)
-            const setting: Settings = JSON.parse(_setting)
-            const result = await this.algoliaManager.updateIndexSetting({
-              indexName: args[index] as string,
-              setting,
-            })
-            console.log(setting)
-            if (result) {
-              resolve('success')
-            } else {
-              reject('index uddate failed')
-            }
-          })
+        const _path = this.indexJsonFilePath(`${fileName}.json`)
+        const _setting = await fs.promises.readFile(_path, 'utf8')
+        const setting: Settings = JSON.parse(_setting)
+        console.log(setting)
+        return this.algoliaManager.updateIndexSetting({
+          indexName: args[index] as string,
+          setting,
         })
       })
     )
