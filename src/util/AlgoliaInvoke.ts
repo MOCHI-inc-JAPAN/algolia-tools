@@ -101,8 +101,8 @@ export default class AlgoliaInvokeClass {
   // NOTE: 削除インデックスの適用順序を変更する
   private deleteSortValue(value: any) {
     if ('replicas' in value) return 2
-    if ('primary' in value) return 1
-    return 3
+    if ('primary' in value) return 3
+    return 1
   }
 
   public async provisionAlgoliaIndexAll(): Promise<void> {

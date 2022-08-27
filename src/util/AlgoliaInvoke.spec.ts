@@ -203,8 +203,8 @@ describe('provisionAlgoliaIndexAll', () => {
     expect(applyJson).toStrictEqual([
       {
         dummy: 'dummy',
-        primary: 'test',
       },
+
       {
         dummy: 'dummy',
 
@@ -212,6 +212,7 @@ describe('provisionAlgoliaIndexAll', () => {
       },
       {
         dummy: 'dummy',
+        primary: 'test',
       },
     ])
   })
