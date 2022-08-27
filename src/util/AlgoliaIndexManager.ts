@@ -106,19 +106,16 @@ export class AlgoliaIndexManager {
   public updateIndexSetting = async (
     indexSetting: IndexArgument | IndexArgument[]
   ): Promise<boolean> => {
+    const _indexSettings = Array.isArray(indexSetting)
+      ? indexSetting
+      : [indexSetting]
     try {
-      if (Array.isArray(indexSetting)) {
-        for (const _indexSetting of indexSetting) {
-          const index = this.client.initIndex(
-            this.getIndexName(_indexSetting.indexName)
-          )
-          await index.setSettings(_indexSetting.setting)
-        }
-      } else {
-        const index = this.client.initIndex(
-          this.getIndexName(indexSetting.indexName)
-        )
-        await index.setSettings(indexSetting.setting)
+      for (const _indexSetting of _indexSettings) {
+        const indexName = this.getIndexName(_indexSetting.indexName)
+        console.log(`${indexName} start applying`)
+        const index = this.client.initIndex(indexName)
+        await index.setSettings(_indexSetting.setting)
+        console.log(`${indexName} was applyied`)
       }
       return true
     } catch (e) {
