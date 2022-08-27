@@ -81,12 +81,11 @@ export class AlgoliaIndexManager {
     indexName: string | string[]
   ): Promise<boolean> => {
     try {
-      const indices = Array.isArray(indexName)
-        ? indexName.map((_name) =>
-            this.client.initIndex(this.getIndexName(_name))
-          )
-        : [this.client.initIndex(this.getIndexName(indexName))]
-      for await (const index of indices) {
+      const indexNames = Array.isArray(indexName)
+        ? indexName.map((_name) => this.getIndexName(_name))
+        : [this.getIndexName(indexName)]
+      for await (const indexName of indexNames) {
+        const index = this.client.initIndex(this.getIndexName(indexName))
         console.log(index.indexName)
         await index.delete()
       }
