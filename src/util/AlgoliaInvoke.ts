@@ -52,7 +52,7 @@ export default class AlgoliaInvokeClass {
       const promises = await Promise.all(
         results.map(async (setting, index) => {
           const _path = this.indexJsonFilePath(`${args[index]}.json`)
-          const params = {
+          const params: Settings = {
             ...setting,
             ...this.omitNamespaceFromReplicasConfig(setting),
             ...this.omitNamespaceFromPrimaryConfig(setting),
@@ -73,13 +73,10 @@ export default class AlgoliaInvokeClass {
 
   public async provisionAlgoliaIndex(args: string[]): Promise<void> {
     const settings = await Promise.all<Settings>(
-      args.map((v: string, _i: number) => {
+      args.map(async (v: string, _i: number) => {
         const _path = this.indexJsonFilePath(`${v}.json`)
-        return new Promise((resolve, reject) => {
-          fs.readFile(_path, 'utf8', (_test, data) => {
-            resolve(this.settingParse(data))
-          })
-        })
+        const data = await fs.promises.readFile(_path, 'utf8')
+        return this.settingParse(data)
       })
     )
     const results = await Promise.all(
@@ -101,26 +98,28 @@ export default class AlgoliaInvokeClass {
     return 1
   }
 
+  // NOTE: 削除インデックスの適用順序を変更する
+  private deleteSortValue(value: any) {
+    if ('replicas' in value) return 3
+    if ('primary' in value) return 1
+    return 2
+  }
+
   public async provisionAlgoliaIndexAll(): Promise<void> {
     const fileNames = fs.readdirSync(this.indexConfigDir)
     const settings = await Promise.all(
       fileNames.map(async (fileName, i) => {
         const _path = path.join(this.indexConfigDir, fileName)
         const data = await fs.promises.readFile(_path, 'utf8')
-        return this.settingParse(data)
-      })
-    )
-    const _settings = settings
-      .sort((a, b) => {
-        return this.applySortValue(a) - this.applySortValue(b)
-      })
-      .map((setting: Settings, i) => {
-        const indexName = fileNames[i].replace('.json', '')
         return {
-          indexName: indexName,
-          setting: setting as Settings,
+          indexName: fileName.replace('.json', ''),
+          setting: this.settingParse(data),
         }
       })
+    )
+    const _settings = settings.sort((a, b) => {
+      return this.applySortValue(a.setting) - this.applySortValue(b.setting)
+    })
     const result = await this.algoliaManager
       .updateIndexSetting(_settings)
       .catch(console.error)
@@ -156,6 +155,27 @@ export default class AlgoliaInvokeClass {
 
   public async deleteIndex(indexName: string[]): Promise<void> {
     const result = await this.algoliaManager.deleteIndex(indexName)
+    if (!result) console.log('deleteIndex was failed.')
+  }
+
+  public async deleteIndexAll(): Promise<void> {
+    const fileNames = fs.readdirSync(this.indexConfigDir)
+    const settings = await Promise.all(
+      fileNames.map(async (fileName, i) => {
+        const _path = path.join(this.indexConfigDir, fileName)
+        const data = await fs.promises.readFile(_path, 'utf8')
+        return {
+          indexName: fileName.replace('.json', ''),
+          setting: this.settingParse(data),
+        }
+      })
+    )
+    const indexNames = settings
+      .sort((a, b) => {
+        return this.deleteSortValue(a.setting) - this.deleteSortValue(b.setting)
+      })
+      .map((r) => r.indexName)
+    const result = await this.algoliaManager.deleteIndex(indexNames)
     if (!result) console.log('deleteIndex was failed.')
   }
 

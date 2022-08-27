@@ -86,12 +86,10 @@ export class AlgoliaIndexManager {
             this.client.initIndex(this.getIndexName(_name))
           )
         : [this.client.initIndex(this.getIndexName(indexName))]
-      await Promise.all(
-        indices.map((index) => {
-          console.log(index.indexName)
-          return index.delete()
-        })
-      )
+      for await (const index of indices) {
+        console.log(index.indexName)
+        await index.delete()
+      }
       return true
     } catch (e) {
       if (e instanceof Error) {
