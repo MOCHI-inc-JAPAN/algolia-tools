@@ -115,4 +115,54 @@ describe('provisionAlgoliaIndexAll', () => {
       dummy: 'dummy',
     })
   })
+  it('sort json', async () => {
+    const clientMock = algoliaSearch('dummy', 'dummy')
+    const algoliaManager = new AlgoliaIndexManager({
+      client: clientMock,
+      indexNamespace: 'namespace_',
+    })
+    const invoker = new AlgoliaInvoke({
+      algoliaManager: algoliaManager,
+      indices: Object.keys(indices).reduce((result, index) => {
+        return {
+          ...result,
+          [index]: new (indices as any)[index]({
+            algoliaManager: algoliaManager,
+          }) as any,
+        }
+      }, {}),
+      indexConfigDir: path.resolve('./src/fixtures/local'),
+    })
+    const applyJson = [
+      {
+        dummy: 'dummy',
+
+        replicas: ['dummy'],
+      },
+      {
+        dummy: 'dummy',
+        primary: 'test',
+      },
+      {
+        dummy: 'dummy',
+      },
+    ]
+    applyJson.sort((a, b) => {
+      return invoker['applySortValue'](a) - invoker['applySortValue'](b)
+    })
+    expect(applyJson).toStrictEqual([
+      {
+        dummy: 'dummy',
+      },
+      {
+        dummy: 'dummy',
+
+        replicas: ['dummy'],
+      },
+      {
+        dummy: 'dummy',
+        primary: 'test',
+      },
+    ])
+  })
 })
