@@ -166,14 +166,27 @@ export default class AlgoliaInvokeClass {
     if (!result) console.log('deleteIndex was failed.')
   }
 
-  public async listIndexNames(): Promise<string[]> {
+  public async listIndexNames(options?: {
+    omitNameSpace?: boolean
+  }): Promise<string[]> {
     const indices = await this.algoliaManager.getIndexNames()
     if (!indices) throw Error('indices have not been found')
-    return indices.items
+
+    const records = indices.items
       .filter((v) =>
         v.name.match(new RegExp(`^${this.algoliaManager.indexNamespace}`))
       )
       .map((index) => index.name as string)
+
+    if (options?.omitNameSpace) {
+      return records.map((indexName) => {
+        return indexName.replace(
+          new RegExp(`^${this.algoliaManager.indexNamespace}`),
+          ''
+        )
+      })
+    }
+    return records
   }
 
   public async syncAlgoliaFromStorage(indexName: string[]): Promise<void> {

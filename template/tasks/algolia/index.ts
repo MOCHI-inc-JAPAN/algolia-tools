@@ -102,7 +102,9 @@ export default function (commander: CommanderStatic): void {
 
   commander.command('deleteIndexAll').action(async () => {
     try {
-      const indices = await algoliaTasks.listIndexNames()
+      const indices = await algoliaTasks.listIndexNames({
+        omitNameSpace: true,
+      })
       await algoliaTasks.deleteIndex(indices)
     } catch (e) {
       console.error(e)
