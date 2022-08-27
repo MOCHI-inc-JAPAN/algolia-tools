@@ -162,6 +162,7 @@ export default class AlgoliaInvokeClass {
 
   public async deleteIndex(indexName: string[]): Promise<void> {
     const result = await this.algoliaManager.deleteIndex(indexName)
+    if (result) console.log(indexName)
     if (!result) console.log('deleteIndex was failed.')
   }
 

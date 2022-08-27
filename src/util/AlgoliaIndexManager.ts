@@ -48,6 +48,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -68,6 +70,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -83,10 +87,13 @@ export class AlgoliaIndexManager {
           )
         : [this.client.initIndex(this.getIndexName(indexName))]
       const _ = await Promise.all(indices.map((index) => index.delete()))
+      console.log(_)
       return true
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -136,6 +143,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -158,6 +167,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -182,6 +193,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
@@ -194,6 +207,8 @@ export class AlgoliaIndexManager {
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)
+      } else {
+        console.error(e)
       }
       return false
     }
