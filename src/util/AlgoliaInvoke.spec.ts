@@ -115,7 +115,7 @@ describe('provisionAlgoliaIndexAll', () => {
       dummy: 'dummy',
     })
   })
-  it('sort json', async () => {
+  it('sort apply json', async () => {
     const clientMock = algoliaSearch('dummy', 'dummy')
     const algoliaManager = new AlgoliaIndexManager({
       client: clientMock,
@@ -162,6 +162,56 @@ describe('provisionAlgoliaIndexAll', () => {
       {
         dummy: 'dummy',
         primary: 'test',
+      },
+    ])
+  })
+  it('sort delete order json', async () => {
+    const clientMock = algoliaSearch('dummy', 'dummy')
+    const algoliaManager = new AlgoliaIndexManager({
+      client: clientMock,
+      indexNamespace: 'namespace_',
+    })
+    const invoker = new AlgoliaInvoke({
+      algoliaManager: algoliaManager,
+      indices: Object.keys(indices).reduce((result, index) => {
+        return {
+          ...result,
+          [index]: new (indices as any)[index]({
+            algoliaManager: algoliaManager,
+          }) as any,
+        }
+      }, {}),
+      indexConfigDir: path.resolve('./src/fixtures/local'),
+    })
+    const applyJson = [
+      {
+        dummy: 'dummy',
+
+        replicas: ['dummy'],
+      },
+      {
+        dummy: 'dummy',
+        primary: 'test',
+      },
+      {
+        dummy: 'dummy',
+      },
+    ]
+    applyJson.sort((a, b) => {
+      return invoker['deleteSortValue'](a) - invoker['deleteSortValue'](b)
+    })
+    expect(applyJson).toStrictEqual([
+      {
+        dummy: 'dummy',
+        primary: 'test',
+      },
+      {
+        dummy: 'dummy',
+
+        replicas: ['dummy'],
+      },
+      {
+        dummy: 'dummy',
       },
     ])
   })
