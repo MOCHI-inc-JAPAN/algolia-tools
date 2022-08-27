@@ -50,22 +50,21 @@ export default class AlgoliaInvokeClass {
     const results = await this.algoliaManager.getIndexSetting(args)
     if (results && Array.isArray(results)) {
       const promises = await Promise.all(
-        results.map(
-          async (setting, index) =>
-            new Promise((resolve, reject) => {
-              const _path = this.indexJsonFilePath(`${args[index]}.json`)
-              const params = {
-                ...setting,
-                ...this.omitNamespaceFromReplicasConfig(setting),
-                ...this.omitNamespaceFromPrimaryConfig(setting),
-              }
-              fs.writeFile(_path, JSON.stringify(params, null, 2), (err) => {
-                if (err) return reject(err.message)
-                console.log(`${args[index]}: are written to ${_path}`)
-                return resolve('success')
-              })
+        results.map(async (setting, index) => {
+          const _path = this.indexJsonFilePath(`${args[index]}.json`)
+          const params = {
+            ...setting,
+            ...this.omitNamespaceFromReplicasConfig(setting),
+            ...this.omitNamespaceFromPrimaryConfig(setting),
+          }
+          return fs.promises
+            .writeFile(_path, JSON.stringify(params, null, 2))
+            .then(() => {
+              console.log(`${args[index]}: are written to ${_path}`)
+              return 'success'
             })
-        )
+            .catch(console.error)
+        })
       ).catch(console.error)
 
       console.log(promises)
@@ -111,20 +110,21 @@ export default class AlgoliaInvokeClass {
         return this.settingParse(data)
       })
     )
-    const _settings = settings.sort((a, b) => {
-      return this.applySortValue(a) - this.applySortValue(b)
-    })
-    const results = await Promise.all(
-      _settings.map((setting: Settings, i) => {
+    const _settings = settings
+      .sort((a, b) => {
+        return this.applySortValue(a) - this.applySortValue(b)
+      })
+      .map((setting: Settings, i) => {
         const indexName = fileNames[i].replace('.json', '')
-        return this.algoliaManager.updateIndexSetting({
+        return {
           indexName: indexName,
           setting: setting as Settings,
-        })
+        }
       })
-    ).catch(console.error)
-    if (!results || results.some((v) => v === false))
-      console.log('provision algolia index was failed.')
+    const result = await this.algoliaManager
+      .updateIndexSetting(_settings)
+      .catch(console.error)
+    if (!result) console.log('provision algolia index was failed.')
   }
 
   public async updateAlgoliaIndexSetting(args: string[]): Promise<void> {
