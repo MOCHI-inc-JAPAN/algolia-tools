@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.13](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.12...v1.13.13) (2022-08-27)
+
+
+### Bug Fixes
+
+* await index ([1a4ca20](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/1a4ca201f875c7f10e2fb23924bd3dfb95441acd))
+
 ### [1.13.12](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.11...v1.13.12) (2022-08-27)
 
 
