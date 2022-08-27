@@ -109,22 +109,20 @@ export default class AlgoliaInvokeClass {
   public async provisionAlgoliaIndexAll(): Promise<void> {
     const fileNames = fs.readdirSync(this.indexConfigDir)
     const settings = await Promise.all(
-      fileNames.map((fileName, i) => {
+      fileNames.map(async (fileName, i) => {
         const _path = path.join(this.indexConfigDir, fileName)
-        return new Promise((resolve, reject) => {
-          fs.readFile(_path, 'utf8', (test, data) => {
-            resolve(this.settingParse(data))
-          })
-        })
+        const data = await fs.promises.readFile(_path, 'utf8')
+        return this.settingParse(data)
       })
     )
     const _settings = settings.sort((a, b) => {
       return this.applySortValue(a) - this.applySortValue(b)
     })
     const results = await Promise.all(
-      _settings.map((setting, i) => {
+      _settings.map((setting: Settings, i) => {
+        const indexName = fileNames[i].replace('.json', '')
         return this.algoliaManager.updateIndexSetting({
-          indexName: fileNames[i].replace('.json', ''),
+          indexName: indexName,
           setting: setting as Settings,
         })
       })

@@ -2,6 +2,7 @@ const writeFileMock = jest.fn().mockResolvedValue('test')
 jest.mock('fs', () => ({
   promises: {
     writeFile: writeFileMock,
+    readFile: jest.requireActual('fs').promises.readFile,
   },
   readdirSync: jest.requireActual('fs').readdirSync,
   readFileSync: jest.requireActual('fs').readFileSync,
