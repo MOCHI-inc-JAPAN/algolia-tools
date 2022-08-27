@@ -1,6 +1,6 @@
 {
   "name": "@mochi-inc-japan/algolia-firebase-tools",
-  "version": "1.13.8",
+  "version": "1.13.9",
   "main": "dist/index.js",
   "bin": {
     "aftools": "dist/bin/aftools.js",
