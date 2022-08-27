@@ -207,11 +207,11 @@ describe('provisionAlgoliaIndexAll', () => {
       },
       {
         dummy: 'dummy',
+
+        replicas: ['dummy'],
       },
       {
         dummy: 'dummy',
-
-        replicas: ['dummy'],
       },
     ])
   })
