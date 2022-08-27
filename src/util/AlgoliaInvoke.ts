@@ -85,13 +85,9 @@ export default class AlgoliaInvokeClass {
     )
     const results = await Promise.all(
       settings.map((setting, i) => {
-        return new Promise((resolve, reject) => {
-          resolve(
-            this.algoliaManager.updateIndexSetting({
-              indexName: args[i],
-              setting,
-            })
-          )
+        return this.algoliaManager.updateIndexSetting({
+          indexName: args[i],
+          setting,
         })
       })
     ).catch(console.error)

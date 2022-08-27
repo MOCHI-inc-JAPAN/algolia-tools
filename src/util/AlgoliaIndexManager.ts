@@ -110,7 +110,7 @@ export class AlgoliaIndexManager {
       ? indexSetting
       : [indexSetting]
     try {
-      for (const _indexSetting of _indexSettings) {
+      for await (const _indexSetting of _indexSettings) {
         const indexName = this.getIndexName(_indexSetting.indexName)
         console.log(`${indexName} start applying`)
         const index = this.client.initIndex(indexName)
