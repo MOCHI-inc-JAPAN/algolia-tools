@@ -1,11 +1,11 @@
-import { CommanderStatic } from 'commander'
+import { Command } from 'commander'
 import algoliaModule from '../../account/algoliaAccount'
-import AlgoliaInvoke from '../../../src/util/AlgoliaInvoke'
+import AlgoliaProjectManager from '../../../src/util/AlgoliaProjectManager'
 import { ALGOLIA_ID, ALGOLIA_ADMIN_KEY, ALGOLIA_SEARCH_KEY } from '../../const'
 
-const algoliaTasks = new AlgoliaInvoke(algoliaModule)
+const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
 
-export default function (commander: CommanderStatic): void {
+export default function (commander: Command): void {
   commander.command('seeAlgoliaAccount').action(async () => {
     try {
       console.log(`algolia_id: ${ALGOLIA_ID}`)

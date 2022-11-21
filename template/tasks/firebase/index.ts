@@ -1,16 +1,15 @@
-import { CommanderStatic } from 'commander'
+import { Command } from 'commander'
 import algoliaModule from '../../account/algoliaAccount'
-import admin from '../../account/firebaseAccount'
+import '../../account/firebaseAccount'
 import FirebaseInvoke from '../../../src/plugin/FirebaseInvoke'
 
 const algoliaManager = algoliaModule.algoliaManager
 
 const firebaseManager = new FirebaseInvoke({
   algoliaManager,
-  admin,
 })
 
-export default function (commander: CommanderStatic) {
+export default function (commander: Command) {
   commander
     .command('batchSendDataToIndex <indexName...> ')
     .action(async (indexName: string[]) => {
@@ -19,7 +18,7 @@ export default function (commander: CommanderStatic) {
           indexName.map((_indexName) =>
             firebaseManager.batchSendDataToIndex({
               index: _indexName,
-              collection: admin.firestore().collection(_indexName),
+              collection: firebaseManager.firestore.collection(_indexName),
             })
           )
         )
