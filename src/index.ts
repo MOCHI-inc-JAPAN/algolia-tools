@@ -30,3 +30,6 @@ export default (
     }, {}),
   }
 }
+
+export { createAlgoliaCommanderPlugin } from './generate-commands/algolia'
+export { createFirestoreCommanderPlugin } from './generate-commands/firestore'

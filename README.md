@@ -5,7 +5,7 @@ This library mainly targets typescript but may be available as js module.
 
 ## Ready to use
 
-### You need reading env setting
+You need reading env setting if command auto generation.
 
 ```
 ALGOLIA_ID: your algolia id
@@ -18,7 +18,7 @@ INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set differ
 ### package.json
 
 package.json
-```package.json
+```json:package.json
   "aftools" : {
     "modulePath": "algoliaIndexManager",
     "out": "dist",
@@ -43,7 +43,7 @@ envFile (Optional): your env file specified, default is `.env`. If not specified
 
 Make algoliaIndexManager/userExample.ts (if you specify ./algoliaIndexManager as modulePath)
 
-```algoliaIndexManager/userExample.ts
+```ts:algoliaIndexManager/userExample.ts
 import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-firebase-tools'
 
 type UserSchema = {
@@ -87,7 +87,7 @@ export default class UserIndexManager implements IndexInterface {
 
 And you make algoliaIndexManager/index.ts
 
-```algoliaIndexManager/index.ts
+```ts:algoliaIndexManager/index.ts
 import users from './userExample'
 export default {
   users // This exported as collectionName, so you should use named import specify to collection id
@@ -141,15 +141,16 @@ Your module can be used backend. We probide algoliaModule default exported. So y
 
 For example.
 
-```example.ts
-import algoliaModule form 'algolia-firebase-tools'
+```ts:example.ts
+import algoliaModule from 'algolia-firebase-tools'
+import indexManagers from './algoliaIndexManager'
 
 const manager = algoliaModule(
   {
     client,
     indexNamespace,
   },
-  algoliaProjectModule
+  indexManagers
 )
 
 
@@ -157,6 +158,34 @@ manager.indices.users.batchSendIndex()
 
 ```
 so on.
+
+### Extension for Commander
+
+If you use commader, you can extend it by defined commands in this library.
+
+```ts
+import AlgoliaModule, {createAlgoliaCommanderPlugin} from 'algolia-firebase-tools'
+import indexManagers from './algoliaIndexManager'
+import commander from 'commander'
+
+const algoliaModule = AlgoliaModule(
+  {
+    client,
+    indexNamespace,
+  },
+  indexManagers
+)
+
+const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
+
+const firebaseManager = new FirebaseInvoke({
+  algoliaManager: algoliaModule.algoliaManager,
+})
+
+// extended to commander commands
+createAlgoliaCommanderPlugin(algoliaTasks)(commander)
+createFirestoreCommanderPlugin(firebaseManager)(commander)// optional if you use firestore
+```
 
 
 ## **WARNING**

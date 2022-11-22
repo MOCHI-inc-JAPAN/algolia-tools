@@ -17,7 +17,7 @@ export interface AlgoliaToolsModule {
   indexConfigDir?: string
 }
 
-export type AlgoliaInvokeInternal = {
+export type AlgoliaProjectManagerInternal = {
   algoliaManager: AlgoliaToolsModule['algoliaManager']
   indices: AlgoliaToolsModule['indices']
 }

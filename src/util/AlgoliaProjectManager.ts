@@ -1,9 +1,9 @@
 import { Settings } from '@algolia/client-search'
-import { AlgoliaInvokeInternal, AlgoliaToolsModule } from '../types'
+import { AlgoliaProjectManagerInternal, AlgoliaToolsModule } from '../types'
 import * as path from 'path'
 import * as fs from 'fs'
 
-export default class AlgoliaInvokeClass {
+export default class AlgoliaProjectManagerClass {
   public constructor(args: AlgoliaToolsModule) {
     this.algoliaManager = args.algoliaManager
     this.indices = args.indices
@@ -11,8 +11,8 @@ export default class AlgoliaInvokeClass {
       ? path.resolve(args.indexConfigDir)
       : path.join(process.cwd(), 'algolia', 'indices')
   }
-  public algoliaManager: AlgoliaInvokeInternal['algoliaManager']
-  public indices: AlgoliaInvokeInternal['indices']
+  public algoliaManager: AlgoliaProjectManagerInternal['algoliaManager']
+  public indices: AlgoliaProjectManagerInternal['indices']
   private indexConfigDir: string
 
   private settingParse(data: string) {

@@ -21,7 +21,7 @@ import algoliaSearch from 'algoliasearch'
 import * as path from 'path'
 import indices from '../mock/indexManagers'
 import { AlgoliaIndexManager } from './AlgoliaIndexManager'
-import AlgoliaInvoke from './AlgoliaInvoke'
+import AlgoliaProjectManager from './AlgoliaProjectManager'
 
 describe('provisionAlgoliaIndexAll', () => {
   it('apply namespace json', async () => {
@@ -30,7 +30,7 @@ describe('provisionAlgoliaIndexAll', () => {
       client: clientMock,
       indexNamespace: 'namespace_',
     })
-    const invoker = new AlgoliaInvoke({
+    const invoker = new AlgoliaProjectManager({
       algoliaManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
@@ -80,7 +80,7 @@ describe('provisionAlgoliaIndexAll', () => {
         })
       })
 
-    const invoker = new AlgoliaInvoke({
+    const invoker = new AlgoliaProjectManager({
       algoliaManager: algoliaManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
@@ -121,7 +121,7 @@ describe('provisionAlgoliaIndexAll', () => {
       client: clientMock,
       indexNamespace: 'namespace_',
     })
-    const invoker = new AlgoliaInvoke({
+    const invoker = new AlgoliaProjectManager({
       algoliaManager: algoliaManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
@@ -171,7 +171,7 @@ describe('provisionAlgoliaIndexAll', () => {
       client: clientMock,
       indexNamespace: 'namespace_',
     })
-    const invoker = new AlgoliaInvoke({
+    const invoker = new AlgoliaProjectManager({
       algoliaManager: algoliaManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
