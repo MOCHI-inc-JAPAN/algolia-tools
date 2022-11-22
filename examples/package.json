@@ -14,7 +14,7 @@
     "envFile": "./.env.test"
   },
   "dependencies": {
-    "algolia-firebase-tools": "file:..",
+    "algolia-firebase-tools": "link:..",
     "typescript": "^3.9.7"
   }
 }
