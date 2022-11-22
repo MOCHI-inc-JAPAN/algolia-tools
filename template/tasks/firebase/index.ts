@@ -1,12 +1,19 @@
 import algoliaModule from '../../account/algoliaAccount'
-import '../../account/firebaseAccount'
+import { useFirebaseAccount } from '../../account/firebaseAccount'
 import FirebaseInvoke from '../../../src/plugin/FirebaseInvoke'
 import { createFirestoreCommanderPlugin } from '../../../src/generate-commands/firestore'
+import { Command } from 'commander'
 
 const algoliaManager = algoliaModule.algoliaManager
 
-const firebaseManager = new FirebaseInvoke({
-  algoliaManager,
-})
+const firebaseManager = useFirebaseAccount
+  ? new FirebaseInvoke({
+      algoliaManager,
+    })
+  : undefined
 
-export default createFirestoreCommanderPlugin(firebaseManager)
+export default (commander: Command) => {
+  if (firebaseManager) {
+    createFirestoreCommanderPlugin(firebaseManager)(commander)
+  }
+}
