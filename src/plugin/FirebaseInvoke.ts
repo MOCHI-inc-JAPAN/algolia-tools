@@ -8,6 +8,7 @@ export type FirebaseInvokeInternal = {
 }
 
 export default class FirebaseInvokeClass {
+  static id = 'firebaseInvoke' as const
   public constructor(args: FirebaseInvokeInternal) {
     this.algoliaManager = args.algoliaManager
     this.batchTimeKey = args.batchTimeKey || 'algolia-send-index-batchtime'

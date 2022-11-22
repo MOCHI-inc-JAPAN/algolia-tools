@@ -21,3 +21,9 @@ export type AlgoliaProjectManagerInternal = {
   algoliaManager: AlgoliaToolsModule['algoliaManager']
   indices: AlgoliaToolsModule['indices']
 }
+
+export type ExPlugin<PluginId extends string, PluginType> = {
+  id: PluginId
+  new (a: any): PluginType
+  prototype: PluginType
+}
