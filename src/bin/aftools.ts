@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as program from 'commander'
+import { program } from 'commander'
 import { getConfigFromPackageJson } from '../util/configParser'
 import * as path from 'path'
 import * as fs from 'fs'
