@@ -18,6 +18,7 @@
   "include": [
     "./*.ts",
     "./**/*.ts",
+    "../src/generate-commands",
     "../src/plugin",
     "../src/util",
     "../src/index.ts",
