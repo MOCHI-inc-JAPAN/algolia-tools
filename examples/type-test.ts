@@ -1,8 +1,4 @@
-import algoliaManager, {
-  AlgoliaIndexManager,
-  IndexInterface,
-  FirebaseInvoke,
-} from 'algolia-firebase-tools'
+import algoliaManager, { FirebaseInvoke } from 'algolia-firebase-tools'
 import algoliaProjectModule from './indexManagers'
 import algoliasearch from 'algoliasearch'
 
@@ -19,4 +15,4 @@ const algoliaManagerExample = algoliaManager(
   { plugins: [FirebaseInvoke] }
 )
 
-algoliaManagerExample.FirebaseInvoke.batchSendDataToIndex
+algoliaManagerExample.firebaseInvoke.batchSendDataToIndex
