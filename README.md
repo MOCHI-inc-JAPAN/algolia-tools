@@ -142,7 +142,7 @@ Your module can be used backend. We probide algoliaModule default exported. So y
 For example.
 
 ```ts:example.ts
-import algoliaModule from 'algolia-firebase-tools'
+import algoliaModule from '@mochi-inc-japan/algolia-firebase-tools'
 import indexManagers from './algoliaIndexManager'
 
 const manager = algoliaModule(
@@ -164,7 +164,7 @@ so on.
 If you use commader, you can extend it by defined commands in this library.
 
 ```ts
-import AlgoliaModule, {createAlgoliaCommanderPlugin} from 'algolia-firebase-tools'
+import AlgoliaModule, {createAlgoliaCommanderPlugin} from '@mochi-inc-japan/algolia-firebase-tools'
 import indexManagers from './algoliaIndexManager'
 import commander from 'commander'
 
