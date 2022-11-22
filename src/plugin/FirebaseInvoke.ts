@@ -1,20 +1,22 @@
-import * as firebaseAdmin from 'firebase-admin'
+import { getFirestore, Firestore, Query } from 'firebase-admin/firestore'
+import { ServerValue, getDatabase, Database } from 'firebase-admin/database'
 import { AlgoliaIndexManager } from '../util/AlgoliaIndexManager'
 
 export type FirebaseInvokeInternal = {
-  admin: typeof firebaseAdmin
   algoliaManager: AlgoliaIndexManager
   batchTimeKey?: string
 }
 
 export default class FirebaseInvokeClass {
   public constructor(args: FirebaseInvokeInternal) {
-    this.admin = args.admin
     this.algoliaManager = args.algoliaManager
     this.batchTimeKey = args.batchTimeKey || 'algolia-send-index-batchtime'
+    this.firestore = getFirestore()
+    this.database = getDatabase()
   }
+  public firestore: Firestore
+  public database: Database
   public batchTimeKey: FirebaseInvokeInternal['batchTimeKey']
-  public admin: FirebaseInvokeInternal['admin']
   public algoliaManager: FirebaseInvokeInternal['algoliaManager']
 
   public batchSendDataToIndex = async (
@@ -32,11 +34,11 @@ export default class FirebaseInvokeClass {
     filter = (data: any) => data
   ): Promise<boolean> => {
     try {
-      const historyRef = this.admin
-        .database()
-        .ref(`${this.batchTimeKey}/${index}`)
+      const historyRef = this.database.ref(`${this.batchTimeKey}/${index}`)
       const _tempValue = await historyRef.once('value')
-      let targetCollectionRef = collection.limit(500)
+      let targetCollectionRef = collection
+        .orderBy(timestampName, 'desc')
+        .limit(500)
       if (_tempValue.exists()) {
         const updatedAt = new Date(parseInt(_tempValue.val(), 10))
         console.log(`start updatedAt from:${updatedAt}`)
@@ -47,29 +49,28 @@ export default class FirebaseInvokeClass {
         )
       }
       let currentQuerySnapshot = await targetCollectionRef.get()
+      if (currentQuerySnapshot.empty) {
+        return true
+      }
       while (!currentQuerySnapshot.empty) {
-        const data = currentQuerySnapshot.docs
-          .map((doc) => {
-            const id = doc.id
-            return {
-              ...filter(doc.data()),
-              id,
-              objectID: id,
-            }
-          })
-          .filter((v) => !!v)
+        const promises = currentQuerySnapshot.docs.map(async (doc) => {
+          const result = await filter({ id: doc.id, ...doc.data() })
+          return {
+            objectID: doc.id,
+            ...result,
+          }
+        })
+        const data = (await Promise.all(promises)).filter((v) => !!v)
         await this.algoliaManager.sendIndex(index, data)
         const lastDoc =
           currentQuerySnapshot.docs[currentQuerySnapshot.docs.length - 1]
         console.log(
           `index ${index} ${data.length} counts are sent. (Last ID : ${lastDoc.id})`
         )
-        const nextQuery: firebaseAdmin.firestore.Query = currentQuerySnapshot.query.startAfter(
-          lastDoc
-        )
+        const nextQuery: Query = currentQuerySnapshot.query.startAfter(lastDoc)
         currentQuerySnapshot = await nextQuery.get()
       }
-      await historyRef.set(firebaseAdmin.database.ServerValue.TIMESTAMP)
+      await historyRef.set(ServerValue.TIMESTAMP)
       return true
     } catch (e) {
       console.error(e)
@@ -79,9 +80,7 @@ export default class FirebaseInvokeClass {
 
   public resetBatchTime = async (indexName: string): Promise<boolean> => {
     try {
-      const historyRef = this.admin
-        .database()
-        .ref(`${this.batchTimeKey}/${indexName}`)
+      const historyRef = this.database.ref(`${this.batchTimeKey}/${indexName}`)
       await historyRef.remove()
       return true
     } catch (e) {
@@ -103,10 +102,7 @@ export default class FirebaseInvokeClass {
     try {
       await Promise.all(
         indexName.map((_indexName: string) =>
-          this.admin
-            .database()
-            .ref(`${this.batchTimeKey}/${_indexName}`)
-            .remove()
+          this.database.ref(`${this.batchTimeKey}/${_indexName}`).remove()
         )
       )
     } catch (e) {
