@@ -10,11 +10,17 @@
   "aftools": {
     "modulePath": "indexManagers",
     "out": "dist",
-    "dFiles": ["./@types"],
+    "dFiles": [
+      "./@types"
+    ],
     "envFile": "./.env.test"
   },
   "dependencies": {
-    "algolia-firebase-tools": "link:..",
-    "typescript": "^3.9.7"
+    "@algolia/client-search": "^4.14.2",
+    "algolia-firebase-tools": "file:..",
+    "firebase-admin": "^11.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3"
   }
 }

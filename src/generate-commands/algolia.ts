@@ -16,7 +16,7 @@ export const createAlgoliaCommanderPlugin = (
     })
 
     commander
-      .command('seeAlgoliaIndexSetting <indices...>')
+      .command('seeAlgoliaIndexSetting <indexName...>')
       .action(async (args: string[]) => {
         try {
           await algoliaTasks.seeAlgoliaIndexSetting(args)
@@ -28,7 +28,7 @@ export const createAlgoliaCommanderPlugin = (
       })
 
     commander
-      .command('backupAlgoliaIndexSetting <indices...>')
+      .command('backupAlgoliaIndexSetting <indexName...>')
       .action(async (args: string[]) => {
         try {
           await algoliaTasks.backupAlgoliaIndexSetting(args)
@@ -40,7 +40,7 @@ export const createAlgoliaCommanderPlugin = (
       })
 
     commander
-      .command('provisionAlgoliaIndex <indices...>')
+      .command('provisionAlgoliaIndex <indexName...>')
       .action(async (args: string[]) => {
         try {
           await algoliaTasks.provisionAlgoliaIndex(args)
@@ -62,7 +62,7 @@ export const createAlgoliaCommanderPlugin = (
     })
 
     commander
-      .command('updateAlgoliaIndexSetting <indices...>')
+      .command('updateAlgoliaIndexSetting <indexName...>')
       .action(async (args: string[]) => {
         try {
           await algoliaTasks.updateAlgoliaIndexSetting(args)
@@ -86,7 +86,7 @@ export const createAlgoliaCommanderPlugin = (
       })
 
     commander
-      .command('deleteIndex <indexName...> ')
+      .command('deleteIndex <indexName...>')
       .action(async (indexName: string[]) => {
         try {
           await algoliaTasks.deleteIndex(indexName)
@@ -108,7 +108,7 @@ export const createAlgoliaCommanderPlugin = (
     })
 
     commander
-      .command('syncAlgoliaFromStorage <indexName...> ')
+      .command('batchSendDataToIndex <indexName...>')
       .action(async (indexName: string[]) => {
         try {
           await algoliaTasks.syncAlgoliaFromStorage(indexName)

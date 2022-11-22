@@ -47,4 +47,4 @@ export default <Plugins extends ExPlugin<any, any>[]>(
 }
 
 export { createAlgoliaCommanderPlugin } from './generate-commands/algolia'
-export { createFirestoreCommanderPlugin } from './generate-commands/firestore'
+export { createFirestoreCommanderPlugin } from './plugin/generate-commands/firestore'

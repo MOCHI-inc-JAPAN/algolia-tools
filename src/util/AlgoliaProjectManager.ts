@@ -206,7 +206,8 @@ export default class AlgoliaProjectManagerClass {
     const results = await Promise.all(
       indexName.map((_indexName) => this.indices[_indexName].batchSendToIndex())
     )
-    if (results.some((v) => v === false)) console.log('deleteIndex was failed.')
+    if (results.some((v) => v === false))
+      console.log('syncAlgoliaFromStorage was failed.')
   }
 
   private omitNamespaceFromReplicasConfig(
