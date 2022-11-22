@@ -2,6 +2,95 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.18](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.17...v1.13.18) (2022-08-27)
+
+
+### Bug Fixes
+
+* fetch index settings await ([a40e8c5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a40e8c5621eb1fdfed4224822bc742bf833925c3))
+
+### [1.13.17](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.16...v1.13.17) (2022-08-27)
+
+
+### Bug Fixes
+
+* sort logic ([3923eaa](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/3923eaacc06550f9003bed992ee6d0f539bd66ae))
+
+### [1.13.16](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.15...v1.13.16) (2022-08-27)
+
+
+### Bug Fixes
+
+* delete index all ([d6c3783](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/d6c3783d04567025c6f53e29bf66df829db057fd))
+
+### [1.13.15](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.14...v1.13.15) (2022-08-27)
+
+
+### Bug Fixes
+
+* add test ([393f72f](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/393f72f0eb0e50c738fe905c6a3186683950b67b))
+* test ([b5bca44](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/b5bca442ff3e0c1d3b25890e23bf6c0dfa6dcb1c))
+
+### [1.13.14](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.13...v1.13.14) (2022-08-27)
+
+
+### Bug Fixes
+
+* async ([6000ad9](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/6000ad97693e9c2222e9257719008720dcfd13ef))
+* delete index all ([cb2519b](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/cb2519b6b5a34bb72c0b305b379b252e9fb2cc39))
+
+### [1.13.13](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.12...v1.13.13) (2022-08-27)
+
+
+### Bug Fixes
+
+* await index ([1a4ca20](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/1a4ca201f875c7f10e2fb23924bd3dfb95441acd))
+
+### [1.13.12](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.11...v1.13.12) (2022-08-27)
+
+
+### Bug Fixes
+
+* async ([333e47f](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/333e47feb40a99b2684c1e3dee18d8aa55b901a6))
+
+### [1.13.11](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.10...v1.13.11) (2022-08-27)
+
+
+### Bug Fixes
+
+* log ([c12ecee](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/c12ecee45d73373df4dfcd44f9686f6c95e0eeac))
+* readfile test ([98df9e2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/98df9e29d8d8dae7873cc9dd36cca18b6f649652))
+
+### [1.13.10](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.9...v1.13.10) (2022-08-27)
+
+
+### Bug Fixes
+
+* log ([e4cb9f3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/e4cb9f3ec7ab95fa1e383577682de1343a4b59f5))
+
+### [1.13.9](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.8...v1.13.9) (2022-08-27)
+
+
+### Bug Fixes
+
+* log ([635f7f4](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/635f7f423b60d35d6598460fa53661a82cc52fe8))
+
+### [1.13.8](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.7...v1.13.8) (2022-08-27)
+
+
+### Bug Fixes
+
+* log strict ([39a6f52](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/39a6f5261613772497ca1ca7f970257b8d43a18a))
+
+### [1.13.7](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.6...v1.13.7) (2022-08-27)
+
+
+### Bug Fixes
+
+* console log ([e4b5d75](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/e4b5d7513a34d54a5d238f73d0c1e2af87c7a267))
+* error ([6dc2d32](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/6dc2d3278a0e6e2901e0b4b0aeffaf66ad76f5e7))
+* index ([1556465](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/1556465409ea0e65abf177260a0dfa99817680d3))
+
 ### [1.13.6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.5...v1.13.6) (2022-08-26)
 
 
