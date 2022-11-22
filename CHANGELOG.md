@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.14.0...v1.15.0) (2022-11-22)
+
+
+### Features
+
+* plugin system ([05698b9](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/05698b9a4836ad55129fcc869ad6c50b0b1411e5))
+
 ## [1.14.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.18...v1.14.0) (2022-11-22)
 
 
