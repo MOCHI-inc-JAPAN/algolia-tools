@@ -51,13 +51,13 @@ type UserSchema = {
   name: string
 }
 export default class UserIndexManager implements IndexInterface {
-  private algoliaManager: AlgoliaIndexManager
-  public constructor(args: { algoliaManager: AlgoliaIndexManager }) {
-    this.algoliaManager = args.algoliaManager
+  private algoliaIndexManager: AlgoliaIndexManager
+  public constructor(args: { algoliaIndexManager: AlgoliaIndexManager }) {
+    this.algoliaIndexManager = args.algoliaIndexManager
   }
 
   public sendIndex = async (userId: string, user: UserSchema) => {
-    const result = await this.algoliaManager.sendIndex('users', user)
+    const result = await this.algoliaIndexManager.sendIndex('users', user)
     if (result) {
       console.log(`users index has been updated: [userId:${user.id}]`)
       return true
@@ -68,12 +68,12 @@ export default class UserIndexManager implements IndexInterface {
   }
 
   public batchSendToIndex = async () => {
-    const result = await this.algoliaManager.sendIndex('users', [])
+    const result = await this.algoliaIndexManager.sendIndex('users', [])
     return result
   }
 
   public deleteIndexData = async (userIds: string[]) => {
-    const result = await this.algoliaManager.deleteIndexData('users', userIds)
+    const result = await this.algoliaIndexManager.deleteIndexData('users', userIds)
     if (result) {
       console.log(`user index has been deleted: [userIds:${userIds}]`)
       return true
@@ -173,18 +173,17 @@ const algoliaModule = AlgoliaModule(
     client,
     indexNamespace,
   },
-  indexManagers
+  indexManagers,
+  {
+    plugin: [FirebaseInvoke]
+  }
 )
 
 const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
 
-const firebaseManager = new FirebaseInvoke({
-  algoliaManager: algoliaModule.algoliaManager,
-})
-
 // extended to commander commands
 createAlgoliaCommanderPlugin(algoliaTasks)(commander)
-createFirestoreCommanderPlugin(firebaseManager)(commander)// optional if you use firestore
+createFirestoreCommanderPlugin(algoliaTasks.firebaseManager)(commander)// optional if you use firestore
 ```
 
 

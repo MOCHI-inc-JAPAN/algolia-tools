@@ -26,20 +26,20 @@ export default <Plugins extends ExPlugin<any, any>[]>(
   },
   option?: { plugins?: Plugins }
 ): AlgoliaToolsModule & ExtractPluginType<Plugins> => {
-  const algoliaManager = new AlgoliaIndexManager(args)
+  const algoliaIndexManager = new AlgoliaIndexManager(args)
   const exInstances = option?.plugins?.reduce((current, pluginClass) => {
     return {
       ...current,
-      [pluginClass.id]: new pluginClass(algoliaManager),
+      [pluginClass.id]: new pluginClass(algoliaIndexManager),
     }
   }, {})
   return {
-    algoliaManager,
+    algoliaIndexManager,
     indices: Object.keys(indices).reduce((result, index) => {
       return {
         ...result,
         [index]: new indices[index]({
-          algoliaManager: algoliaManager,
+          algoliaIndexManager: algoliaIndexManager,
           ...exInstances,
         }),
       }
