@@ -3,9 +3,11 @@ import { AlgoliaToolsModule } from '../types'
 import * as path from 'path'
 import * as fs from 'fs'
 
-export default class AlgoliaProjectManagerClass {
+export default class AlgoliaProjectManager<
+  ExModule extends AlgoliaToolsModule = AlgoliaToolsModule
+> {
   public constructor(
-    args: AlgoliaToolsModule,
+    args: ExModule,
     option?: {
       indexConfigDir?: string
     }
@@ -16,7 +18,7 @@ export default class AlgoliaProjectManagerClass {
       ? path.resolve(option.indexConfigDir)
       : path.join(process.cwd(), 'algolia', 'indices')
   }
-  public algoliaModule: AlgoliaToolsModule
+  public algoliaModule: ExModule
   private indices: AlgoliaToolsModule['indices']
   private indexConfigDir: string
 
