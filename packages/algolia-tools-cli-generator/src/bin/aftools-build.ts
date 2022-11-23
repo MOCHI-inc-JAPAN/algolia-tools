@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { Config, getConfigFromPackageJson } from '../configParser'
+import { Config, getConfigFromPackageJson } from '../utils/configParser'
 import { execSync } from 'child_process'
 import * as path from 'path'
 import * as fs from 'fs'
-import { getReadFileName } from '../fileUtility'
+import { getReadFileName } from '../utils/fileUtility'
 
 let packageName = '@mochi-inc-japan/algolia-tools-cli-generator'
 

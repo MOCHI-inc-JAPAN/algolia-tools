@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch'
 import algoliaManager, { IndexConstructor, ExPlugin } from '@mochi-inc-japan/algolia-tools'
-import { getConfigFromPackageJson, Config } from '../../src/configParser'
+import { getConfigFromPackageJson, Config } from '../../src/utils/configParser'
 import { CommanderPlugin } from '../../src/'
 import { ALGOLIA_ID, ALGOLIA_ADMIN_KEY, INDEX_NAMESPACE } from './const'
 import * as path from 'path'

@@ -19,10 +19,8 @@
     "./*.ts",
     "./**/*.ts",
     "../src/generate-commands",
-    "../src/plugin",
-    "../src/util",
+    "../src/utils",
     "../src/index.ts",
-    "../src/types"
   ],
   "exclude": [
     "node_modules",
