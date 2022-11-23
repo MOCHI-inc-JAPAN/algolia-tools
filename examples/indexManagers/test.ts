@@ -1,14 +1,14 @@
 import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
 
 export default class TestIndexManager implements IndexInterface {
-  private algoliaManager: AlgoliaIndexManager
+  private algoliaIndexManager: AlgoliaIndexManager
 
-  public constructor(args: { algoliaManager: AlgoliaIndexManager }) {
-    this.algoliaManager = args.algoliaManager
+  public constructor(args: { algoliaIndexManager: AlgoliaIndexManager }) {
+    this.algoliaIndexManager = args.algoliaIndexManager
   }
 
   public sendIndex = async (userId: string, user: UserSchema) => {
-    const result = await this.algoliaManager.sendIndex('users', user)
+    const result = await this.algoliaIndexManager.sendIndex('users', user)
     if (result) {
       console.log(`users index has been updated: [userId:${user.id}]`)
       return true
@@ -19,12 +19,15 @@ export default class TestIndexManager implements IndexInterface {
   }
 
   public batchSendToIndex = async () => {
-    const result = await this.algoliaManager.sendIndex('users', [])
+    const result = await this.algoliaIndexManager.sendIndex('users', [])
     return result
   }
 
   public deleteIndexData = async (userIds: string[]) => {
-    const result = await this.algoliaManager.deleteIndexData('users', userIds)
+    const result = await this.algoliaIndexManager.deleteIndexData(
+      'users',
+      userIds
+    )
     if (result) {
       console.log(`user index has been deleted: [userIds:${userIds}]`)
       return true
