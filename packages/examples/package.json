@@ -19,11 +19,12 @@
   "dependencies": {
     "@algolia/client-search": "^4.14.2",
     "@mochi-inc-japan/algolia-tools": "workspace:*",
-    "@mochi-inc-japan/plugin-algolia-tools-cli-generator": "workspace:*",
+    "@mochi-inc-japan/algolia-tools-cli-generator": "workspace:*",
     "@mochi-inc-japan/plugin-algolia-tools-firestore": "workspace:*",
     "firebase-admin": "^11.3.0"
   },
   "devDependencies": {
+    "algoliasearch": "^4.14.2",
     "typescript": "^4.9.3"
   }
 }

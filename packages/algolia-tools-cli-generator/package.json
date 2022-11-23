@@ -1,5 +1,5 @@
 {
-  "name": "@mochi-inc-japan/plugin-algolia-tools-firestore",
+  "name": "@mochi-inc-japan/algolia-tools-cli-generator",
   "version": "1.4.0",
   "main": "dist/index.js",
   "bin": {

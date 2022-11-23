@@ -39,6 +39,7 @@ export const getConfigFromPackageJson = (
     packageName: config.name,
     modulePath,
     firebaseServiceAccountPath,
+    configPath: '',
     out,
     orgModulePath: config.modulePath,
     dFiles: config.dFiles,

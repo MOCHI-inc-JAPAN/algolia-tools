@@ -1,4 +1,5 @@
-import algoliaManager, { FirestorePlugin } from 'algolia-firebase-tools'
+import algoliaManager from '@mochi-inc-japan/algolia-tools'
+import { FirestorePlugin } from '@mochi-inc-japan/plugin-algolia-tools-firestore'
 import algoliaProjectModule from './indexManagers'
 import algoliasearch from 'algoliasearch'
 

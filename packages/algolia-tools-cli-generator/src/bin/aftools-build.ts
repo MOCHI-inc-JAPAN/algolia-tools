@@ -6,12 +6,12 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { getReadFileName } from '../fileUtility'
 
-let packageName = '@mochi-inc-japan/algolia-firebase-tools'
+let packageName = '@mochi-inc-japan/algolia-tools-cli-generator'
 
 // TODO: node_modulesを使うのはyarnでは非推奨になるのでそのうち対応する
 
 if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName))) {
-  packageName = 'algolia-firebase-tools'
+  packageName = 'algolia-tools-cli-generator'
   if (!fs.existsSync(path.join(process.cwd(), 'node_modules', packageName)))
     throw Error('package path wrong')
 }

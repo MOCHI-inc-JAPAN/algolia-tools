@@ -1,8 +1,8 @@
 import {
   AlgoliaIndexManager,
-  FirestorePlugin,
   IndexInterface,
-} from 'algolia-firebase-tools'
+} from '@mochi-inc-japan/algolia-tools'
+import { FirestorePlugin } from '@mochi-inc-japan/plugin-algolia-tools-firestore'
 
 export default class UserIndexManager implements IndexInterface {
   private algoliaIndexManager: AlgoliaIndexManager
