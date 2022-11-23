@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.7](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.6...v1.15.7) (2022-11-23)
+
+
+### Bug Fixes
+
+* rename api ([4f3cb90](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/4f3cb90de97a49ea1e002e69b769fc779fadf601))
+* rename indexmanager ([a8e5e7d](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a8e5e7d02d1032a588d2c61952e83717e8284efd))
+
 ### [1.15.6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.5...v1.15.6) (2022-11-23)
 
 
