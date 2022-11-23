@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.4...v1.15.5) (2022-11-23)
+
+
+### Bug Fixes
+
+* default type ([e50e986](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/e50e9866fc4cf65ce84a7526735c7ea724aab902))
+* test追加・pluginの引数が認識できるようにした ([6fcdd6f](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/6fcdd6f62663b0a6cc1e122aaacffb152978c809))
+
+### [1.15.4](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.3...v1.15.4) (2022-11-22)
+
+
+### Bug Fixes
+
+* command format ([87b59ba](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/87b59ba798634aff48260801fb1ff1e55719b8ce))
+
+### [1.15.3](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.2...v1.15.3) (2022-11-22)
+
+
+### Bug Fixes
+
+* enable without firebase ([501f55c](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/501f55cd7da87ed3338bc95c94ea0adaa7a613d8))
+* enable without firebase ([9da63d6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/9da63d6ed3821f94b6ddbb768ade99c64b88fe5e))
+
+### [1.15.2](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.1...v1.15.2) (2022-11-22)
+
+
+### Bug Fixes
+
+* include generate-commands ([0683557](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/068355721224bb3509467dfbb77d9a927cca8f9e))
+
+### [1.15.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.0...v1.15.1) (2022-11-22)
+
+
+### Bug Fixes
+
+* dependencies ([4c2cf36](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/4c2cf362cae503ca5fd180db446d0ab9e4f60014))
+
+## [1.15.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.14.0...v1.15.0) (2022-11-22)
+
+
+### Features
+
+* plugin system ([05698b9](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/05698b9a4836ad55129fcc869ad6c50b0b1411e5))
+
+## [1.14.0](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.18...v1.14.0) (2022-11-22)
+
+
+### Features
+
+* add generate plugin ([c8b9fa1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/c8b9fa11796e527e2951bebbf8323ce1db6cf873))
+
+
+### Bug Fixes
+
+* rename and update packages ([5408fab](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/5408fab7ff0a4c4e39b61adc5c4bf57100d7be88))
+* update readme ([d20b01a](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/d20b01a5e82375ff0f25e832f4fa110c9acc8c86))
+
 ### [1.13.18](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.13.17...v1.13.18) (2022-08-27)
 
 
