@@ -26,17 +26,17 @@ import AlgoliaProjectManager from './AlgoliaProjectManager'
 describe('provisionAlgoliaIndexAll', () => {
   it('apply namespace json', async () => {
     const clientMock = algoliaSearch('dummy', 'dummy')
-    const algoliaManager = new AlgoliaIndexManager({
+    const algoliaIndexManager = new AlgoliaIndexManager({
       client: clientMock,
       indexNamespace: 'namespace_',
     })
     const invoker = new AlgoliaProjectManager({
-      algoliaManager,
+      algoliaIndexManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
           ...result,
           [index]: new (indices as any)[index]({
-            algoliaManager: algoliaManager,
+            algoliaIndexManager: algoliaIndexManager,
           }) as any,
         }
       }, {}),
@@ -63,13 +63,13 @@ describe('provisionAlgoliaIndexAll', () => {
 describe('provisionAlgoliaIndexAll', () => {
   it('replaced namespace json', async () => {
     const clientMock = algoliaSearch('dummy', 'dummy')
-    const algoliaManager = new AlgoliaIndexManager({
+    const algoliaIndexManager = new AlgoliaIndexManager({
       client: clientMock,
       indexNamespace: 'namespace_',
     })
 
     jest
-      .spyOn(algoliaManager, 'getIndexSetting')
+      .spyOn(algoliaIndexManager, 'getIndexSetting')
       .mockImplementation(async () => {
         const remoteFileDir = path.resolve('./src/fixtures/local')
         const files = fs.readdirSync(remoteFileDir)
@@ -81,12 +81,12 @@ describe('provisionAlgoliaIndexAll', () => {
       })
 
     const invoker = new AlgoliaProjectManager({
-      algoliaManager: algoliaManager,
+      algoliaIndexManager: algoliaIndexManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
           ...result,
           [index]: new (indices as any)[index]({
-            algoliaManager: algoliaManager,
+            algoliaIndexManager: algoliaIndexManager,
           }) as any,
         }
       }, {}),
@@ -117,17 +117,17 @@ describe('provisionAlgoliaIndexAll', () => {
   })
   it('sort apply json', async () => {
     const clientMock = algoliaSearch('dummy', 'dummy')
-    const algoliaManager = new AlgoliaIndexManager({
+    const algoliaIndexManager = new AlgoliaIndexManager({
       client: clientMock,
       indexNamespace: 'namespace_',
     })
     const invoker = new AlgoliaProjectManager({
-      algoliaManager: algoliaManager,
+      algoliaIndexManager: algoliaIndexManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
           ...result,
           [index]: new (indices as any)[index]({
-            algoliaManager: algoliaManager,
+            algoliaIndexManager: algoliaIndexManager,
           }) as any,
         }
       }, {}),
@@ -167,17 +167,17 @@ describe('provisionAlgoliaIndexAll', () => {
   })
   it('sort delete order json', async () => {
     const clientMock = algoliaSearch('dummy', 'dummy')
-    const algoliaManager = new AlgoliaIndexManager({
+    const algoliaIndexManager = new AlgoliaIndexManager({
       client: clientMock,
       indexNamespace: 'namespace_',
     })
     const invoker = new AlgoliaProjectManager({
-      algoliaManager: algoliaManager,
+      algoliaIndexManager: algoliaIndexManager,
       indices: Object.keys(indices).reduce((result, index) => {
         return {
           ...result,
           [index]: new (indices as any)[index]({
-            algoliaManager: algoliaManager,
+            algoliaIndexManager: algoliaIndexManager,
           }) as any,
         }
       }, {}),

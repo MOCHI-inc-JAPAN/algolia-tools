@@ -8,22 +8,17 @@ export interface IndexInterface<T extends any = any> {
 export interface IndexConstructor<Ex = unknown> {
   new (
     args: {
-      algoliaManager: AlgoliaIndexManager
+      algoliaIndexManager: AlgoliaIndexManager
     } & Ex
   ): IndexInterface
 }
 
 export interface AlgoliaToolsModule {
-  algoliaManager: AlgoliaIndexManager
+  algoliaIndexManager: AlgoliaIndexManager
   indices: {
     [collectionName: string]: IndexInterface
   }
   indexConfigDir?: string
-}
-
-export type AlgoliaProjectManagerInternal = {
-  algoliaManager: AlgoliaToolsModule['algoliaManager']
-  indices: AlgoliaToolsModule['indices']
 }
 
 export type ExPlugin<PluginId extends string, PluginType> = {
