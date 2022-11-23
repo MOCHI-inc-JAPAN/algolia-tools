@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { Config, getConfigFromPackageJson } from '../util/configParser'
+import { Config, getConfigFromPackageJson } from '../configParser'
 import { execSync } from 'child_process'
 import * as path from 'path'
 import * as fs from 'fs'
-import { getReadFileName } from '../util/fileUtility'
+import { getReadFileName } from '../fileUtility'
 
 let packageName = '@mochi-inc-japan/algolia-firebase-tools'
 

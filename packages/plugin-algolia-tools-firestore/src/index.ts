@@ -1,52 +1,16 @@
-import type {
-  IndexInterface,
-  IndexConstructor,
-  AlgoliaToolsModule,
-  ExPlugin,
-} from './types'
-import {
-  AlgoliaIndexManager,
-  AlgoliaIndexManagerInternal,
-} from './util/AlgoliaIndexManager'
-export { default as AlgoliaProjectManager } from './util/AlgoliaProjectManager'
-import FirebaseInvoke from './plugin/FirebaseInvoke'
+import { Command } from 'commander'
+import {initialize} from './account/firebaseAccount'
+import FirestorePlugin from './plugin/FirestorePlugin'
+import { createFirestoreCommanderPlugin } from './plugin/FirestoreCommanderPlugin'
+import {} from '@mochi-inc-japan/algolia-tools';
 
-export { IndexInterface, IndexConstructor, AlgoliaIndexManager, FirebaseInvoke }
+export { FirestorePlugin }
 
-type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
-  [index in Extract<keyof P, number>]: {
-    [key in P[index]['id']]: P[index]['prototype']
-  }
-}[number]
-
-export default <Plugins extends ExPlugin<any, any>[]>(
-  args: AlgoliaIndexManagerInternal,
-  indices: {
-    [collectionName: string]: IndexConstructor<ExtractPluginType<Plugins>>
-  },
-  option?: { plugins?: Plugins }
-): AlgoliaToolsModule & ExtractPluginType<Plugins> => {
-  const algoliaIndexManager = new AlgoliaIndexManager(args)
-  const exInstances = option?.plugins?.reduce((current, pluginClass) => {
-    return {
-      ...current,
-      [pluginClass.id]: new pluginClass(algoliaIndexManager),
+export function FirestoreCommanderPlugin(algoliaModule) {
+  initialize()
+  return (commander: Command) {
+    if (firebaseManager) {
+      createFirestoreCommanderPlugin(firebaseManager)(commander)
     }
-  }, {})
-  return {
-    algoliaIndexManager,
-    indices: Object.keys(indices).reduce((result, index) => {
-      return {
-        ...result,
-        [index]: new indices[index]({
-          algoliaIndexManager: algoliaIndexManager,
-          ...exInstances,
-        }),
-      }
-    }, {}),
-    ...exInstances,
   }
 }
-
-export { createAlgoliaCommanderPlugin } from './generate-commands/algolia'
-export { createFirestoreCommanderPlugin } from './plugin/generate-commands/firestore'

@@ -1,8 +1,8 @@
 import { Command } from 'commander'
-import FirebaseInvoke from '../FirebaseInvoke'
+import FirestorePlugin from './FirestorePlugin'
 
 export const createFirestoreCommanderPlugin = (
-  firebaseInvoke: FirebaseInvoke
+  firestorePlugin: FirestorePlugin
 ) => {
   return (commander: Command): void => {
     commander
@@ -11,7 +11,7 @@ export const createFirestoreCommanderPlugin = (
         try {
           await Promise.all(
             indexName.map((_indexName) =>
-              firebaseInvoke.resetBatchTime(_indexName)
+              firestorePlugin.resetBatchTime(_indexName)
             )
           )
         } catch (e) {
@@ -24,7 +24,7 @@ export const createFirestoreCommanderPlugin = (
       .command('removeAllDataFromIndex <indexName...>')
       .action(async (indexName: string[]) => {
         try {
-          await firebaseInvoke.removeAllDataFromIndex(indexName)
+          await firestorePlugin.removeAllDataFromIndex(indexName)
         } catch (e) {
           console.error(e)
         } finally {

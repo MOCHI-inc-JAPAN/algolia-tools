@@ -10,7 +10,7 @@ import {
 } from './util/AlgoliaIndexManager'
 export { default as AlgoliaProjectManager } from './util/AlgoliaProjectManager'
 
-export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
+export { IndexInterface, IndexConstructor, AlgoliaIndexManager, ExPlugin, AlgoliaToolsModule }
 
 type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
   [index in Extract<keyof P, number>]: {
@@ -24,7 +24,7 @@ export default <Plugins extends ExPlugin<any, any>[]>(
     [collectionName: string]: IndexConstructor<ExtractPluginType<Plugins>>
   },
   option?: { plugins?: Plugins }
-): AlgoliaToolsModule & ExtractPluginType<Plugins> => {
+): AlgoliaToolsModule<ExtractPluginType<Plugins>> => {
   const algoliaIndexManager = new AlgoliaIndexManager(args)
   const exInstances = option?.plugins?.reduce((current, pluginClass) => {
     return {

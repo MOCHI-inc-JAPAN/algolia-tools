@@ -205,17 +205,17 @@ export default class AlgoliaProjectManager<
     if (!indices) throw Error('indices have not been found')
 
     const records = indices.items
-      .filter((v) =>
+      .filter((v: {name: string}) =>
         v.name.match(
           new RegExp(
             `^${this.algoliaModule.algoliaIndexManager.indexNamespace}`
           )
         )
       )
-      .map((index) => index.name as string)
+      .map((index: {name: string}) => index.name as string)
 
     if (options?.omitNameSpace) {
-      return records.map((indexName) => {
+      return records.map((indexName: string) => {
         return indexName.replace(
           new RegExp(
             `^${this.algoliaModule.algoliaIndexManager.indexNamespace}`

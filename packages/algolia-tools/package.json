@@ -2,25 +2,19 @@
   "name": "@mochi-inc-japan/algolia-tools",
   "version": "1.4.0",
   "main": "dist/index.js",
-  "bin": {
-    "aftools": "dist/bin/aftools.js",
-    "aftools-build": "dist/bin/aftools-build.js"
-  },
   "types": "dist/index.d.ts",
   "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
   "files": [
-    "template",
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "npx tsc",
     "test": "jest",
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
-    "lint": "yarn lint:code",
-    "lint:ci": "yarn lint:code && commitlint --from=origin/develop",
+    "lint": "pnpm lint:code",
+    "lint:ci": "pnpm lint:code && commitlint --from=origin/develop",
     "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:commit": "commitlint",
     "release": "standard-version",
@@ -31,9 +25,6 @@
     "@types/algoliasearch": "^3.34.10",
     "algoliasearch": "^4.14.2"
   },
-  "dependencies": {
-    "dotenv": "^8.2.0"
-  },
   "peerDependencies": {
     "@algolia/client-search": ">=4.3.0",
     "algoliasearch": ">=4.3.0"
@@ -41,7 +32,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint",
+      "pre-commit": "pnpm lint",
       "pre-push": "npm test"
     }
   },

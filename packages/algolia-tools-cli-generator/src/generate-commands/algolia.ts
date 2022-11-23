@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import AlgoliaProjectManager from '../util/AlgoliaProjectManager'
+import { AlgoliaProjectManager } from '@mochi-inc-japan/algolia-tools'
 
 export const createAlgoliaCommanderPlugin = (
   algoliaTasks: AlgoliaProjectManager

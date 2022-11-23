@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import { getConfigFromPackageJson } from '../util/configParser'
+import { getConfigFromPackageJson } from '../configParser'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as dotenv from 'dotenv'

@@ -175,7 +175,7 @@ const algoliaModule = AlgoliaModule(
   },
   indexManagers,
   {
-    plugin: [FirebaseInvoke]
+    plugin: [FirestorePlugin]
   }
 )
 

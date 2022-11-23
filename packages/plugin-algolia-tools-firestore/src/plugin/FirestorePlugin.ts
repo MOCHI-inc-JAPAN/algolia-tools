@@ -1,15 +1,15 @@
 import { getFirestore, Firestore, Query } from 'firebase-admin/firestore'
 import { ServerValue, getDatabase, Database } from 'firebase-admin/database'
-import { AlgoliaIndexManager } from '../util/AlgoliaIndexManager'
+import { AlgoliaIndexManager } from '@mochi-inc-japan/algolia-tools'
 
-export type FirebaseInvokeInternal = {
+export type FirestorePluginInternal = {
   algoliaIndexManager: AlgoliaIndexManager
   batchTimeKey?: string
 }
 
-export default class FirebaseInvokeClass {
-  static id = 'firebaseInvoke' as const
-  public constructor(args: FirebaseInvokeInternal) {
+export default class FirestorePlugin {
+  static id = 'firestorePlugin' as const
+  public constructor(args: FirestorePluginInternal) {
     this.algoliaIndexManager = args.algoliaIndexManager
     this.batchTimeKey = args.batchTimeKey || 'algolia-send-index-batchtime'
     this.firestore = getFirestore()
@@ -17,8 +17,8 @@ export default class FirebaseInvokeClass {
   }
   public firestore: Firestore
   public database: Database
-  public batchTimeKey: FirebaseInvokeInternal['batchTimeKey']
-  public algoliaIndexManager: FirebaseInvokeInternal['algoliaIndexManager']
+  public batchTimeKey: FirestorePluginInternal['batchTimeKey']
+  public algoliaIndexManager: FirestorePluginInternal['algoliaIndexManager']
 
   public batchSendDataToIndex = async (
     {
