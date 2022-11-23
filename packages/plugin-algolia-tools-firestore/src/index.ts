@@ -1,16 +1,22 @@
 import { Command } from 'commander'
-import {initialize} from './account/firebaseAccount'
+import { initialize } from './account/firebaseAccount'
 import FirestorePlugin from './plugin/FirestorePlugin'
 import { createFirestoreCommanderPlugin } from './plugin/FirestoreCommanderPlugin'
-import {} from '@mochi-inc-japan/algolia-tools';
+import {AlgoliaToolsModule} from '@mochi-inc-japan/algolia-tools';
 
 export { FirestorePlugin }
 
-export function FirestoreCommanderPlugin(algoliaModule) {
+export { createFirestoreCommanderPlugin }
+
+export function FirestoreCommanderPlugin(algoliaModule: AlgoliaToolsModule<{
+  [key in Extract<typeof FirestorePlugin['id'], string>]?: FirestorePlugin
+}>) {
   initialize()
-  return (commander: Command) {
-    if (firebaseManager) {
-      createFirestoreCommanderPlugin(firebaseManager)(commander)
+  return (commander: Command) => {
+    if (algoliaModule.firestorePlugin) {
+      createFirestoreCommanderPlugin(algoliaModule.firestorePlugin)(commander)
+    } else {
+      console.warn('FirestorePlugin is not set in Algolia module')
     }
   }
 }

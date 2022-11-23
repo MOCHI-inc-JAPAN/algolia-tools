@@ -1,8 +1,10 @@
 import algoliasearch from 'algoliasearch'
-import algoliaManager, { IndexConstructor } from '@mochi-inc-japan/algolia-tools'
+import algoliaManager, { IndexConstructor, ExPlugin } from '@mochi-inc-japan/algolia-tools'
 import { getConfigFromPackageJson, Config } from '../../src/configParser'
-import { ALGOLIA_ID, ALGOLIA_ADMIN_KEY, INDEX_NAMESPACE } from '../const'
+import { CommanderPlugin } from '../../src/'
+import { ALGOLIA_ID, ALGOLIA_ADMIN_KEY, INDEX_NAMESPACE } from './const'
 import * as path from 'path'
+import { existsSync } from 'fs'
 
 type AlgoliaProjectModule = {
   [collectionName: string]: IndexConstructor
@@ -22,10 +24,37 @@ const algoliaProjectModule: AlgoliaProjectModule = require(path.join(
 
 const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY)
 
+let plugins = undefined;
+let commanderPlugins: CommanderPlugin[] | undefined = undefined;
+const configPath = path.resolve(cwd, config.configPath || 'algolia-tools.config.js')
+
+if(existsSync(configPath)) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const configPlugins: {
+    plugins: ExPlugin<any, any>[] | undefined
+    commanderPlugins: CommanderPlugin[] |undefined
+  } = require(path.join(
+    __dirname,
+    config.orgModulePath
+  ))
+  if(configPlugins.plugins){
+    plugins = {
+      plugins: configPlugins.plugins
+    }
+  }
+  if(configPlugins.commanderPlugins){
+    commanderPlugins = configPlugins?.commanderPlugins
+  }
+}
+
 export default algoliaManager(
   {
     client,
     indexNamespace: INDEX_NAMESPACE || '',
   },
-  algoliaProjectModule
+  algoliaProjectModule,
+  plugins
 )
+
+export { commanderPlugins }
+

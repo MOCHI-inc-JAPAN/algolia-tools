@@ -8,6 +8,7 @@ export type Config = {
   packageName: string
   firebaseServiceAccountPath?: string
   modulePath: string
+  configPath?: string
   out?: string
   orgModulePath: string
   dFiles?: string[] | undefined
