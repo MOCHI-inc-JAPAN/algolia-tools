@@ -12,18 +12,19 @@ import FirebaseInvoke from './plugin/FirebaseInvoke'
 
 export { IndexInterface, IndexConstructor, AlgoliaIndexManager, FirebaseInvoke }
 
+type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
+  [index in Extract<keyof P, number>]: {
+    [key in P[index]['id']]: P[index]['prototype']
+  }
+}[number]
+
 export default <Plugins extends ExPlugin<any, any>[]>(
   args: AlgoliaIndexManagerInternal,
   indices: {
-    [collectionName: string]: IndexConstructor
+    [collectionName: string]: IndexConstructor<ExtractPluginType<Plugins>>
   },
   option?: { plugins?: Plugins }
-): AlgoliaToolsModule &
-  {
-    [index in Extract<keyof Plugins, number>]: {
-      [key in Plugins[index]['id']]: Plugins[index]['prototype']
-    }
-  }[number] => {
+): AlgoliaToolsModule & ExtractPluginType<Plugins> => {
   const algoliaManager = new AlgoliaIndexManager(args)
   const exInstances = option?.plugins?.reduce((current, pluginClass) => {
     return {

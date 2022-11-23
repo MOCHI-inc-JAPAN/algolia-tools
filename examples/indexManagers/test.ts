@@ -1,19 +1,10 @@
-import {
-  AlgoliaIndexManager,
-  FirebaseInvoke,
-  IndexInterface,
-} from 'algolia-firebase-tools'
+import { AlgoliaIndexManager, IndexInterface } from 'algolia-firebase-tools'
 
-export default class UserIndexManager implements IndexInterface {
+export default class TestIndexManager implements IndexInterface {
   private algoliaManager: AlgoliaIndexManager
-  private firebaseInvoke: FirebaseInvoke
 
-  public constructor(args: {
-    algoliaManager: AlgoliaIndexManager
-    firebaseInvoke: FirebaseInvoke
-  }) {
+  public constructor(args: { algoliaManager: AlgoliaIndexManager }) {
     this.algoliaManager = args.algoliaManager
-    this.firebaseInvoke = args.firebaseInvoke
   }
 
   public sendIndex = async (userId: string, user: UserSchema) => {
