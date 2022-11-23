@@ -18,7 +18,6 @@ export interface AlgoliaToolsModule {
   indices: {
     [collectionName: string]: IndexInterface
   }
-  indexConfigDir?: string
 }
 
 export type ExPlugin<PluginId extends string, PluginType> = {

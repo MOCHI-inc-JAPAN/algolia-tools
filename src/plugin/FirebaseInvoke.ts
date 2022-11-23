@@ -3,14 +3,14 @@ import { ServerValue, getDatabase, Database } from 'firebase-admin/database'
 import { AlgoliaIndexManager } from '../util/AlgoliaIndexManager'
 
 export type FirebaseInvokeInternal = {
-  algoliaManager: AlgoliaIndexManager
+  algoliaIndexManager: AlgoliaIndexManager
   batchTimeKey?: string
 }
 
 export default class FirebaseInvokeClass {
   static id = 'firebaseInvoke' as const
   public constructor(args: FirebaseInvokeInternal) {
-    this.algoliaManager = args.algoliaManager
+    this.algoliaIndexManager = args.algoliaIndexManager
     this.batchTimeKey = args.batchTimeKey || 'algolia-send-index-batchtime'
     this.firestore = getFirestore()
     this.database = getDatabase()
@@ -18,7 +18,7 @@ export default class FirebaseInvokeClass {
   public firestore: Firestore
   public database: Database
   public batchTimeKey: FirebaseInvokeInternal['batchTimeKey']
-  public algoliaManager: FirebaseInvokeInternal['algoliaManager']
+  public algoliaIndexManager: FirebaseInvokeInternal['algoliaIndexManager']
 
   public batchSendDataToIndex = async (
     {
@@ -62,7 +62,7 @@ export default class FirebaseInvokeClass {
           }
         })
         const data = (await Promise.all(promises)).filter((v) => !!v)
-        await this.algoliaManager.sendIndex(index, data)
+        await this.algoliaIndexManager.sendIndex(index, data)
         const lastDoc =
           currentQuerySnapshot.docs[currentQuerySnapshot.docs.length - 1]
         console.log(
@@ -94,7 +94,7 @@ export default class FirebaseInvokeClass {
     try {
       await Promise.all(
         indexName.map((_indexName: string) =>
-          this.algoliaManager.removeAllDataFromIndex(_indexName)
+          this.algoliaIndexManager.removeAllDataFromIndex(_indexName)
         )
       )
     } catch (e) {

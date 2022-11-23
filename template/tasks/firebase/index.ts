@@ -4,11 +4,11 @@ import FirebaseInvoke from '../../../src/plugin/FirebaseInvoke'
 import { createFirestoreCommanderPlugin } from '../../../src/plugin/generate-commands/firestore'
 import { Command } from 'commander'
 
-const algoliaManager = algoliaModule.algoliaManager
+const algoliaIndexManager = algoliaModule.algoliaIndexManager
 
 const firebaseManager = useFirebaseAccount
   ? new FirebaseInvoke({
-      algoliaManager,
+      algoliaIndexManager,
     })
   : undefined
 

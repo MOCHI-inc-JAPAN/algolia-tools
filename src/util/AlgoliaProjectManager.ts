@@ -4,15 +4,20 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 export default class AlgoliaProjectManagerClass {
-  public constructor(args: AlgoliaToolsModule) {
-    this.algoliaIndexManager = args.algoliaIndexManager
+  public constructor(
+    args: AlgoliaToolsModule,
+    option?: {
+      indexConfigDir?: string
+    }
+  ) {
+    this.algoliaModule = args
     this.indices = args.indices
-    this.indexConfigDir = args.indexConfigDir
-      ? path.resolve(args.indexConfigDir)
+    this.indexConfigDir = option?.indexConfigDir
+      ? path.resolve(option.indexConfigDir)
       : path.join(process.cwd(), 'algolia', 'indices')
   }
-  public algoliaIndexManager: AlgoliaToolsModule['algoliaIndexManager']
-  public indices: AlgoliaToolsModule['indices']
+  public algoliaModule: AlgoliaToolsModule
+  private indices: AlgoliaToolsModule['indices']
   private indexConfigDir: string
 
   private settingParse(data: string) {
@@ -21,13 +26,17 @@ export default class AlgoliaProjectManagerClass {
     const replicas = setting.replicas
       ? {
           replicas: setting.replicas.map((replica: string) => {
-            return this.algoliaIndexManager.getIndexName(replica)
+            return this.algoliaModule.algoliaIndexManager.getIndexName(replica)
           }),
         }
       : undefined
 
     const primary = setting.primary
-      ? { primary: this.algoliaIndexManager.getIndexName(setting.primary) }
+      ? {
+          primary: this.algoliaModule.algoliaIndexManager.getIndexName(
+            setting.primary
+          ),
+        }
       : undefined
 
     return {
@@ -42,12 +51,16 @@ export default class AlgoliaProjectManagerClass {
   }
 
   public async seeAlgoliaIndexSetting(args: string[]): Promise<void> {
-    const results = await this.algoliaIndexManager.getIndexSetting(args)
+    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
+      args
+    )
     console.log(JSON.stringify(results, null, 2))
   }
 
   public async backupAlgoliaIndexSetting(args: string[]): Promise<void> {
-    const results = await this.algoliaIndexManager.getIndexSetting(args)
+    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
+      args
+    )
     if (results && Array.isArray(results)) {
       const promises = await Promise.all(
         results.map(async (setting, index) => {
@@ -81,7 +94,7 @@ export default class AlgoliaProjectManagerClass {
     )
     const results = await Promise.all(
       settings.map((setting, i) => {
-        return this.algoliaIndexManager.updateIndexSetting({
+        return this.algoliaModule.algoliaIndexManager.updateIndexSetting({
           indexName: args[i],
           setting,
         })
@@ -120,7 +133,7 @@ export default class AlgoliaProjectManagerClass {
     const _settings = settings.sort((a, b) => {
       return this.applySortValue(a.setting) - this.applySortValue(b.setting)
     })
-    const result = await this.algoliaIndexManager
+    const result = await this.algoliaModule.algoliaIndexManager
       .updateIndexSetting(_settings)
       .catch(console.error)
     if (!result) console.log('provision algolia index was failed.')
@@ -133,7 +146,7 @@ export default class AlgoliaProjectManagerClass {
         const _setting = await fs.promises.readFile(_path, 'utf8')
         const setting: Settings = JSON.parse(_setting)
         console.log(setting)
-        return this.algoliaIndexManager.updateIndexSetting({
+        return this.algoliaModule.algoliaIndexManager.updateIndexSetting({
           indexName: args[index] as string,
           setting,
         })
@@ -146,7 +159,7 @@ export default class AlgoliaProjectManagerClass {
     indexName: string,
     replicas: string[]
   ): Promise<void> {
-    const result = await this.algoliaIndexManager.replicateIndex({
+    const result = await this.algoliaModule.algoliaIndexManager.replicateIndex({
       indexName,
       replicas,
     })
@@ -154,7 +167,9 @@ export default class AlgoliaProjectManagerClass {
   }
 
   public async deleteIndex(indexName: string[]): Promise<void> {
-    const result = await this.algoliaIndexManager.deleteIndex(indexName)
+    const result = await this.algoliaModule.algoliaIndexManager.deleteIndex(
+      indexName
+    )
     if (!result) console.log('deleteIndex was failed.')
   }
 
@@ -175,26 +190,34 @@ export default class AlgoliaProjectManagerClass {
         return this.deleteSortValue(a.setting) - this.deleteSortValue(b.setting)
       })
       .map((r) => r.indexName)
-    const result = await this.algoliaIndexManager.deleteIndex(indexNames)
+    const result = await this.algoliaModule.algoliaIndexManager.deleteIndex(
+      indexNames
+    )
     if (!result) console.log('deleteIndex was failed.')
   }
 
   public async listIndexNames(options?: {
     omitNameSpace?: boolean
   }): Promise<string[]> {
-    const indices = await this.algoliaIndexManager.getIndexNames()
+    const indices = await this.algoliaModule.algoliaIndexManager.getIndexNames()
     if (!indices) throw Error('indices have not been found')
 
     const records = indices.items
       .filter((v) =>
-        v.name.match(new RegExp(`^${this.algoliaIndexManager.indexNamespace}`))
+        v.name.match(
+          new RegExp(
+            `^${this.algoliaModule.algoliaIndexManager.indexNamespace}`
+          )
+        )
       )
       .map((index) => index.name as string)
 
     if (options?.omitNameSpace) {
       return records.map((indexName) => {
         return indexName.replace(
-          new RegExp(`^${this.algoliaIndexManager.indexNamespace}`),
+          new RegExp(
+            `^${this.algoliaModule.algoliaIndexManager.indexNamespace}`
+          ),
           ''
         )
       })
@@ -216,7 +239,7 @@ export default class AlgoliaProjectManagerClass {
     if (setting.replicas)
       return {
         replicas: setting.replicas.map((replica: string) =>
-          this.algoliaIndexManager.omitNameSpaceIndex(replica)
+          this.algoliaModule.algoliaIndexManager.omitNameSpaceIndex(replica)
         ),
       }
     return undefined
@@ -227,17 +250,22 @@ export default class AlgoliaProjectManagerClass {
   ): { primary: string } | undefined {
     if (setting.primary)
       return {
-        primary: this.algoliaIndexManager.omitNameSpaceIndex(setting.primary),
+        primary: this.algoliaModule.algoliaIndexManager.omitNameSpaceIndex(
+          setting.primary
+        ),
       }
     return undefined
   }
 
   public async backupAlgoliaIndexSettingAll(): Promise<void> {
     const inputs = await this.listIndexNames()
-    const results = await this.algoliaIndexManager.getIndexSetting(inputs, true)
+    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
+      inputs,
+      true
+    )
     if (results && Array.isArray(results)) {
       const promises = results.map((setting, index) => {
-        const indexName = this.algoliaIndexManager.omitNameSpaceIndex(
+        const indexName = this.algoliaModule.algoliaIndexManager.omitNameSpaceIndex(
           inputs[index]
         )
         const _path = this.indexJsonFilePath(`${indexName}.json`)
