@@ -1,0 +1,59 @@
+{
+  "name": "@mochi-inc-japan/algolia-tools",
+  "version": "1.4.0",
+  "main": "dist/index.js",
+  "bin": {
+    "aftools": "dist/bin/aftools.js",
+    "aftools-build": "dist/bin/aftools-build.js"
+  },
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
+  "author": "tkow <t.kusama0613@outlook.jp>",
+  "license": "MIT",
+  "files": [
+    "template",
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest",
+    "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
+    "lint": "yarn lint:code",
+    "lint:ci": "yarn lint:code && commitlint --from=origin/develop",
+    "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:commit": "commitlint",
+    "release": "standard-version",
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "@types/algoliasearch": "^3.34.10",
+    "commander": "^9.4.1",
+    "firebase-admin": "^11.3.0",
+    "firebase-tools": "^11.16.1",
+    "@algolia/client-search": "^4.14.2"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.14.2",
+    "dotenv": "^8.2.0"
+  },
+  "peerDependencies": {
+    "@algolia/client-search": ">=4.3.0",
+    "algoliasearch": ">=4.3.0",
+    "commander": ">=9.0.0",
+    "firebase-admin": "^10.2.0",
+    "typescript": ">=4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint",
+      "pre-push": "npm test"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
