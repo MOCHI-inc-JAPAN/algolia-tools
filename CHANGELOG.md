@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.5...v1.15.6) (2022-11-23)
+
+
+### Bug Fixes
+
+* export algolia project manager ([7414d08](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/7414d08059118c9947f0caaebb786c4452c925b0))
+
 ### [1.15.5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.4...v1.15.5) (2022-11-23)
 
 
