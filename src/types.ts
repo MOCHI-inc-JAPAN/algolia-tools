@@ -5,7 +5,7 @@ export interface IndexInterface<T extends any = any> {
   batchSendToIndex(): Promise<boolean>
 }
 
-export interface IndexConstructor<Ex> {
+export interface IndexConstructor<Ex = unknown> {
   new (
     args: {
       algoliaManager: AlgoliaIndexManager
