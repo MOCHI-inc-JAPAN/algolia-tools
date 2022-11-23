@@ -9,8 +9,9 @@ import {
   AlgoliaIndexManagerInternal,
 } from './util/AlgoliaIndexManager'
 export { default as AlgoliaProjectManager } from './util/AlgoliaProjectManager'
+import FirebaseInvoke from './plugin/FirebaseInvoke'
 
-export { IndexInterface, IndexConstructor, AlgoliaIndexManager }
+export { IndexInterface, IndexConstructor, AlgoliaIndexManager, FirebaseInvoke }
 
 type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
   [index in Extract<keyof P, number>]: {
@@ -46,3 +47,6 @@ export default <Plugins extends ExPlugin<any, any>[]>(
     ...exInstances,
   }
 }
+
+export { createAlgoliaCommanderPlugin } from './generate-commands/algolia'
+export { createFirestoreCommanderPlugin } from './plugin/generate-commands/firestore'

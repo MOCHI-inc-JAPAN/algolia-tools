@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "baseUrl": "./",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "./*.ts",
+    "./**/*.ts",
+    "../src/generate-commands",
+    "../src/plugin",
+    "../src/util",
+    "../src/index.ts",
+    "../src/types"
+  ],
+  "exclude": [
+    "node_modules",
+    "../**/*.spec.ts"
+  ],
+}
