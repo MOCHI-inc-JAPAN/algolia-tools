@@ -1,4 +1,4 @@
-## What is this
+## @mochi-inc-japan/algolia-tools-cli-generator
 
 Auto cli generator for general usage algolia from node.
 This library mainly targets typescript but may be available as js module.
@@ -11,7 +11,6 @@ You need reading env setting if command auto generation.
 ALGOLIA_ID: your algolia id
 ALGOLIA_ADMIN_KEY: your algolia admin key
 ALGOLIA_SEARCH_KEY: our algolia search key
-FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account, if you don't specify it, cli surpress firebase batch.
 INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set different environments with one algolia account.
 ```
 
@@ -44,7 +43,7 @@ envFile (Optional): your env file specified, default is `.env`. If not specified
 Make algoliaIndexManager/userExample.ts (if you specify ./algoliaIndexManager as modulePath)
 
 ```ts:algoliaIndexManager/userExample.ts
-import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-firebase-tools'
+import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-tools'
 
 type UserSchema = {
   id: string
@@ -139,10 +138,10 @@ npx aftools
 
 Your module can be used backend. We probide algoliaModule default exported. So you can use same logic introduced in cli.
 
-For example.
+For example,
 
 ```ts:example.ts
-import algoliaModule from '@mochi-inc-japan/algolia-firebase-tools'
+import algoliaModule from '@mochi-inc-japan/algolia-tools'
 import indexManagers from './algoliaIndexManager'
 
 const manager = algoliaModule(
@@ -164,7 +163,9 @@ so on.
 If you use commader, you can extend it by defined commands in this library.
 
 ```ts
-import AlgoliaModule, {createAlgoliaCommanderPlugin} from '@mochi-inc-japan/algolia-firebase-tools'
+import AlgoliaModule from '@mochi-inc-japan/algolia-tools'
+import { createAlgoliaCommanderPlugin } from '@mochi-inc-japan/algolia-cli-tools'
+import { createAlgoliaCommanderPlugin } from '@mochi-inc-japan/plugin-algolia-tools-firestore'
 import indexManagers from './algoliaIndexManager'
 import commander from 'commander'
 
@@ -179,11 +180,11 @@ const algoliaModule = AlgoliaModule(
   }
 )
 
-const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
+const algoliaProjectManager = new AlgoliaProjectManager(algoliaModule)
 
 // extended to commander commands
-createAlgoliaCommanderPlugin(algoliaTasks)(commander)
-createFirestoreCommanderPlugin(algoliaTasks.firebaseManager)(commander)// optional if you use firestore
+createAlgoliaCommanderPlugin(algoliaProjectManager)(commander)
+createFirestoreCommanderPlugin(algoliaProjectManager.algoliaModule)(commander)// optional if you use firestore
 ```
 
 

@@ -1,47 +1,11 @@
-## What is this
+## @mochi-inc-japan/algolia-tools
 
-Auto cli generator for general usage algolia from node.
-This library mainly targets typescript but may be available as js module.
+Easy creator algolia index management utility functions with wrapped algolia client.
 
-## Ready to use
-
-You need reading env setting if command auto generation.
-
-```
-ALGOLIA_ID: your algolia id
-ALGOLIA_ADMIN_KEY: your algolia admin key
-ALGOLIA_SEARCH_KEY: our algolia search key
-FIREBASE_SERVICE_ACCOUNT_PATH (Optional): path of firebase service account, if you don't specify it, cli surpress firebase batch.
-INDEX_NAMESPACE (Optional): prefix for algolia index, this is used to set different environments with one algolia account.
-```
-
-### package.json
-
-package.json
-```json:package.json
-  "aftools" : {
-    "modulePath": "algoliaIndexManager",
-    "out": "dist",
-    "dFiles": ["./internalAmbientFiles", "index.d.ts"],
-    "envFile": ".env.some"
-  }
-```
-
-modulePath: your algolia index manager relative module path from package.json. this is object consistes of IndexManager Class Constructor. It explained later and see example cases.
-
-out (Optional): builded relative cli path from package.json. Default is `${projectRoot}/bin`.
-types (Optional): project internal types. .
-
-firebaseServiceAccountPath (Optional):  relative firebase-service json path from package.json. FIREBASE_SERVICE_ACCOUNT_PATH valiable is prior than this. Default is `${projectRoot}/bin`.
-
-dFiles: string[] (Optional): For including ambient definition files through build, sometimes you need them using global type in your index modules. You can specify directory and .d.ts file path.
-
-envFile (Optional): your env file specified, default is `.env`. If not specified, machine variables is used .
-
-### Example Index ManagerModules
-
+### Setup Example
 
 Make algoliaIndexManager/userExample.ts (if you specify ./algoliaIndexManager as modulePath)
+This class can arbitrarily implement how stored data exported to algolia.
 
 ```ts:algoliaIndexManager/userExample.ts
 import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-firebase-tools'
@@ -94,52 +58,7 @@ export default {
 }
 ```
 
-## Usage
-
-
-### cli init or update indexModules
-
-```
-aftools-build
-```
-
-This is typescript tsc wrapper so you can use tsc --option if your source code including ambient file and json Module like
-
-```shell
-aftools-build --typeRoots ${DFILE_PATH} --resolveJsonModule
-```
-
-and you can exec build command
-
-```shell
-aftools-build --verbose
-```
-
-### cli run
-
-```
-aftools <scriptId>
-```
-
-You can switch an env file from option. It's prior than config envFile.
-
-```shell
-aftools-build --envfile ${env_path} <scriptId>
-```
-
-### builtin script
-
-see aftools help.
-
-```
-npx aftools
-```
-
-### Usage as Modules
-
-Your module can be used backend. We probide algoliaModule default exported. So you can use same logic introduced in cli.
-
-For example.
+Your index modules can be used via algoliaModule in this library's api. We provide algoliaModule default exported.
 
 ```ts:example.ts
 import algoliaModule from '@mochi-inc-japan/algolia-firebase-tools'
@@ -153,15 +72,15 @@ const manager = algoliaModule(
   indexManagers
 )
 
-
 manager.indices.users.batchSendIndex()
 
 ```
-so on.
 
-### Extension for Commander
+You can control algolia indices with same interface and having index namespace.
 
-If you use commader, you can extend it by defined commands in this library.
+### AlgoliaProjectManager
+
+AlgoliaProjectManager extend api using AlgoliaModule
 
 ```ts
 import AlgoliaModule, {createAlgoliaCommanderPlugin} from '@mochi-inc-japan/algolia-firebase-tools'
@@ -179,14 +98,28 @@ const algoliaModule = AlgoliaModule(
   }
 )
 
-const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
+const algoliaProjectManager = new AlgoliaProjectManager(algoliaModule)
 
-// extended to commander commands
-createAlgoliaCommanderPlugin(algoliaTasks)(commander)
-createFirestoreCommanderPlugin(algoliaTasks.firebaseManager)(commander)// optional if you use firestore
 ```
 
+AlgoliaManager can manage your indice.
 
-## **WARNING**
+- remove index data all
+- update index setting
+- store index setting json file to local storage from algolia platform
+- restore index setting from local json file to algolia platform
+- replicate index
+- sync index data from storage
 
-This library cli may include your secret files bundled code. So you should not include bundle task files in git repository your aftools-build code.
+so on.
+
+## Plugin Extension
+AlgoliaModuleApi can be extended by two type plugins.
+
+### AlogliaModule Plugin
+It add extra DI instances to IndexManager.
+
+### Commander Plugin
+It add commande creator to commander.
+
+See @mochi-inc-japan/plugin-algolia-tools-firestore in detail.

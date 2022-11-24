@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.15.6
+
+Renewal package and @mochi-inc-japan/algolia-firebase-tools has been deprecated.
+These features are spareated to @mochi-inc-japan/algolia-tools,@mochi-inc-japan/algolia-tools-cli-generator,@mochi-inc-japan/plugin-algolia-tools-firestore.
+
 ### [1.15.5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.4...v1.15.5) (2022-11-23)
 
 
