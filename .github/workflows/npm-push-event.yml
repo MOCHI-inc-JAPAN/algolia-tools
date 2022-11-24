@@ -21,6 +21,11 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@mochi-inc-japan'
 
+      - name: Check npm config
+        run: |
+          cat .npmrc
+        shell: bash
+
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
