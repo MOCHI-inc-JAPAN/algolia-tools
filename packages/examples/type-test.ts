@@ -5,7 +5,7 @@ import algoliasearch from 'algoliasearch'
 
 type Client = ReturnType<typeof algoliasearch>
 
-const client: Client = ('' as unknown) as Client
+const client: Client = '' as unknown as Client
 
 const algoliaManagerExample = algoliaManager(
   {

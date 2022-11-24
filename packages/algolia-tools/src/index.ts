@@ -10,7 +10,13 @@ import {
 } from './util/AlgoliaIndexManager'
 export { default as AlgoliaProjectManager } from './util/AlgoliaProjectManager'
 
-export { IndexInterface, IndexConstructor, AlgoliaIndexManager, ExPlugin, AlgoliaToolsModule }
+export {
+  IndexInterface,
+  IndexConstructor,
+  AlgoliaIndexManager,
+  ExPlugin,
+  AlgoliaToolsModule,
+}
 
 type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
   [index in Extract<keyof P, number>]: {

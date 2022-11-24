@@ -1,4 +1,7 @@
-import { AlgoliaIndexManager, IndexInterface } from '@mochi-inc-japan/algolia-tools'
+import {
+  AlgoliaIndexManager,
+  IndexInterface,
+} from '@mochi-inc-japan/algolia-tools'
 
 export default class TestIndexManager implements IndexInterface {
   private algoliaIndexManager: AlgoliaIndexManager

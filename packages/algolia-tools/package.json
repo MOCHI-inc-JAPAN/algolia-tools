@@ -12,12 +12,7 @@
   "scripts": {
     "build": "npx tsc",
     "test": "jest",
-    "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
-    "lint": "pnpm lint:code",
-    "lint:ci": "pnpm lint:code && commitlint --from=origin/develop",
-    "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:commit": "commitlint",
-    "commit": "git-cz"
+    "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.14.2",

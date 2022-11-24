@@ -8,7 +8,7 @@ export const createAlgoliaCommanderPlugin = (
     commander.command('seeAlgoliaAccount').action(async () => {
       try {
         console.log(
-          `algolia_id: ${algoliaTasks.algoliaModule.algoliaIndexManager.client.appId}`,
+          `algolia_id: ${algoliaTasks.algoliaModule.algoliaIndexManager.client.appId}`
         )
         console.log(
           `index_name_space: ${algoliaTasks.algoliaModule.algoliaIndexManager.indexNamespace}`

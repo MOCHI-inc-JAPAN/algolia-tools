@@ -53,16 +53,14 @@ export default class AlgoliaProjectManager<
   }
 
   public async seeAlgoliaIndexSetting(args: string[]): Promise<void> {
-    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
-      args
-    )
+    const results =
+      await this.algoliaModule.algoliaIndexManager.getIndexSetting(args)
     console.log(JSON.stringify(results, null, 2))
   }
 
   public async backupAlgoliaIndexSetting(args: string[]): Promise<void> {
-    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
-      args
-    )
+    const results =
+      await this.algoliaModule.algoliaIndexManager.getIndexSetting(args)
     if (results && Array.isArray(results)) {
       const promises = await Promise.all(
         results.map(async (setting, index) => {
@@ -205,14 +203,14 @@ export default class AlgoliaProjectManager<
     if (!indices) throw Error('indices have not been found')
 
     const records = indices.items
-      .filter((v: {name: string}) =>
+      .filter((v: { name: string }) =>
         v.name.match(
           new RegExp(
             `^${this.algoliaModule.algoliaIndexManager.indexNamespace}`
           )
         )
       )
-      .map((index: {name: string}) => index.name as string)
+      .map((index: { name: string }) => index.name as string)
 
     if (options?.omitNameSpace) {
       return records.map((indexName: string) => {
@@ -261,15 +259,14 @@ export default class AlgoliaProjectManager<
 
   public async backupAlgoliaIndexSettingAll(): Promise<void> {
     const inputs = await this.listIndexNames()
-    const results = await this.algoliaModule.algoliaIndexManager.getIndexSetting(
-      inputs,
-      true
-    )
+    const results =
+      await this.algoliaModule.algoliaIndexManager.getIndexSetting(inputs, true)
     if (results && Array.isArray(results)) {
       const promises = results.map((setting, index) => {
-        const indexName = this.algoliaModule.algoliaIndexManager.omitNameSpaceIndex(
-          inputs[index]
-        )
+        const indexName =
+          this.algoliaModule.algoliaIndexManager.omitNameSpaceIndex(
+            inputs[index]
+          )
         const _path = this.indexJsonFilePath(`${indexName}.json`)
         const params = {
           ...setting,

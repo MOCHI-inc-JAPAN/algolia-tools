@@ -5,22 +5,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:packages": "pnpm -r --filter '@mochi-inc-japan/*' test",
-    "build:packages": "pnpm -r --filter '@mochi-inc-japan/*' build"
+    "test": "pnpm -r --filter '@mochi-inc-japan/*' test",
+    "build": "pnpm -r --filter '@mochi-inc-japan/*' build",
+    "lint": "pnpm lint:code",
+    "lint:ci": "pnpm lint:code",
+    "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "keywords": [],
   "author": "tkow",
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
     "@types/jest": "^29.2.3",
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "babel-jest": "^29.3.1",
-    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

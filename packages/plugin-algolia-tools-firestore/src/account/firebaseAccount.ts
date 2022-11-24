@@ -18,10 +18,9 @@ type ServiceAccountJson = {
 
 export function initializeAccount() {
   const cwd = process.cwd()
-  let useFirebaseAccount =
-  process.env.FIREBASE_SERVICE_ACCOUNT_PATH
+  let useFirebaseAccount = process.env.FIREBASE_SERVICE_ACCOUNT_PATH
 
-  if (!useFirebaseAccount){
+  if (!useFirebaseAccount) {
     const config: Required<Config> | Error = getConfigFromPackageJson(cwd)
 
     if (config instanceof Error) throw config
@@ -46,10 +45,14 @@ export function initializeAccount() {
     if (serviceAccount && (serviceAccount as admin.ServiceAccount).projectId) {
       PROJECT_ID = (serviceAccount as admin.ServiceAccount).projectId
     }
-    if(admin.apps.length <= 0) {
+    if (admin.apps.length <= 0) {
       admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-        databaseURL: process.env.FIREBASE_REALTIME_DATABASE_URL || `https://${PROJECT_ID}.firebaseio.com`,
+        credential: admin.credential.cert(
+          serviceAccount as admin.ServiceAccount
+        ),
+        databaseURL:
+          process.env.FIREBASE_REALTIME_DATABASE_URL ||
+          `https://${PROJECT_ID}.firebaseio.com`,
       })
 
       admin.firestore().settings({

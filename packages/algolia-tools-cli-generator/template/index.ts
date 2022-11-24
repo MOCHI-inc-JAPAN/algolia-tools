@@ -7,8 +7,8 @@ const algoliaTasks = new AlgoliaProjectManager(algoliaModule)
 
 export default function (commander: Command) {
   createAlgoliaCommanderPlugin(algoliaTasks)(commander)
-  if(commanderPlugins) {
-    commanderPlugins.forEach(commanderPlugin => {
+  if (commanderPlugins) {
+    commanderPlugins.forEach((commanderPlugin) => {
       commanderPlugin(algoliaTasks.algoliaModule)(commander)
     })
   }

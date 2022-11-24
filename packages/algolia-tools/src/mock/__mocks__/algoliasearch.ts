@@ -9,17 +9,17 @@ export default jest
     }
     return {
       initIndex: jest.fn<SearchIndex, [string]>(() => {
-        return (indexMock as Partial<SearchIndex>) as SearchIndex
+        return indexMock as Partial<SearchIndex> as SearchIndex
       }),
       listIndices: jest.fn(async (value?: any) => {
         const remoteFileDir = path.resolve('./src/fixtures/remote')
         const fs = jest.requireActual('fs')
         const files = fs.readdirSync(remoteFileDir)
-        return ({
+        return {
           items: files.map((_name: string) => {
             return { name: 'namespace_' + _name.replace('.json', '') }
           }),
-        } as Partial<ListIndicesResponse>) as ListIndicesResponse
+        } as Partial<ListIndicesResponse> as ListIndicesResponse
       }),
     }
   })

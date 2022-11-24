@@ -1,6 +1,6 @@
 import { AlgoliaIndexManager } from './util/AlgoliaIndexManager'
 
-export interface IndexInterface<T extends any = any> {
+export interface IndexInterface<T = any> {
   deleteIndexData(id: string | string[]): Promise<boolean>
   sendIndex(id: string, data: T): Promise<boolean>
   batchSendToIndex(): Promise<boolean>
