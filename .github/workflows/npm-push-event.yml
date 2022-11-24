@@ -50,26 +50,15 @@ jobs:
 
       - name: Github config
         run: |
-          git config --local user.email "t.kusama0613@outlook.jp"
-          git config --local user.name "tkow"
+          git config --local user.email ${{ secrets.BOT_MAIL }}
+          git config --local user.name ${{ secrets.BOT_NAME }}
 
-      - name: Version increment
-        run: npm run release
-
-      - name: deploy npm registry
-        run: npm publish --access public
+      - name: create and publish versions
+        uses: changesets/action@v1
+        with:
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
+          publish: pnpm -r publish --access public --publish-branch ${GITHUB_REF#refs/heads/}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Get package-version
-        id: package-version
-        run: echo "::set-output name=package_version::v$(node -p "require('./package.json').version")"
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.package-version.outputs.package_version }}
-          release_name: Release ${{ steps.package-version.outputs.package_version }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
