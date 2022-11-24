@@ -8,7 +8,7 @@ Make algoliaIndexManager/userExample.ts (if you specify ./algoliaIndexManager as
 This class can arbitrarily implement how stored data exported to algolia.
 
 ```ts:algoliaIndexManager/userExample.ts
-import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-firebase-tools'
+import { AlgoliaIndexManager, IndexInterface } from '@moch-inc-japan/algolia-tools'
 
 type UserSchema = {
   id: string
@@ -83,7 +83,9 @@ You can control algolia indices with same interface and having index namespace.
 AlgoliaProjectManager extend api using AlgoliaModule
 
 ```ts
-import AlgoliaModule, {createAlgoliaCommanderPlugin} from '@mochi-inc-japan/algolia-firebase-tools'
+import AlgoliaModule, {
+  createAlgoliaCommanderPlugin,
+} from '@mochi-inc-japan/algolia-firebase-tools'
 import indexManagers from './algoliaIndexManager'
 import commander from 'commander'
 
@@ -94,12 +96,11 @@ const algoliaModule = AlgoliaModule(
   },
   indexManagers,
   {
-    plugin: [FirestorePlugin]
+    plugin: [FirestorePlugin],
   }
 )
 
 const algoliaProjectManager = new AlgoliaProjectManager(algoliaModule)
-
 ```
 
 AlgoliaManager can manage your indice.
@@ -114,12 +115,15 @@ AlgoliaManager can manage your indice.
 so on.
 
 ## Plugin Extension
+
 AlgoliaModuleApi can be extended by two type plugins.
 
 ### AlogliaModule Plugin
+
 It add extra DI instances to IndexManager.
 
 ### Commander Plugin
-It add commande creator to commander.
+
+It add commands creator to commander.
 
 See each packages readme file, in more detail.
