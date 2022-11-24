@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+          always-auth: true
           scope: '@mochi-inc-japan'
 
       - name: Check npm config
