@@ -53,12 +53,17 @@ jobs:
           git config --local user.email ${{ secrets.BOT_MAIL }}
           git config --local user.name ${{ secrets.BOT_NAME }}
 
+      - name: Setup npm config
+        run: |
+          pnpm config set publish-branch ${GITHUB_REF#refs/heads/}
+        shell: bash
+
       - name: create and publish versions
         uses: changesets/action@v1
         with:
           commit: 'chore: update versions'
           title: 'chore: update versions'
-          publish: pnpm -r publish --access public --publish-branch ${GITHUB_REF#refs/heads/}
+          publish: pnpm -r publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
