@@ -2,27 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.15.8](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.7...v1.15.8) (2022-11-23)
+### 1.15.6
 
-
-### Bug Fixes
-
-* generic ([31f5d39](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/31f5d3923bb235b116d2e1df0881f658b40dc826))
-
-### [1.15.7](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.6...v1.15.7) (2022-11-23)
-
-
-### Bug Fixes
-
-* rename api ([4f3cb90](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/4f3cb90de97a49ea1e002e69b769fc779fadf601))
-* rename indexmanager ([a8e5e7d](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/a8e5e7d02d1032a588d2c61952e83717e8284efd))
-
-### [1.15.6](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.5...v1.15.6) (2022-11-23)
-
-
-### Bug Fixes
-
-* export algolia project manager ([7414d08](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/7414d08059118c9947f0caaebb786c4452c925b0))
+Renewal package and @mochi-inc-japan/algolia-firebase-tools has been deprecated.
+These features are spareated to @mochi-inc-japan/algolia-tools,@mochi-inc-japan/algolia-tools-cli-generator,@mochi-inc-japan/plugin-algolia-tools-firestore.
 
 ### [1.15.5](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.15.4...v1.15.5) (2022-11-23)
 
@@ -292,7 +275,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* getIndexName interface and export FirebaseInvoke ([fd26ceb](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/fd26cebeefbb59fb2efcee531ed51b91d8f6cb5d))
+* getIndexName interface and export FirestorePlugin ([fd26ceb](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/commit/fd26cebeefbb59fb2efcee531ed51b91d8f6cb5d))
 
 ### [1.8.1](https://github.com/MOCHI-inc-JAPAN/algolia-firebase-tools/compare/v1.8.0...v1.8.1) (2020-08-19)
 

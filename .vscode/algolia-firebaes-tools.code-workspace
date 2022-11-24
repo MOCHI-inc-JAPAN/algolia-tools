@@ -1,0 +1,42 @@
+{
+  "folders": [
+    {
+      "name": "🗂 project",
+      "path": "../"
+    },
+    {
+      "name": "📦 algolia-tools",
+      "path": "../packages/algolia-tools"
+    },
+    {
+      "name": "📦 algolia-tools-cli-generator",
+      "path": "../packages/algolia-tools-cli-generator"
+    },
+    {
+      "name": "📦 plugin-algolia-tools-firestore",
+      "path": "../packages/plugin-algolia-tools-firestore"
+    }
+  ],
+  "settings": {
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    "files.exclude": {
+      "node_modules/": true,
+      "packages/": true,
+      "applications/": true
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.workingDirectories": [
+      {
+        "mode": "auto"
+      }
+    ]
+  }
+}

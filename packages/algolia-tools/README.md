@@ -1,4 +1,4 @@
-# algolia-firebase-tools
+## @mochi-inc-japan/algolia-tools
 
 Easy creator algolia index management utility functions with wrapped algolia client.
 
@@ -122,4 +122,4 @@ It add extra DI instances to IndexManager.
 ### Commander Plugin
 It add commande creator to commander.
 
-See each packages readme file, in more detail.
+See @mochi-inc-japan/plugin-algolia-tools-firestore in detail.
