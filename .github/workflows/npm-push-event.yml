@@ -19,13 +19,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          always-auth: true
           scope: '@mochi-inc-japan'
-
-      - name: Check npm config
-        run: |
-          cat .npmrc
-        shell: bash
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -61,12 +55,8 @@ jobs:
 
       - name: Setup npm config
         run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           pnpm config set publish-branch ${GITHUB_REF#refs/heads/}
-        shell: bash
-
-      - name: Check npm config
-        run: |
-          cat .npmrc
         shell: bash
 
       - name: create and publish versions
@@ -76,5 +66,4 @@ jobs:
           title: 'chore: update versions'
           publish: pnpm -r publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
