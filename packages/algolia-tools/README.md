@@ -61,7 +61,7 @@ export default {
 Your index modules can be used via algoliaModule in this library's api. We provide algoliaModule default exported.
 
 ```ts:example.ts
-import algoliaModule from '@mochi-inc-japan/algolia-firebase-tools'
+import algoliaModule from '@mochi-inc-japan/algolia-tools'
 import indexManagers from './algoliaIndexManager'
 
 const manager = algoliaModule(
@@ -85,7 +85,7 @@ AlgoliaProjectManager extend api using AlgoliaModule
 ```ts
 import AlgoliaModule, {
   createAlgoliaCommanderPlugin,
-} from '@mochi-inc-japan/algolia-firebase-tools'
+} from '@mochi-inc-japan/algolia-tools'
 import indexManagers from './algoliaIndexManager'
 import commander from 'commander'
 
