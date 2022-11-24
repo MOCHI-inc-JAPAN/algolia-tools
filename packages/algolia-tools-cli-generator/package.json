@@ -7,7 +7,7 @@
     "aftools-build": "dist/bin/aftools-build.js"
   },
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
+  "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-tools.git",
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
   "files": [
