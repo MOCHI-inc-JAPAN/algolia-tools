@@ -17,7 +17,6 @@
     "lint:ci": "pnpm lint:code && commitlint --from=origin/develop",
     "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:commit": "commitlint",
-    "release": "standard-version",
     "commit": "git-cz"
   },
   "devDependencies": {
@@ -28,17 +27,5 @@
   "peerDependencies": {
     "@algolia/client-search": ">=4.3.0",
     "algoliasearch": ">=4.3.0"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "pnpm lint",
-      "pre-push": "npm test"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

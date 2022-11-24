@@ -23,7 +23,6 @@
     "lint:ci": "yarn lint:code && commitlint --from=origin/develop",
     "lint:code": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:commit": "commitlint",
-    "release": "standard-version",
     "commit": "git-cz"
   },
   "devDependencies": {
