@@ -56,7 +56,7 @@ jobs:
 
       - name: Setup npm config
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          pnpm config set "//registry.npmjs.org/:_authToken" ${{ secrets.NPM_TOKEN }}
           pnpm config set publish-branch ${GITHUB_REF#refs/heads/}
         shell: bash
 
