@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand",
     "lint": "yarn lint:code",
     "lint:ci": "yarn lint:code && commitlint --from=origin/develop",

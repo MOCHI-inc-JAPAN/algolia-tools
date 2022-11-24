@@ -16,22 +16,19 @@ type ServiceAccountJson = {
   client_x509_cert_url: string
 }
 
-const cwd = process.cwd()
-
-let useFirebaseAccount =
+export function initializeAccount() {
+  const cwd = process.cwd()
+  let useFirebaseAccount =
   process.env.FIREBASE_SERVICE_ACCOUNT_PATH
 
-if (!useFirebaseAccount){
-  const config: Required<Config> | Error = getConfigFromPackageJson(cwd)
+  if (!useFirebaseAccount){
+    const config: Required<Config> | Error = getConfigFromPackageJson(cwd)
 
-  if (config instanceof Error) throw config
+    if (config instanceof Error) throw config
 
-  useFirebaseAccount = config.firebaseServiceAccountPath
-}
+    useFirebaseAccount = config.firebaseServiceAccountPath
+  }
 
-export { useFirebaseAccount }
-
-export function initialize() {
   let PROJECT_ID: undefined | string = undefined
   if (useFirebaseAccount) {
     const serviceAccount:

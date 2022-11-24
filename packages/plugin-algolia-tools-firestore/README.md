@@ -5,16 +5,15 @@ This library mainly targets typescript but may be available as js module.
 
 ## Usage
 
-Add algolia-tools-config.js in your project  aloglia-tools-cli-generator.
+Add algolia-tools.config.js in your project  aloglia-tools-cli-generator.
 
 ```typescript
-const Plugins = require('@mochi-inc-japan/plugin-algolia-tools-firestore').
+const Plugins = require('@mochi-inc-japan/plugin-algolia-tools-firestore')
 module.exports = {
   plugins: [Plugins.FirestorePlugin],
   commanderPlugins: [Plugins.FirestoreCommanderPlugin]
 }
 ```
-
 
 ### Extension for Commander
 

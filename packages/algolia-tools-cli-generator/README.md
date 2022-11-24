@@ -160,6 +160,22 @@ so on.
 
 ### Extension for Commander
 
+#### Auto Mode
+
+
+Add algolia-tools.config.js in your project aloglia-tools-cli-generator.
+
+```typescript
+const Plugins = require('@mochi-inc-japan/plugin-algolia-tools-firestore')
+module.exports = {
+  plugins: [Plugins.FirestorePlugin],
+  commanderPlugins: [Plugins.FirestoreCommanderPlugin]
+}
+```
+config path is changeable via package.json aftools `configPath`.
+
+#### Manual Mode
+
 If you use commader, you can extend it by defined commands in this library.
 
 ```ts
@@ -186,7 +202,6 @@ const algoliaProjectManager = new AlgoliaProjectManager(algoliaModule)
 createAlgoliaCommanderPlugin(algoliaProjectManager)(commander)
 createFirestoreCommanderPlugin(algoliaProjectManager.algoliaModule)(commander)// optional if you use firestore
 ```
-
 
 ## **WARNING**
 

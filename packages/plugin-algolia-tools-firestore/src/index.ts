@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import { initialize } from './account/firebaseAccount'
+import { initializeAccount } from './account/firebaseAccount'
 import FirestorePlugin from './plugin/FirestorePlugin'
 import { createFirestoreCommanderPlugin } from './plugin/FirestoreCommanderPlugin'
 import {AlgoliaToolsModule} from '@mochi-inc-japan/algolia-tools';
@@ -11,7 +11,6 @@ export { createFirestoreCommanderPlugin }
 export function FirestoreCommanderPlugin(algoliaModule: AlgoliaToolsModule<{
   [key in Extract<typeof FirestorePlugin['id'], string>]?: FirestorePlugin
 }>) {
-  initialize()
   return (commander: Command) => {
     if (algoliaModule.firestorePlugin) {
       createFirestoreCommanderPlugin(algoliaModule.firestorePlugin)(commander)

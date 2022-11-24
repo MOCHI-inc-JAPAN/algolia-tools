@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:packages": "pnpm -r --filter '@mochi-inc-japan/*' test",
+    "build:packages": "pnpm -r --filter '@mochi-inc-japan/*' build"
   },
   "keywords": [],
   "author": "tkow",

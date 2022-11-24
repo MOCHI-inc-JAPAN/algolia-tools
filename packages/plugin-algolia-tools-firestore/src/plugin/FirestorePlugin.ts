@@ -9,14 +9,15 @@ export type FirestorePluginInternal = {
 
 export default class FirestorePlugin {
   static id = 'firestorePlugin' as const
+
   public constructor(args: FirestorePluginInternal) {
     this.algoliaIndexManager = args.algoliaIndexManager
     this.batchTimeKey = args.batchTimeKey || 'algolia-send-index-batchtime'
-    this.firestore = getFirestore()
-    this.database = getDatabase()
   }
-  public firestore: Firestore
-  public database: Database
+  public get firestore() {
+    return getFirestore()
+  }
+
   public batchTimeKey: FirestorePluginInternal['batchTimeKey']
   public algoliaIndexManager: FirestorePluginInternal['algoliaIndexManager']
 
@@ -35,7 +36,7 @@ export default class FirestorePlugin {
     filter = (data: any) => data
   ): Promise<boolean> => {
     try {
-      const historyRef = this.database.ref(`${this.batchTimeKey}/${index}`)
+      const historyRef = getDatabase().ref(`${this.batchTimeKey}/${index}`)
       const _tempValue = await historyRef.once('value')
       let targetCollectionRef = collection
         .orderBy(timestampName, 'desc')
@@ -81,7 +82,7 @@ export default class FirestorePlugin {
 
   public resetBatchTime = async (indexName: string): Promise<boolean> => {
     try {
-      const historyRef = this.database.ref(`${this.batchTimeKey}/${indexName}`)
+      const historyRef = getDatabase().ref(`${this.batchTimeKey}/${indexName}`)
       await historyRef.remove()
       return true
     } catch (e) {
@@ -103,7 +104,7 @@ export default class FirestorePlugin {
     try {
       await Promise.all(
         indexName.map((_indexName: string) =>
-          this.database.ref(`${this.batchTimeKey}/${_indexName}`).remove()
+          getDatabase().ref(`${this.batchTimeKey}/${_indexName}`).remove()
         )
       )
     } catch (e) {

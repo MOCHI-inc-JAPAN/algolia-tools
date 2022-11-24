@@ -33,10 +33,7 @@ if(existsSync(configPath)) {
   const configPlugins: {
     plugins: ExPlugin<any, any>[] | undefined
     commanderPlugins: CommanderPlugin[] |undefined
-  } = require(path.join(
-    __dirname,
-    config.orgModulePath
-  ))
+  } = require(configPath)
   if(configPlugins.plugins){
     plugins = {
       plugins: configPlugins.plugins
@@ -46,6 +43,12 @@ if(existsSync(configPath)) {
     commanderPlugins = configPlugins?.commanderPlugins
   }
 }
+
+commanderPlugins?.forEach((p) => {
+  if(typeof p.onInit === 'function') {
+    p.onInit()
+  }
+})
 
 export default algoliaManager(
   {
