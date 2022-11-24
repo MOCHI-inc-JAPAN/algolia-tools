@@ -1,6 +1,6 @@
 {
   "name": "@mochi-inc-japan/algolia-tools-cli-generator",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "bin": {
     "aftools": "dist/bin/aftools.js",
@@ -38,7 +38,7 @@
   },
   "peerDependencies": {
     "@algolia/client-search": ">=4.3.0",
-    "@mochi-inc-japan/algolia-tools": ">=1.4.0",
+    "@mochi-inc-japan/algolia-tools": ">=2.0.0",
     "algoliasearch": ">=4.3.0",
     "commander": ">=9.0.0",
     "typescript": ">=4.3.0"

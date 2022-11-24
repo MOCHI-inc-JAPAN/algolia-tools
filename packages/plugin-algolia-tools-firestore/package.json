@@ -1,6 +1,6 @@
 {
   "name": "@mochi-inc-japan/plugin-algolia-tools-firestore",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:MOCHI-inc-JAPAN/algolia-firebase-tools.git",
@@ -28,8 +28,8 @@
     "@mochi-inc-japan/algolia-tools": "workspace:*"
   },
   "peerDependencies": {
-    "@mochi-inc-japan/algolia-tools": ">=1.4.0",
-    "@mochi-inc-japan/algolia-tools-cli-generator": ">=1.4.0",
+    "@mochi-inc-japan/algolia-tools": ">=2.0.0",
+    "@mochi-inc-japan/algolia-tools-cli-generator": ">=2.0.0",
     "commander": ">=9.0.0",
     "firebase-admin": "^10.2.0",
     "typescript": ">=4.3.0"
