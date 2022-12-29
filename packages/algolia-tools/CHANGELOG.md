@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 2.0.2
+
+### Patch Changes
+
+- ca35594: fix: deploy safety
+
 ## 2.0.1
 
 ### Patch Changes
