@@ -31,3 +31,4 @@ out
 
 # fixtures
 /fixtures/*lock*
+.npmrc
