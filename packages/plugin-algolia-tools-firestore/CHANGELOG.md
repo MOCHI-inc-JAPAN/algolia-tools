@@ -1,5 +1,14 @@
 # @mochi-inc-japan/plugin-algolia-tools-firestore
 
+## 2.0.2
+
+### Patch Changes
+
+- ca35594: fix: deploy safety
+- Updated dependencies [ca35594]
+  - @mochi-inc-japan/algolia-tools@2.0.2
+  - @mochi-inc-japan/algolia-tools-cli-generator@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
