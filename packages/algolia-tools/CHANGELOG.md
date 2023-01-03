@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 2.0.3
+
+### Patch Changes
+
+- 97125ac: fix: duplicated prefix added in delete method
+
 ## 2.0.2
 
 ### Patch Changes

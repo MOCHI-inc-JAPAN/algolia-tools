@@ -1,5 +1,15 @@
 # algolia-firebase-tools-example
 
+## 1.4.4
+
+### Patch Changes
+
+- 97125ac: fix: duplicated prefix added in delete method
+- Updated dependencies [97125ac]
+  - @mochi-inc-japan/algolia-tools@2.0.3
+  - @mochi-inc-japan/algolia-tools-cli-generator@2.0.3
+  - @mochi-inc-japan/plugin-algolia-tools-firestore@2.0.3
+
 ## 1.4.3
 
 ### Patch Changes
