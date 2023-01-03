@@ -81,9 +81,7 @@ export class AlgoliaIndexManager {
     indexName: string | string[]
   ): Promise<boolean> => {
     try {
-      const indexNames = Array.isArray(indexName)
-        ? indexName.map((_name) => this.getIndexName(_name))
-        : [this.getIndexName(indexName)]
+      const indexNames = Array.isArray(indexName) ? indexName : [indexName]
       for await (const indexName of indexNames) {
         const index = this.client.initIndex(this.getIndexName(indexName))
         console.log(index.indexName)
