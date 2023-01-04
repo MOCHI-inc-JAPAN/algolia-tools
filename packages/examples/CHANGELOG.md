@@ -1,5 +1,15 @@
 # algolia-firebase-tools-example
 
+## 1.4.5
+
+### Patch Changes
+
+- 72bd745: fix: plugin bugs
+- Updated dependencies [72bd745]
+  - @mochi-inc-japan/algolia-tools@2.0.4
+  - @mochi-inc-japan/algolia-tools-cli-generator@2.0.4
+  - @mochi-inc-japan/plugin-algolia-tools-firestore@2.0.4
+
 ## 1.4.4
 
 ### Patch Changes
