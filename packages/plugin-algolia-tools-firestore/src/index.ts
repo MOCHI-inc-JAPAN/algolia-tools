@@ -1,5 +1,4 @@
 import { Command } from 'commander'
-import { initializeAccount } from './account/firebaseAccount'
 import FirestorePlugin from './plugin/FirestorePlugin'
 import { createFirestoreCommanderPlugin } from './plugin/FirestoreCommanderPlugin'
 import { AlgoliaToolsModule } from '@mochi-inc-japan/algolia-tools'

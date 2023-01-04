@@ -2,6 +2,7 @@ import type {
   IndexInterface,
   IndexConstructor,
   AlgoliaToolsModule,
+  ExPluginInput,
   ExPlugin,
 } from './types'
 import {
@@ -14,28 +15,41 @@ export {
   IndexInterface,
   IndexConstructor,
   AlgoliaIndexManager,
+  ExPluginInput,
   ExPlugin,
   AlgoliaToolsModule,
 }
 
-type ExtractPluginType<P extends ExPlugin<any, any>[]> = {
-  [index in Extract<keyof P, number>]: {
-    [key in P[index]['id']]: P[index]['prototype']
-  }
+type ExtractPluginType<P extends ExPlugin<any, any>> = {
+  [key in P['id']]: P['prototype']
+}
+
+type ExtractPluginsType<P extends ExPluginInput<any, any>[]> = {
+  [index in Extract<keyof P, number>]: P[index] extends Exclude<
+    P[index],
+    Array<any>
+  >
+    ? ExtractPluginType<P[index]>
+    : P[index] extends Extract<P[index], Array<any>>
+    ? ExtractPluginType<P[index][0]>
+    : Record<string, any>
 }[number]
 
-export default <Plugins extends ExPlugin<any, any>[]>(
+export default <Plugins extends ExPluginInput<any, any>[]>(
   args: AlgoliaIndexManagerInternal,
   indices: {
-    [collectionName: string]: IndexConstructor<ExtractPluginType<Plugins>>
+    [collectionName: string]: IndexConstructor<ExtractPluginsType<Plugins>>
   },
   option?: { plugins?: Plugins }
-): AlgoliaToolsModule<ExtractPluginType<Plugins>> => {
+): AlgoliaToolsModule<ExtractPluginsType<Plugins>> => {
   const algoliaIndexManager = new AlgoliaIndexManager(args)
   const exInstances = option?.plugins?.reduce((current, pluginClass) => {
+    const [_pluginClass, config = {}] = Array.isArray(pluginClass)
+      ? pluginClass
+      : [pluginClass]
     return {
       ...current,
-      [pluginClass.id]: new pluginClass(algoliaIndexManager),
+      [_pluginClass.id]: new _pluginClass({ algoliaIndexManager, ...config }),
     }
   }, {})
   return {

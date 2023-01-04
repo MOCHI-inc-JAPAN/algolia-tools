@@ -11,16 +11,17 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand"
   },
   "devDependencies": {
+    "@algolia/client-search": "^4.14.2",
+    "@mochi-inc-japan/algolia-tools": "workspace:*",
     "@types/algoliasearch": "^3.34.10",
+    "algoliasearch": "^4.14.2",
     "commander": "^9.4.1",
     "firebase-admin": "^11.3.0",
-    "firebase-tools": "^11.16.1",
-    "@algolia/client-search": "^4.14.2",
-    "@mochi-inc-japan/algolia-tools": "workspace:*"
+    "firebase-tools": "^11.16.1"
   },
   "peerDependencies": {
     "@mochi-inc-japan/algolia-tools": ">=2.0.2",

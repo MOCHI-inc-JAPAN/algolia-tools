@@ -23,6 +23,13 @@ export type AlgoliaToolsModule<Ex = unknown> = {
 
 export type ExPlugin<PluginId extends string, PluginType> = {
   id: PluginId
-  new (a: any): PluginType
+  new (a: {
+    [key: string]: any
+    algoliaIndexManager: AlgoliaIndexManager
+  }): PluginType
   prototype: PluginType
 }
+
+export type ExPluginInput<PluginId extends string, PluginType, Config = any> =
+  | ExPlugin<PluginId, PluginType>
+  | [ExPlugin<PluginId, PluginType>, Config]

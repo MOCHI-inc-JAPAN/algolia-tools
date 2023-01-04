@@ -1,5 +1,5 @@
-import { getFirestore, Firestore, Query } from 'firebase-admin/firestore'
-import { ServerValue, getDatabase, Database } from 'firebase-admin/database'
+import { getFirestore, Query } from 'firebase-admin/firestore'
+import { ServerValue, getDatabase } from 'firebase-admin/database'
 import { AlgoliaIndexManager } from '@mochi-inc-japan/algolia-tools'
 
 export type FirestorePluginInternal = {
