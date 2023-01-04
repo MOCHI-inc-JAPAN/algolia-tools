@@ -7,7 +7,8 @@
   "author": "tkow <t.kusama0613@outlook.jp>",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "npx tsc",

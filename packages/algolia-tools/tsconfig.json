@@ -1,27 +1,18 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "outDir": "dist",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "declaration": true,
+    "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/fixtures/*.ts"
-  ],
-  "include": [
-    "src"
-  ],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/fixtures/*.ts"],
+  "include": ["src"]
 }
