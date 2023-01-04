@@ -1,6 +1,6 @@
 {
   "name": "algolia-firebase-tools-example",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\""
