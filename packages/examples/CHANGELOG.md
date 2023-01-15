@@ -1,5 +1,15 @@
 # algolia-firebase-tools-example
 
+## 1.4.6
+
+### Patch Changes
+
+- 907add1: fix: peerDepenencies
+- Updated dependencies [907add1]
+  - @mochi-inc-japan/algolia-tools@2.0.5
+  - @mochi-inc-japan/algolia-tools-cli-generator@2.0.5
+  - @mochi-inc-japan/plugin-algolia-tools-firestore@2.0.5
+
 ## 1.4.5
 
 ### Patch Changes

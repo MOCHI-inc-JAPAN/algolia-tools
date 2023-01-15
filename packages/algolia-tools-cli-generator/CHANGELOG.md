@@ -1,5 +1,13 @@
 # @mochi-inc-japan/algolia-tools-cli-generator
 
+## 2.0.5
+
+### Patch Changes
+
+- 907add1: fix: peerDepenencies
+- Updated dependencies [907add1]
+  - @mochi-inc-japan/algolia-tools@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes
