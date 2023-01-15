@@ -28,7 +28,7 @@
     "@mochi-inc-japan/algolia-tools": ">=2.0.3",
     "@mochi-inc-japan/algolia-tools-cli-generator": ">=2.0.3",
     "commander": ">=9.0.0",
-    "firebase-admin": "^10.2.0",
+    "firebase-admin": ">=10.2.0",
     "typescript": ">=4.3.0"
   }
 }
