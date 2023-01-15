@@ -1,5 +1,13 @@
 # @mochi-inc-japan/algolia-tools-cli-generator
 
+## 2.0.4
+
+### Patch Changes
+
+- 72bd745: fix: plugin bugs
+- Updated dependencies [72bd745]
+  - @mochi-inc-japan/algolia-tools@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes

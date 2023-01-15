@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 2.0.4
+
+### Patch Changes
+
+- 72bd745: fix: plugin bugs
+
 ## 2.0.3
 
 ### Patch Changes
