@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 2.0.5
+
+### Patch Changes
+
+- 907add1: fix: peerDepenencies
+
 ## 2.0.4
 
 ### Patch Changes
