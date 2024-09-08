@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 3.0.0
+
+### Major Changes
+
+- e75ea7e: support v5
+
 ## 2.0.5
 
 ### Patch Changes
