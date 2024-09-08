@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 3.0.1
+
+### Patch Changes
+
+- b955e72: fix: release test
+
 ## 3.0.0
 
 ### Major Changes
