@@ -122,7 +122,7 @@ importers:
   packages/plugin-algolia-tools-firestore:
     dependencies:
       '@mochi-inc-japan/algolia-tools-cli-generator':
-        specifier: '>=2.0.5'
+        specifier: '*'
         version: 2.0.5(@algolia/client-search@5.3.0)(@mochi-inc-japan/algolia-tools@packages+algolia-tools)(algoliasearch@5.3.0)(commander@9.5.0)(typescript@5.5.4)
       typescript:
         specifier: '>=5.0.0'
