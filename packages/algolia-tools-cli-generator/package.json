@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@algolia/client-search": ">=5.0.0",
-    "@mochi-inc-japan/algolia-tools": ">=3.0.1",
+    "@mochi-inc-japan/algolia-tools": "*",
     "algoliasearch": ">=5.0.0",
     "commander": ">=9.0.0",
     "typescript": ">=5.0.0"
