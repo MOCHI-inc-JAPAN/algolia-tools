@@ -1,14 +1,5 @@
 # @mochi-inc-japan/plugin-algolia-tools-firestore
 
-## 3.0.1
-
-### Patch Changes
-
-- b955e72: fix: release test
-- Updated dependencies [b955e72]
-  - @mochi-inc-japan/algolia-tools@3.0.1
-  - @mochi-inc-japan/algolia-tools-cli-generator@3.0.1
-
 ## 3.0.0
 
 ### Major Changes
