@@ -1,5 +1,8 @@
 import { SearchClient } from 'algoliasearch'
-import { Settings, ListIndicesResponse } from '@algolia/client-search'
+import {
+  SettingsResponse as Settings,
+  ListIndicesResponse,
+} from '@algolia/client-search'
 
 export interface ReplicateSetting {
   indexName: string
@@ -37,12 +40,18 @@ export class AlgoliaIndexManager {
     indexName: string,
     data: T | T[]
   ): Promise<boolean> => {
-    const index = this.client.initIndex(this.getIndexName(indexName))
+    const targetIndex = this.getIndexName(indexName)
     try {
       if (Array.isArray(data)) {
-        await index.saveObjects(data)
+        await this.client.saveObjects({
+          indexName: targetIndex,
+          objects: data,
+        })
       } else {
-        await index.saveObject(data)
+        await this.client.saveObject({
+          indexName: targetIndex,
+          body: data,
+        })
       }
       return true
     } catch (e) {
@@ -59,12 +68,18 @@ export class AlgoliaIndexManager {
     indexName: string,
     ids: T | T[]
   ): Promise<boolean> => {
-    const index = this.client.initIndex(this.getIndexName(indexName))
+    const targetIndex = this.getIndexName(indexName)
     try {
       if (Array.isArray(ids)) {
-        await index.deleteObjects(ids)
+        await this.client.deleteObjects({
+          indexName: targetIndex,
+          objectIDs: ids,
+        })
       } else {
-        await index.deleteObject(ids)
+        await this.client.deleteObject({
+          indexName: targetIndex,
+          objectID: ids,
+        })
       }
       return true
     } catch (e) {
@@ -83,9 +98,11 @@ export class AlgoliaIndexManager {
     try {
       const indexNames = Array.isArray(indexName) ? indexName : [indexName]
       for await (const indexName of indexNames) {
-        const index = this.client.initIndex(this.getIndexName(indexName))
-        console.log(index.indexName)
-        await index.delete()
+        const targetIndex = this.getIndexName(indexName)
+        console.log(targetIndex)
+        await this.client.deleteIndex({
+          indexName: targetIndex,
+        })
       }
       return true
     } catch (e) {
@@ -108,8 +125,11 @@ export class AlgoliaIndexManager {
       for await (const _indexSetting of _indexSettings) {
         const indexName = this.getIndexName(_indexSetting.indexName)
         console.log(`${indexName} start applying`)
-        const index = this.client.initIndex(indexName)
-        await index.setSettings(_indexSetting.setting)
+        // const index =
+        await this.client.setSettings({
+          indexName,
+          indexSettings: _indexSetting.setting,
+        })
         console.log(`${indexName} was applyied`)
       }
       return true
@@ -152,12 +172,14 @@ export class AlgoliaIndexManager {
     try {
       if (Array.isArray(indexName)) {
         for (const _indexName of indexName) {
-          const index = this.client.initIndex(this.getIndexName(_indexName))
-          await index.clearObjects()
+          await this.client.clearObjects({
+            indexName: this.getIndexName(_indexName),
+          })
         }
       } else {
-        const index = this.client.initIndex(this.getIndexName(indexName))
-        await index.clearObjects()
+        await this.client.clearObjects({
+          indexName: this.getIndexName(indexName),
+        })
       }
       return true
     } catch (e) {
@@ -175,14 +197,13 @@ export class AlgoliaIndexManager {
     noPrefix?: boolean
   ): Promise<false | Settings[]> => {
     try {
-      const result = []
+      const result: Settings[] = []
       const _indexNames = Array.isArray(indexNames) ? indexNames : [indexNames]
 
       for (const _indexName of _indexNames) {
-        const index = this.client.initIndex(
-          noPrefix ? _indexName : this.getIndexName(_indexName)
-        )
-        const _result = await index.getSettings()
+        const _result = await this.client.getSettings({
+          indexName: noPrefix ? _indexName : this.getIndexName(_indexName),
+        })
         result.push(_result)
       }
       return result

@@ -16,8 +16,8 @@ jest.mock('fs', () => ({
 
 import * as fs from 'fs'
 
-import { Settings } from '@algolia/client-search'
-import algoliaSearch from 'algoliasearch'
+import { SettingsResponse as Settings } from '@algolia/client-search'
+import { algoliasearch as algoliaSearch } from 'algoliasearch'
 import * as path from 'path'
 import indices from '../mock/indexManagers'
 import { AlgoliaIndexManager } from './AlgoliaIndexManager'
@@ -47,20 +47,31 @@ describe('provisionAlgoliaIndexAll', () => {
       }
     )
     await invoker.provisionAlgoliaIndexAll()
-    expect(clientMock.initIndex).toBeCalledWith('namespace_hasprimary')
-    expect(clientMock.initIndex).toBeCalledWith('namespace_hasreplicas')
-    expect(clientMock.initIndex).toBeCalledWith('namespace_normal')
-    expect(clientMock.initIndex('dummy').setSettings).toBeCalledWith({
-      dummy: 'dummy',
-    })
-    expect(clientMock.initIndex('dummy').setSettings).toBeCalledWith({
-      dummy: 'dummy',
-      replicas: ['namespace_replica_1', 'namespace_replica_2'],
-    })
-    expect(clientMock.initIndex('dummy').setSettings).toBeCalledWith({
-      dummy: 'dummy',
-      primary: 'namespace_replica',
-    })
+
+    for (const expected of [
+      {
+        indexName: 'namespace_hasprimary',
+        indexSettings: {
+          dummy: 'dummy',
+          primary: 'namespace_replica',
+        },
+      },
+      {
+        indexName: 'namespace_hasreplicas',
+        indexSettings: {
+          dummy: 'dummy',
+          replicas: ['namespace_replica_1', 'namespace_replica_2'],
+        },
+      },
+      {
+        indexName: 'namespace_normal',
+        indexSettings: {
+          dummy: 'dummy',
+        },
+      },
+    ]) {
+      expect(clientMock.setSettings).toBeCalledWith(expected)
+    }
   })
 })
 
