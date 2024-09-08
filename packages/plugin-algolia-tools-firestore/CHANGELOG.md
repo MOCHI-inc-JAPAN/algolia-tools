@@ -1,5 +1,17 @@
 # @mochi-inc-japan/plugin-algolia-tools-firestore
 
+## 3.0.0
+
+### Major Changes
+
+- e75ea7e: support v5
+
+### Patch Changes
+
+- Updated dependencies [e75ea7e]
+  - @mochi-inc-japan/algolia-tools-cli-generator@3.0.0
+  - @mochi-inc-japan/algolia-tools@3.0.0
+
 ## 2.0.5
 
 ### Patch Changes
