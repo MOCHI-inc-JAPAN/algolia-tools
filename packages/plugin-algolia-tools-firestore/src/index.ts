@@ -9,7 +9,7 @@ export { createFirestoreCommanderPlugin }
 
 export function FirestoreCommanderPlugin(
   algoliaModule: AlgoliaToolsModule<{
-    [key in Extract<typeof FirestorePlugin['id'], string>]?: FirestorePlugin
+    [key in Extract<(typeof FirestorePlugin)['id'], string>]?: FirestorePlugin
   }>
 ) {
   return (commander: Command) => {

@@ -22,12 +22,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@mochi-inc-japan'
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
+      - name: Install dependencies
+        id: pnpm-setup
+        run: corepack enable
 
       - name: Get pnpm store directory
         id: pnpm-cache
