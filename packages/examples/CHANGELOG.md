@@ -1,5 +1,15 @@
 # algolia-firebase-tools-example
 
+## 2.0.2
+
+### Patch Changes
+
+- b41a81b: release
+- Updated dependencies [b41a81b]
+  - @mochi-inc-japan/plugin-algolia-tools-firestore@3.0.2
+  - @mochi-inc-japan/algolia-tools-cli-generator@3.0.2
+  - @mochi-inc-japan/algolia-tools@3.0.2
+
 ## 2.0.1
 
 ### Patch Changes
