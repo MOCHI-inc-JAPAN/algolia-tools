@@ -53,12 +53,6 @@ jobs:
         run: |
           git config --local user.email ${{ secrets.BOT_MAIL }}
           git config --local user.name ${{ secrets.BOT_NAME }}
-
-      - name: Setup npm config
-        run: |
-          pnpm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'
-          pnpm config set publish-branch ${GITHUB_REF#refs/heads/}
-        shell: bash
       - name: create and publish versions
         uses: changesets/action@v1
         with:
