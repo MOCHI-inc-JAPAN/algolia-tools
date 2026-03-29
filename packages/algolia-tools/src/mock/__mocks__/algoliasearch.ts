@@ -1,5 +1,5 @@
 import { SearchClient } from 'algoliasearch'
-import { ListIndicesResponse } from '@algolia/client-search'
+import { type ListIndicesResponse } from '@algolia/client-search'
 import * as path from 'path'
 
 export const algoliasearch = jest

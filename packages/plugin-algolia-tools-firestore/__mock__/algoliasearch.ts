@@ -1,4 +1,4 @@
-import { ListIndicesResponse } from '@algolia/client-search'
+import type { ListIndicesResponse } from '@algolia/client-search'
 import { SearchClient } from 'algoliasearch'
 import * as path from 'path'
 

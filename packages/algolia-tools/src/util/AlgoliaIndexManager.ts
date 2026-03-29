@@ -1,5 +1,5 @@
 import { SearchClient } from 'algoliasearch'
-import {
+import type {
   SettingsResponse as Settings,
   ListIndicesResponse,
 } from '@algolia/client-search'
