@@ -17,10 +17,10 @@
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --watch --no-cache --runInBand"
   },
   "devDependencies": {
-    "@algolia/client-search": "^5.3.0",
+    "@algolia/client-search": "^5.50.0",
     "@mochi-inc-japan/algolia-tools": "workspace:*",
     "@types/algoliasearch": "^3.34.10",
-    "algoliasearch": "^5.3.0",
+    "algoliasearch": "^5.50.0",
     "commander": "^9.4.1",
     "firebase-admin": "^11.3.0",
     "firebase-tools": "^11.16.1"
@@ -28,6 +28,7 @@
   "peerDependencies": {
     "@mochi-inc-japan/algolia-tools": "*",
     "@mochi-inc-japan/algolia-tools-cli-generator": "*",
+    "algoliasearch": "^5.50.0",
     "commander": ">=9.0.0",
     "firebase-admin": ">=10.2.0",
     "typescript": ">=5.0.0"

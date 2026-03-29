@@ -1,4 +1,4 @@
-import { SettingsResponse as Settings } from '@algolia/client-search'
+import type { SettingsResponse as Settings } from '@algolia/client-search'
 import { AlgoliaToolsModule } from '../types'
 import * as path from 'path'
 import * as fs from 'fs'

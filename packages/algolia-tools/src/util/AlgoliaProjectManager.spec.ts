@@ -16,7 +16,7 @@ jest.mock('fs', () => ({
 
 import * as fs from 'fs'
 
-import { SettingsResponse as Settings } from '@algolia/client-search'
+import type { SettingsResponse as Settings } from '@algolia/client-search'
 import { algoliasearch as algoliaSearch } from 'algoliasearch'
 import * as path from 'path'
 import indices from '../mock/indexManagers'
