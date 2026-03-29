@@ -1,5 +1,11 @@
 # @mochi-inc-japan/algolia-tools
 
+## 3.0.3
+
+### Patch Changes
+
+- cd26289: fix: version update
+
 ## 3.0.2
 
 ### Patch Changes
