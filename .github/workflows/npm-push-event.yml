@@ -64,7 +64,7 @@ jobs:
         with:
           commit: 'chore: update versions'
           title: 'chore: update versions'
-          publish: pnpm -r publish --provenance
+          publish: pnpm -r publish --provenance --access public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ''
