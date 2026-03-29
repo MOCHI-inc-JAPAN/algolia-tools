@@ -1,5 +1,15 @@
 # algolia-firebase-tools-example
 
+## 2.0.3
+
+### Patch Changes
+
+- cd26289: fix: version update
+- Updated dependencies [cd26289]
+  - @mochi-inc-japan/algolia-tools@3.0.3
+  - @mochi-inc-japan/algolia-tools-cli-generator@3.0.3
+  - @mochi-inc-japan/plugin-algolia-tools-firestore@3.0.3
+
 ## 2.0.2
 
 ### Patch Changes
